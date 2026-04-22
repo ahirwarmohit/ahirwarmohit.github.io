@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Adaptive Design System (GADS) · Mohit Ahirwar</title>
+<meta name="description" content="A self-initiated design system built for direction-agnostic layouts (LTR, RTL, vertical) and three-tier device constraint adaptation. Strategic design by Mohit Ahirwar.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ahirwarmohit.github.io/global-adaptive-design-system.html">
+<meta property="og:title" content="Global Adaptive Design System (GADS) · Mohit Ahirwar">
+<meta property="og:description" content="A design system built for the 70% of internet users most products quietly ignore. Self-initiated · 2025–Present.">
+<meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;--paper:#fafaf8;--bone:#f3f2ef;
+  --rule:#e4e2dc;--rule2:#d0cec7;
+  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
+  --blue:#1a4ed8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;
+  --fs-xs:11px;--fs-sm:13px;--fs-base:15px;--fs-md:17px;--fs-lg:22px;--lh:1.75;--r:3px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:var(--lh);-webkit-font-smoothing:antialiased;animation:pageFadeIn .4s ease both;}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .1s linear;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:var(--fs-xs);font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);}
+.nav-tag{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);color:var(--ink-3);letter-spacing:1px;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s;}
+.hamburger:hover{border-color:var(--blue);}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all;}
+.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s;}
+.mobile-menu a:hover{color:var(--blue);}
+.mobile-menu a:last-of-type{border-bottom:none;}
+.mm-foot{margin-top:32px;display:flex;gap:10px;}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2);}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+.nbtn.s{background:var(--blue);color:white;border:1px solid var(--blue);}
+.nbtn.s:hover{background:#1640b8;}
+
+/* COVER */
+.cover{padding:120px 48px 80px;border-bottom:1px solid var(--rule);max-width:1200px;margin:0 auto;}
+.cover-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:32px;flex-wrap:wrap;}
+.eyebrow-tag{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;}
+.eyebrow-sep{width:1px;height:12px;background:var(--rule2);}
+.eyebrow-secondary{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:1px;color:var(--ink-3);}
+.wip-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-2);background:var(--bone);border:1px solid var(--rule2);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.cover h1{font-family:'Fraunces',serif;font-size:clamp(44px,6.5vw,88px);font-weight:300;line-height:1.0;letter-spacing:-2px;color:var(--ink);margin-bottom:8px;}
+.cover h1 em{font-style:italic;color:var(--blue);}
+.cover-sub{font-size:var(--fs-md);color:var(--ink-2);font-weight:300;max-width:600px;margin-top:20px;line-height:1.65;}
+.cover-meta{margin-top:56px;padding-top:32px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.meta-cell{padding:0 32px 0 0;border-right:1px solid var(--rule);}
+.meta-cell:last-child{border-right:none;}
+.meta-cell:first-child{padding-left:0;}
+.meta-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px;}
+.meta-value{font-size:var(--fs-sm);font-weight:500;color:var(--ink-1);line-height:1.4;}
+
+/* LAYOUT */
+.page-body{max-width:1200px;margin:0 auto;}
+.section{padding:80px 48px;border-bottom:1px solid var(--rule);}
+.section:last-of-type{border-bottom:none;}
+.section-inner{display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start;}
+.section-aside{position:sticky;top:72px;}
+.section-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;font-weight:500;}
+.section-title-aside{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ink-2);line-height:1.4;}
+.section-content h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,42px);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:28px;letter-spacing:-.5px;}
+.section-content h2 em{font-style:italic;color:var(--blue);}
+.section-content h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-2);font-weight:500;margin-top:48px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+.section-content p{font-size:var(--fs-base);color:var(--ink-2);line-height:1.82;margin-bottom:18px;max-width:680px;}
+.section-content p strong{color:var(--ink);font-weight:600;}
+
+/* CALLOUT */
+.callout{background:var(--blue-bg);border:1px solid var(--blue-bd);border-left:3px solid var(--blue);padding:20px 24px;margin:28px 0;max-width:680px;border-radius:0 var(--r) var(--r) 0;}
+.callout p{font-family:'Fraunces',serif;font-size:var(--fs-md);font-style:italic;font-weight:300;color:var(--blue);margin:0;line-height:1.6;max-width:none;}
+.highlight-box{background:var(--paper);border:1px solid var(--rule2);border-left:3px solid var(--ink);padding:20px 24px;margin:28px 0;max-width:680px;border-radius:0 var(--r) var(--r) 0;}
+.highlight-box p{font-size:var(--fs-base);color:var(--ink-1);margin:0;max-width:none;line-height:1.7;}
+
+/* ASSUMPTION GRID */
+.principle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;}
+.pr-card{background:var(--white);padding:24px 22px;transition:background .2s;}
+.pr-card:hover{background:var(--paper);}
+.pr-idx{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:1px;margin-bottom:12px;}
+.pr-title{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:8px;}
+.pr-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* AXIS GRID */
+.axis-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;max-width:680px;}
+.axis-card{border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
+.axis-head{background:var(--paper);border-bottom:1px solid var(--rule);padding:14px 18px;}
+.axis-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;}
+.axis-name{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-top:4px;}
+.axis-item{display:flex;align-items:flex-start;gap:12px;padding:12px 18px;border-bottom:1px solid var(--rule);}
+.axis-item:last-child{border-bottom:none;}
+.axis-tier{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);min-width:28px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:2px;font-weight:500;margin-top:2px;}
+.axis-text{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.5;}
+.axis-text strong{color:var(--ink-1);font-weight:600;}
+
+/* IMPACT ROWS */
+.impact-rows{margin-top:28px;max-width:680px;}
+.impact-row{display:grid;grid-template-columns:20px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:start;}
+.impact-row:last-child{border-bottom:none;}
+.impact-arrow{font-size:14px;color:var(--blue);padding-top:2px;}
+.impact-row strong{display:block;font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:3px;}
+.impact-row span{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* STATUS LIST */
+.status-group{margin-top:28px;max-width:680px;}
+.status-group+.status-group{margin-top:32px;}
+.status-heading{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px;display:block;}
+.status-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);}
+.status-item:last-child{border-bottom:none;}
+.status-icon{font-size:13px;flex-shrink:0;margin-top:1px;}
+.status-text{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+.status-text strong{color:var(--ink-1);font-weight:600;}
+
+/* PULL QUOTE */
+.pull-quote{font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,30px);font-weight:300;font-style:italic;color:var(--ink-1);line-height:1.4;padding:40px 0;border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2);margin:48px 0;max-width:680px;}
+.pull-quote em{color:var(--blue);font-style:normal;}
+
+/* CTA BLOCK */
+.cta-block{background:var(--bone);border:1px solid var(--rule);border-radius:var(--r);padding:36px 40px;margin-top:48px;max-width:680px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.cta-block h3{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:300;color:var(--ink);margin-bottom:8px;}
+.cta-block p{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.7;max-width:420px;margin:0;}
+.cta-text{flex:1;}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,border-color .15s;z-index:90;}
+#btt.vis{opacity:1;transform:translateY(0);}
+#btt:hover{border-color:var(--blue);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1200px;margin:0 auto;}
+.foot-left{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:300;color:var(--ink-2);}
+.foot-left em{color:var(--ink);font-style:italic;}
+.foot-links{display:flex;gap:20px;}
+.foot-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;}
+.foot-links a:hover{color:var(--blue);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  nav{padding:0 20px;}
+  .nav-links,.nav-tag{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu{display:flex;}
+}
+@media(max-width:900px){
+  .cover,.section{padding-left:20px;padding-right:20px;}
+  .cover{padding-top:88px;}
+  .cover-meta{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .meta-cell{border-right:none;padding:0;}
+  .section-inner{grid-template-columns:1fr;gap:24px;}
+  .section-aside{position:static;}
+  .principle-grid{grid-template-columns:1fr;}
+  .axis-grid{grid-template-columns:1fr;}
+  .cta-block{flex-direction:column;align-items:flex-start;}
+  footer{padding:28px 20px;}
+}
+@media(max-width:480px){
+  .cover-meta{grid-template-columns:1fr;gap:20px;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Mohit Ahirwar — home">
+    <div class="nav-dot" aria-hidden="true"></div>
+    <span class="nav-name">Mohit</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#system">System</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#status">Status</a></li>
+  </ul>
+  <span class="nav-tag">Design Systems · WIP</span>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="index.html">← Back to Portfolio</a>
+  <a href="#problem">Problem</a>
+  <a href="#system">System</a>
+  <a href="#strategy">Strategy</a>
+  <a href="#outcomes">Outcomes</a>
+  <a href="#status">Status</a>
+  <div class="mm-foot">
+    <a href="cv.html" class="nbtn o">View CV</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Email</a>
+  </div>
+</nav>
+
+<main>
+<div class="page-body">
+
+<!-- COVER -->
+<div class="cover reveal" aria-labelledby="cover-h1">
+  <div class="cover-eyebrow">
+    <span class="eyebrow-tag">Self-Initiated · Strategic Design</span>
+    <div class="eyebrow-sep" aria-hidden="true"></div>
+    <span class="eyebrow-secondary">2025 – Present</span>
+    <div class="eyebrow-sep" aria-hidden="true"></div>
+    <span class="wip-badge">🔧 Live Work in Progress</span>
+  </div>
+  <h1 id="cover-h1">Global Adaptive<br><em>Design System</em></h1>
+  <p class="cover-sub">A design system built for the 70% of internet users most products quietly ignore.</p>
+  <div class="cover-meta" role="list" aria-label="Project metadata">
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Self-Initiated Project</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Status</span>
+      <span class="meta-value">Work in Progress · Built Openly</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Domain</span>
+      <span class="meta-value">Design Systems · Global UX</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Duration</span>
+      <span class="meta-value">2025 – Present</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Tools</span>
+      <span class="meta-value">Figma · Documentation</span>
+    </div>
+  </div>
+</div>
+
+<!-- 01 THE PROBLEM -->
+<section class="section" id="problem" aria-labelledby="problem-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">01</span>
+      <span class="section-title-aside">Why This Project Exists</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="problem-h2">Most design systems carry<br><em>three hidden assumptions</em></h2>
+      <p class="reveal">The way most companies scale globally today is broken. They hire regional design teams. They maintain parallel codebases. They ship "localised" products that are really just translated versions of a Western default. And even after all that effort, a massive portion of their potential audience still gets a second-class experience.</p>
+      <p class="reveal">Here's the part most design systems don't acknowledge:</p>
+      <div class="principle-grid reveal" role="list">
+        <div class="pr-card" role="listitem">
+          <div class="pr-idx">Assumption 01</div>
+          <div class="pr-title">Users read left-to-right</div>
+          <div class="pr-desc"><strong>~660 million people read right-to-left.</strong> Arabic, Hebrew, Urdu, Farsi. That's more people than the entire population of Europe.</div>
+        </div>
+        <div class="pr-card" role="listitem">
+          <div class="pr-idx">Assumption 02</div>
+          <div class="pr-title">Users hold high-end devices</div>
+          <div class="pr-desc"><strong>Roughly 40% of smartphones sold in Africa cost under $100.</strong> Another 40% under $200. These devices are not edge cases — they are the market.</div>
+        </div>
+        <div class="pr-card" role="listitem">
+          <div class="pr-idx">Assumption 03</div>
+          <div class="pr-title">English is the default</div>
+          <div class="pr-desc"><strong>English is the first language of only ~18% of internet users</strong>, yet it dominates ~50% of online content. That gap is a product failure at scale.</div>
+        </div>
+      </div>
+      <div class="callout reveal" style="margin-top:36px;">
+        <p>This isn't a localisation problem. It's not a translation problem. It's a design systems problem. The frameworks most teams build are structurally incapable of adapting. GADS treats global adaptability as a first-class design constraint — not a post-launch patch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 THE SYSTEM -->
+<section class="section" id="system" aria-labelledby="system-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">02</span>
+      <span class="section-title-aside">How the System Works</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="system-h2">Two independent axes.<br><em>Nine possible states.</em></h2>
+      <p class="reveal">GADS is organised around two independent axes. Any component in the system can be specified against any combination of them. The axes are independent and combinable — a component exists in up to nine possible states, and the system handles all of them without separate codebases, separate teams, or separate design files.</p>
+      <div class="axis-grid reveal">
+        <div class="axis-card">
+          <div class="axis-head">
+            <div class="axis-label">Axis 01 · Direction</div>
+            <div class="axis-name">Script direction awareness</div>
+          </div>
+          <div class="axis-item">
+            <div class="axis-tier">LTR</div>
+            <div class="axis-text"><strong>Left-to-Right</strong> — English, Hindi, most European languages</div>
+          </div>
+          <div class="axis-item">
+            <div class="axis-tier">RTL</div>
+            <div class="axis-text"><strong>Right-to-Left</strong> — Arabic, Hebrew, Urdu, Farsi</div>
+          </div>
+          <div class="axis-item">
+            <div class="axis-tier">TTB</div>
+            <div class="axis-text"><strong>Top-to-Bottom</strong> — Japanese, Chinese, Mongolian vertical scripts</div>
+          </div>
+        </div>
+        <div class="axis-card">
+          <div class="axis-head">
+            <div class="axis-label">Axis 02 · Device Constraint</div>
+            <div class="axis-name">Three performance tiers</div>
+          </div>
+          <div class="axis-item">
+            <div class="axis-tier">L1</div>
+            <div class="axis-text"><strong>Full</strong> — Flagship devices, stable 4G/5G. Full animations, rich visuals, spring physics.</div>
+          </div>
+          <div class="axis-item">
+            <div class="axis-tier">L2</div>
+            <div class="axis-text"><strong>Reduced</strong> — Mid-range devices, 3G. Compositor-only animations, lighter treatments, 30fps acceptable.</div>
+          </div>
+          <div class="axis-item">
+            <div class="axis-tier">L3</div>
+            <div class="axis-text"><strong>Minimal</strong> — Budget devices, 2G or metered. Zero animations, flat layouts, maximum performance. The product still works. Fully.</div>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-box reveal" style="margin-top:36px;">
+        <p>Layouts aren't "LTR with RTL support." They're direction-agnostic from the ground up. The system replaces physical coordinates (Left, Right, Top, Bottom) with logical ones (Inline Start, Inline End, Block Start, Block End) — so the same component flows correctly in any script direction by design, not by override.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 STRATEGY -->
+<section class="section" id="strategy" aria-labelledby="strategy-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">03</span>
+      <span class="section-title-aside">Demonstration Strategy</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="strategy-h2">Stress-tested in<br><em>two product contexts</em></h2>
+      <p class="reveal">Two product contexts are being used to stress-test the system — one B2C, one B2B — chosen for maximum contrast. Every component in the system earns its place by appearing in at least two products or three screens, the way mature design systems actually emerge in practice.</p>
+      <h3 class="reveal">B2C — Food Delivery App</h3>
+      <p class="reveal">Inspired by Zomato and Swiggy. High information density, complex flows, and a genuinely global use case. Screens: Home/Listing, Restaurant Detail, Cart &amp; Checkout. Each adapted across all three directions and all three constraint levels.</p>
+      <h3 class="reveal">B2B — Dashboard System</h3>
+      <p class="reveal">Inspired by Jira-style tools. Enterprise layouts, data-heavy views, and navigation patterns that most existing products already struggle with in RTL. The B2B context surfaces failure modes the B2C product rarely exposes.</p>
+      <div class="callout reveal">
+        <p>The build methodology is bottom-up, not top-down. Wireframes first. Components extracted from real screen needs. Tokens and rules documented last.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 OUTCOMES -->
+<section class="section" id="outcomes" aria-labelledby="outcomes-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">04</span>
+      <span class="section-title-aside">What a System Like This Is Worth</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="outcomes-h2">Predicted outcomes,<br><em>grounded in benchmarks</em></h2>
+      <p class="reveal">Design systems have measurable ROI. A production-grade GADS-style system would likely deliver outcomes along these lines, based on industry benchmarks.</p>
+      <h3 class="reveal">For the business</h3>
+      <div class="impact-rows reveal">
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>30–50% reduction in regional rollout effort</strong>
+            <span>Design and engineering cost per new market expansion. Sparkbox's Carbon Design System study found 47% faster build times for teams using a mature system.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>247% cumulative ROI over 5 years</strong>
+            <span>A documented figure for mature design systems — Airbnb's DLS case study. The compounding returns come from reduced redundancy, faster iteration, and lower defect rates.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>~25% of design team capacity freed</strong>
+            <span>Redirected from redundant regional execution toward strategic work — based on IBM Carbon programme data.</span>
+          </div>
+        </div>
+      </div>
+      <h3 class="reveal">For the market</h3>
+      <div class="impact-rows reveal">
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>Access to ~660M RTL-reading users</strong>
+            <span>Without building a parallel product. MENA, South Asia, and diaspora markets are currently served by forked codebases or ignored entirely.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>Access to ~1.5B low-end device users</strong>
+            <span>The users that flagship apps are currently unusable on. Southeast Asia's digital economy alone crossed $263B GMV in 2024 and continues to grow double-digit.</span>
+          </div>
+        </div>
+      </div>
+      <h3 class="reveal">For the user</h3>
+      <p class="reveal">A product that functions on a 2019 Android device in Casablanca, in Arabic, over 3G. Visual and interaction consistency regardless of language, script, or device. No degraded "lite version" stigma — just the same product, correctly adapted.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 STATUS -->
+<section class="section" id="status" aria-labelledby="status-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">05</span>
+      <span class="section-title-aside">Where Things Stand</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="status-h2">Live work<br><em>in progress</em></h2>
+      <p class="reveal">This is a live project — built openly as part of my portfolio. The strategic framework is complete. Execution is underway.</p>
+      <div class="status-group reveal">
+        <span class="status-heading">Completed</span>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <div class="status-text"><strong>Strategic framing and business case</strong> — the problem, the axes, the benchmarks.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <div class="status-text"><strong>System architecture</strong> — direction axis and constraint axis, fully defined.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <div class="status-text"><strong>Component hierarchy and prioritisation framework</strong> — Tier 1 components identified across both product contexts.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <div class="status-text"><strong>Research across production systems</strong> — Material Design, Ant Design, Cloudscape, Wikimedia Codex.</div>
+        </div>
+      </div>
+      <div class="status-group reveal">
+        <span class="status-heading">In Progress</span>
+        <div class="status-item">
+          <span class="status-icon">🔧</span>
+          <div class="status-text"><strong>Wireframe execution in Figma</strong> — B2C food delivery, LTR baseline first.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">🔧</span>
+          <div class="status-text"><strong>Tier 1 component extraction and spec documentation</strong> — components earning their place in the system from real screen needs.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">🔧</span>
+          <div class="status-text"><strong>Figma variable structure</strong> — Localisation modes and Performance modes as first-class Figma variables.</div>
+        </div>
+      </div>
+      <div class="status-group reveal">
+        <span class="status-heading">Coming Next</span>
+        <div class="status-item">
+          <span class="status-icon">⬜</span>
+          <div class="status-text">RTL and TTB variants across all wireframes.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⬜</span>
+          <div class="status-text">L1 → L2 → L3 constraint-level transitions for every Tier 1 component.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⬜</span>
+          <div class="status-text">After Effects animation showing the system degrading gracefully across constraint levels in real time.</div>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⬜</span>
+          <div class="status-text">B2B dashboard screens — enterprise layouts in all three directions.</div>
+        </div>
+      </div>
+      <div class="pull-quote reveal">
+        Design systems are usually built to make life easier for the teams shipping products. GADS is built to make life easier for the <em>people using them</em>.
+      </div>
+      <div class="cta-block reveal">
+        <div class="cta-text">
+          <h3>Want to dig into the thinking?</h3>
+          <p>I'm building GADS openly because the strategic framework behind it matters more than any individual component. If you're working on global products, design systems, or just want to trade notes — I'd love to talk.</p>
+        </div>
+        <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Contact Mohit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reveal">
+  <div class="foot-left">Global Adaptive <em>Design System</em></div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="yono-case-study.html">YONO Case Study</a>
+    <a href="cv.html">CV</a>
+    <a href="mailto:mohitahirwar7@gmail.com">Email</a>
+  </div>
+</footer>
+
+</div><!-- end page-body -->
+</main>
+
+<button id="btt" aria-label="Back to top" title="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="2,9 7,4 12,9"/>
+  </svg>
+</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  const prog=document.getElementById('progress');
+  prog.style.width=pct+'%';
+  prog.setAttribute('aria-valuenow',Math.round(pct));
+  document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const burger=document.getElementById('hamburger');
+const menu=document.getElementById('mobile-menu');
+function toggleMenu(open){
+  burger.classList.toggle('open',open);menu.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',String(open));
+  burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>toggleMenu(!burger.classList.contains('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleMenu(false);});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+document.getElementById('btt').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(h&&h.endsWith('.html')&&!h.startsWith('http')&&!h.startsWith('//')){
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.body.style.opacity='0';document.body.style.transform='translateY(8px)';
+      document.body.style.transition='opacity .25s ease,transform .25s ease';
+      setTimeout(()=>{window.location.href=h;},260);
+    });
+  }
+});
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+</script>
+</body>
+</html>

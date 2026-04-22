@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YONO 2.0 — Insurance Vertical · Case Study by Mohit Ahirwar</title>
+<meta name="description" content="Case study: Redesigning multi-channel insurance journeys for SBI YONO 2.0 — India's largest bank. Establishing the design system foundation that scaled across 110+ product journeys.">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ahirwarmohit.github.io/yono-case-study.html">
+<meta property="og:title" content="YONO 2.0 — Insurance Vertical · Case Study by Mohit Ahirwar">
+<meta property="og:description" content="Redesigning multi-channel insurance journeys for India's largest bank. TCS Interactive × SBI × McKinsey & Company.">
+<meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:#ffffff; --paper:#fafaf8; --bone:#f3f2ef;
+  --rule:#e4e2dc; --rule2:#d0cec7;
+  --ink-3:#9b9890; --ink-2:#6b6860; --ink-1:#2e2c28; --ink:#141210;
+  --blue:#1a4ed8; --blue-bg:#eef2fd; --blue-bd:#c7d4f8;
+  --fs-xs:11px; --fs-sm:13px; --fs-base:15px; --fs-md:17px;
+  --fs-lg:22px; --lh:1.75; --r:3px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:var(--lh);-webkit-font-smoothing:antialiased;animation:pageFadeIn .4s ease both;}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* PROGRESS */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .1s linear;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:var(--fs-xs);font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);}
+.nav-tag{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);color:var(--ink-3);letter-spacing:1px;}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s;}
+.hamburger:hover{border-color:var(--blue);}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all;}
+.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s;}
+.mobile-menu a:hover{color:var(--blue);}
+.mobile-menu a:last-of-type{border-bottom:none;}
+.mm-foot{margin-top:32px;display:flex;gap:10px;}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2);}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+.nbtn.s{background:var(--blue);color:white;border:1px solid var(--blue);}
+.nbtn.s:hover{background:#1640b8;}
+
+/* COVER */
+.cover{padding:120px 48px 80px;border-bottom:1px solid var(--rule);background:var(--white);max-width:1200px;margin:0 auto;}
+.cover-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:32px;}
+.eyebrow-tag{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;}
+.eyebrow-sep{width:1px;height:12px;background:var(--rule2);}
+.eyebrow-secondary{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:1px;color:var(--ink-3);}
+.cover h1{font-family:'Fraunces',serif;font-size:clamp(44px,6.5vw,88px);font-weight:300;line-height:1.0;letter-spacing:-2px;color:var(--ink);margin-bottom:8px;}
+.cover h1 em{font-style:italic;color:var(--blue);}
+.cover-sub{font-size:var(--fs-md);color:var(--ink-2);font-weight:300;max-width:600px;margin-top:20px;line-height:1.65;}
+.cover-meta{margin-top:56px;padding-top:32px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.meta-cell{padding:0 32px 0 0;border-right:1px solid var(--rule);}
+.meta-cell:last-child{border-right:none;}
+.meta-cell:first-child{padding-left:0;}
+.meta-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px;}
+.meta-value{font-size:var(--fs-sm);font-weight:500;color:var(--ink-1);line-height:1.4;}
+
+/* LAYOUT */
+.page-body{max-width:1200px;margin:0 auto;}
+.section{padding:80px 48px;border-bottom:1px solid var(--rule);}
+.section:last-of-type{border-bottom:none;}
+.section-inner{display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start;}
+.section-aside{position:sticky;top:72px;}
+.section-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;font-weight:500;}
+.section-title-aside{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ink-2);line-height:1.4;}
+.section-content h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,42px);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:28px;letter-spacing:-.5px;}
+.section-content h2 em{font-style:italic;color:var(--blue);}
+.section-content h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-2);font-weight:500;margin-top:48px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+.section-content p{font-size:var(--fs-base);color:var(--ink-2);line-height:1.82;margin-bottom:18px;max-width:680px;}
+.section-content p strong{color:var(--ink);font-weight:600;}
+
+/* STATS */
+.stats-strip{background:var(--paper);border-bottom:1px solid var(--rule);}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 48px;}
+.stat-cell{padding:44px 32px 44px 0;border-right:1px solid var(--rule);}
+.stat-cell:last-child{border-right:none;}
+.stat-number{font-family:'Fraunces',serif;font-size:52px;font-weight:300;color:var(--ink);line-height:1;margin-bottom:10px;letter-spacing:-2px;}
+.stat-number sup{font-size:24px;vertical-align:super;color:var(--blue);letter-spacing:0;}
+.stat-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.5;max-width:180px;}
+
+/* CALLOUT */
+.callout{background:var(--blue-bg);border:1px solid var(--blue-bd);border-left:3px solid var(--blue);padding:20px 24px;margin:28px 0;max-width:680px;border-radius:0 var(--r) var(--r) 0;}
+.callout p{font-family:'Fraunces',serif;font-size:var(--fs-md);font-style:italic;font-weight:300;color:var(--blue);margin:0;line-height:1.6;max-width:none;}
+.callout cite{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);margin-top:10px;font-style:normal;}
+.highlight-box{background:var(--paper);border:1px solid var(--rule2);border-left:3px solid var(--ink);padding:20px 24px;margin:28px 0;max-width:680px;border-radius:0 var(--r) var(--r) 0;}
+.highlight-box p{font-size:var(--fs-base);color:var(--ink-1);margin:0;max-width:none;line-height:1.7;}
+
+/* ROLE CARDS */
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:32px;border-radius:var(--r);overflow:hidden;}
+.role-card{background:var(--white);padding:24px 22px;transition:background .2s;}
+.role-card:hover{background:var(--paper);}
+.rc-index{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:1px;margin-bottom:12px;}
+.rc-title{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:8px;}
+.rc-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* CX TABLE */
+.cx-table{width:100%;max-width:680px;border-collapse:collapse;margin-top:24px;font-size:var(--fs-sm);}
+.cx-table tr{border-bottom:1px solid var(--rule);}
+.cx-table tr:last-child{border-bottom:none;}
+.cx-table td{padding:16px 0;vertical-align:top;}
+.cx-table td:first-child{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:1px;padding-right:24px;white-space:nowrap;padding-top:19px;}
+.cx-table td strong{display:block;font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:4px;}
+.cx-table td span{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;max-width:720px;}
+.proc-item{background:var(--white);padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:background .2s;}
+.proc-item:hover{background:var(--paper);}
+.proc-n{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:2px;font-weight:500;}
+.proc-txt{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.55;padding-top:3px;}
+
+/* DELIVERABLES */
+.del-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;}
+.del-card{background:var(--white);padding:22px 20px;transition:background .2s;}
+.del-card:hover{background:var(--paper);}
+.del-channel{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:10px;}
+.del-name{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:8px;}
+.del-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.55;}
+.del-count{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:1px;padding-top:12px;border-top:1px solid var(--rule);}
+
+/* ACCORDION */
+.decisions{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;max-width:720px;}
+.dec{background:var(--white);cursor:pointer;transition:background .2s;}
+.dec:hover{background:var(--paper);}
+.dec.open{background:var(--paper);}
+.dec-head{display:flex;align-items:flex-start;gap:20px;padding:22px 24px;user-select:none;}
+.dec-idx{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:2px;margin-top:1px;font-weight:500;}
+.dec-meta{flex:1;}
+.dec-title{font-size:var(--fs-base);font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:4px;}
+.dec-context{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);}
+.dec-toggle{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--ink-3);flex-shrink:0;transition:transform .3s ease;line-height:1;margin-top:3px;}
+.dec.open .dec-toggle{transform:rotate(45deg);color:var(--blue);}
+.dec-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.dec.open .dec-body{max-height:600px;}
+.dec-inner{padding:0 24px 24px 70px;border-top:1px solid var(--rule);}
+.dec-inner p{font-size:var(--fs-sm);color:var(--ink-2);margin-bottom:12px;max-width:none;line-height:1.8;margin-top:16px;}
+.dec-inner p em{color:var(--ink);font-style:italic;}
+.dec-outcome{background:var(--white);border:1px solid var(--rule2);border-left:3px solid var(--blue);padding:14px 18px;margin-top:16px;border-radius:0 var(--r) var(--r) 0;}
+.dec-outcome .out-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;font-weight:500;}
+.dec-outcome p{font-size:var(--fs-sm);color:var(--ink-2);margin:0;max-width:none;line-height:1.7;}
+
+/* PHASE SCALE */
+.phase-scale{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:32px;max-width:560px;}
+.ph-cell{background:var(--white);padding:28px 24px;}
+.ph-cell:last-child{background:var(--ink);}
+.ph-n{font-family:'Fraunces',serif;font-size:44px;font-weight:300;color:var(--ink);line-height:1;margin-bottom:8px;letter-spacing:-2px;}
+.ph-cell:last-child .ph-n{color:var(--white);}
+.ph-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);}
+.ph-cell:last-child .ph-lbl{color:rgba(255,255,255,.45);}
+
+/* IMPACT */
+.impact-rows{margin-top:28px;max-width:680px;}
+.impact-row{display:grid;grid-template-columns:20px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:start;}
+.impact-row:last-child{border-bottom:none;}
+.impact-arrow{font-size:14px;color:var(--blue);padding-top:2px;}
+.impact-row strong{display:block;font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:3px;}
+.impact-row span{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* CURRENT WORK */
+.curr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;max-width:680px;}
+.curr-cell{background:var(--white);padding:20px 22px;display:flex;gap:14px;align-items:flex-start;transition:background .2s;}
+.curr-cell:hover{background:var(--paper);}
+.curr-status{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:6px;}
+.curr-status.pending{background:transparent;border:1.5px solid var(--rule2);}
+.curr-name{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:3px;}
+.curr-note{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.5;}
+
+/* PULL QUOTE */
+.pull-quote{font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,30px);font-weight:300;font-style:italic;color:var(--ink-1);line-height:1.4;padding:40px 0;border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2);margin:48px 0;max-width:680px;}
+.pull-quote em{color:var(--blue);font-style:normal;}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,border-color .15s;z-index:90;}
+#btt.vis{opacity:1;transform:translateY(0);}
+#btt:hover{border-color:var(--blue);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1200px;margin:0 auto;}
+.foot-left{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:300;color:var(--ink-2);}
+.foot-left em{color:var(--ink);font-style:italic;}
+.foot-links{display:flex;gap:20px;}
+.foot-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;}
+.foot-links a:hover{color:var(--blue);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  nav{padding:0 20px;}
+  .nav-links,.nav-tag{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu{display:flex;}
+}
+@media(max-width:900px){
+  .cover,.section{padding-left:20px;padding-right:20px;}
+  .cover{padding-top:88px;}
+  .cover-meta{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .meta-cell{border-right:none;padding:0;}
+  .section-inner{grid-template-columns:1fr;gap:24px;}
+  .section-aside{position:static;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);padding:0 20px;}
+  .stat-cell{border-right:none;padding:28px 0;border-bottom:1px solid var(--rule);}
+  .stat-cell:last-child,.stat-cell:nth-child(2){border-bottom:none;}
+  .role-grid,.process-grid,.del-grid{grid-template-columns:1fr;}
+  .curr-grid,.phase-scale{grid-template-columns:1fr;}
+  footer{padding:28px 20px;}
+  .dec-inner{padding:0 20px 20px 20px;}
+}
+@media(max-width:480px){
+  .cover-meta{grid-template-columns:1fr;gap:20px;}
+  .cx-table td:first-child{white-space:normal;padding-right:12px;}
+  .stats-grid{grid-template-columns:1fr;}
+  .stat-cell:nth-child(2){border-bottom:1px solid var(--rule);}
+  .stat-cell:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Mohit Ahirwar — home">
+    <div class="nav-dot" aria-hidden="true"></div>
+    <span class="nav-name">Mohit</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#role">Role</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#decisions">Decisions</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#current">Now</a></li>
+  </ul>
+  <span class="nav-tag" aria-label="Case study, 2024 to present">Case Study · 2024–Present</span>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="index.html">← Back to Portfolio</a>
+  <a href="#context">Context</a>
+  <a href="#role">My Role</a>
+  <a href="#problem">Problem</a>
+  <a href="#process">Process</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#impact">Impact</a>
+  <a href="#current">Current Work</a>
+  <a href="#reflection">Reflection</a>
+  <div class="mm-foot">
+    <a href="cv.html" class="nbtn o">View CV</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Email</a>
+  </div>
+</nav>
+
+<main>
+<div class="page-body">
+
+<!-- COVER -->
+<div class="cover reveal" aria-labelledby="cover-h1">
+  <div class="cover-eyebrow">
+    <span class="eyebrow-tag">Product Design · Case Study</span>
+    <div class="eyebrow-sep" aria-hidden="true"></div>
+    <span class="eyebrow-secondary">TCS Interactive × SBI × McKinsey</span>
+  </div>
+  <h1 id="cover-h1">YONO 2.0<br><em>Insurance Vertical</em></h1>
+  <p class="cover-sub">Redesigning multi-channel insurance journeys for India's largest bank — and establishing the design system foundation that scaled across 110+ product journeys.</p>
+  <div class="cover-meta" role="list" aria-label="Project metadata">
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Lead Designer — Insurance Vertical</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Client</span>
+      <span class="meta-value">State Bank of India</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Employer</span>
+      <span class="meta-value">TCS Interactive</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Duration</span>
+      <span class="meta-value">January 2024 – Present</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Platforms</span>
+      <span class="meta-value">App · Web · Branch Portal · Field Tablets</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip" role="region" aria-label="Project statistics">
+  <div class="stats-grid">
+    <div class="stat-cell reveal">
+      <div class="stat-number">74<sup>%</sup></div>
+      <div class="stat-desc">Policies sold through branches before digital transformation</div>
+    </div>
+    <div class="stat-cell reveal d1">
+      <div class="stat-number">4<sup>L</sup></div>
+      <div class="stat-desc">Monthly policies — SBI's highest-volume single insurance product</div>
+    </div>
+    <div class="stat-cell reveal d2">
+      <div class="stat-number">110<sup>+</sup></div>
+      <div class="stat-desc">Product journeys delivered across 3 phases of YONO 2.0</div>
+    </div>
+    <div class="stat-cell reveal d3">
+      <div class="stat-number">0</div>
+      <div class="stat-desc">Peer banks offering GPAI natively on their banking app</div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 CONTEXT -->
+<section class="section" id="context" aria-labelledby="context-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">01</span>
+      <span class="section-title-aside">Context</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="context-h2">India's largest bank,<br><em>redesigned</em></h2>
+      <p class="reveal">YONO — <em>You Only Need One</em> — is SBI's unified digital banking platform serving over 500 million account holders. Originally launched in 2017 as a core banking utility, it had grown into a fragmented product that could no longer compete with PhonePe, Google Pay, and fintech aggregators targeting India's next generation of banking customers.</p>
+      <p class="reveal">YONO 2.0 was a ground-up rethink. The strategic vision: transform YONO from a banking utility into a <strong>lifestyle super-app</strong> — a single platform for banking, insurance, investments, loans, UPI, and lifestyle services — targeting 20 crore digital users with a completely new technology stack, unified mobile-web architecture, and omnichannel continuity.</p>
+      <div class="callout reveal">
+        <p>"This is not simply a mobile application. We have rewritten the entire internet banking code. If a customer starts a journey on mobile and cannot complete it, they can walk into a branch and complete the same journey seamlessly."</p>
+        <cite>— C.S. Setty, Chairman, State Bank of India · YONO 2.0 Launch, December 2025</cite>
+      </div>
+      <p class="reveal">The project operated as a structured three-partner engagement: <strong>McKinsey &amp; Company</strong> as strategy and UX research partner, <strong>TCS Interactive</strong> as design and development execution partner, and <strong>SBI</strong> as primary business and regulatory owner. At peak capacity the design organisation comprised 65 designers — UX, visual, and illustration — working across 110+ product journeys simultaneously.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ROLE -->
+<section class="section" id="role" aria-labelledby="role-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">02</span>
+      <span class="section-title-aside">My Role</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="role-h2">Designer in title.<br><em>Lead in practice.</em></h2>
+      <p class="reveal">I joined in January 2024 as a Designer — the entry level of a three-tier hierarchy: Designer → Senior Designer → Associate Director. From the outset, my responsibilities substantially exceeded that designation.</p>
+      <div class="highlight-box reveal">
+        <p>I owned journeys end-to-end, directed a team of UX and visual designers from NID and IITs, coordinated across three partner organisations, navigated 11 internal SBI stakeholder teams, and established design patterns that became the reference standard for the entire product. <strong>The title did not reflect the scope of work. The work speaks for itself.</strong></p>
+      </div>
+      <h3 class="reveal">Areas of ownership</h3>
+      <div class="role-grid reveal" role="list">
+        <div class="role-card" role="listitem">
+          <div class="rc-index">01 / Web Platform</div>
+          <div class="rc-title">YONO Web</div>
+          <div class="rc-desc">Main landing page, manage flows, navigation system, visual design language, and responsive layouts across 3 breakpoints.</div>
+        </div>
+        <div class="role-card" role="listitem">
+          <div class="rc-index">02 / Branch Portal</div>
+          <div class="rc-title">Branch Employee Dashboard</div>
+          <div class="rc-desc">Completed the core branch employee dashboard. Now the reference standard for all branch portal journeys in Phase 2 and Phase 3.</div>
+        </div>
+        <div class="role-card" role="listitem">
+          <div class="rc-index">03 / Insurance</div>
+          <div class="rc-title">Insurance Vertical</div>
+          <div class="rc-desc">Full end-to-end ownership of GPAI and all subsequent insurance products across all 4 channels.</div>
+        </div>
+        <div class="role-card" role="listitem">
+          <div class="rc-index">04 / Responsive</div>
+          <div class="rc-title">Responsive Design System</div>
+          <div class="rc-desc">Key screens designed across mobile browser, tablet, and web browser breakpoints for all major journeys.</div>
+        </div>
+        <div class="role-card" role="listitem">
+          <div class="rc-index">05 / Quality</div>
+          <div class="rc-title">Design Standardisation</div>
+          <div class="rc-desc">Solo audit of all 42 Phase 2 journeys for consistency. Became the institutional memory of the entire product.</div>
+        </div>
+        <div class="role-card" role="listitem">
+          <div class="rc-index">06 / People</div>
+          <div class="rc-title">Team Direction</div>
+          <div class="rc-desc">Led 4 visual designers and 1 UX designer on insurance — all NID and IIT graduates. Previously directed 2 visual designers on web and branch portal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PROBLEM -->
+<section class="section" id="problem" aria-labelledby="problem-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">03</span>
+      <span class="section-title-aside">The Problem</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="problem-h2">Insurance was <em>stuck</em><br>in the branch</h2>
+      <p class="reveal">SBI General's Group Personal Accident Insurance (GPAI) was the bank's highest-volume single insurance product — approximately 4 lakh policies sold monthly, generating ₹28 crore in monthly revenue against a ₹100+ crore annual target. Yet over 74% of those sales were branch-driven, dependent on staff personally convincing customers to purchase. The product was push-dependent, not pull-driven. Auto-renewal rate was approximately 40%, meaning 60% of customers churned annually.</p>
+      <p class="reveal">The existing YONO 1.0 journey had just 4 screens and virtually no organic discoverability. No peer bank — not HDFC, not ICICI — had solved this natively on their banking application. SBI had a clear first-mover opportunity. The design challenge was making it real across every channel, within every regulatory constraint, for every stakeholder simultaneously.</p>
+      <h3 class="reveal">Complexity factors</h3>
+      <table class="cx-table reveal" aria-label="Complexity factors">
+        <tbody>
+        <tr>
+          <td>01</td>
+          <td><strong>Regulatory constraints at every gate</strong><span>Consent flows, payment authentication, and policy issuance all required sequential clearance from SBI's ISO, Risk, and Compliance teams. A design change in one area cascaded through all channel variants simultaneously.</span></td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td><strong>11 internal SBI stakeholder teams</strong><span>Digicomm, CVE BU, SBI General, EIS, IT Ops, KYC, GITC IT YONO DEV, GITC Analytics, ISO, Risk, and Compliance — each with independent review authority and the ability to block progression.</span></td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td><strong>Multi-channel design requirement</strong><span>The same underlying journey had to function coherently across 4 distinct channels: mobile app, web browser, branch portal (staff-facing), and field sales tablets. Each had fundamentally different user contexts, technical constraints, and interaction paradigms.</span></td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><strong>Three-partner coordination overhead</strong><span>Every significant design decision required simultaneous alignment across McKinsey, TCS Interactive, and SBI. No single partner held unilateral approval authority.</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PROCESS -->
+<section class="section" id="process" aria-labelledby="process-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">04</span>
+      <span class="section-title-aside">Process</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="process-h2">8 months.<br>One <em>frozen</em> journey.</h2>
+      <p class="reveal">GPAI was selected as the anchor journey for its relative simplicity — one product, fixed premium tiers, a well-understood user base. The strategic intent was to use it to establish design patterns, regulatory-cleared interaction models, and component behaviours that could be replicated with confidence across the entire insurance vertical.</p>
+      <p class="reveal">The first iteration delivered complete functional coverage of all requirements from McKinsey's Garage documents and SBI's Business Requirements Specification. What drove subsequent iterations was not execution gaps — it was that stakeholders, seeing the journey rendered visually for the first time, began to understand what further possibilities existed. New functionalities were scoped incrementally across rounds. Granular visual decisions — carousel auto-scroll timing, accordion expand behaviour, sticky CTA scroll dynamics, product card information hierarchy, policy wording display — each required multiple rounds of internal negotiation and UX justification before being formally closed.</p>
+      <p class="reveal">Approximately <strong>500–600 screens</strong> were designed and iterated across the GPAI purchase and manage journeys combined before reaching frozen status.</p>
+      <h3 class="reveal">10-step Garage workplan</h3>
+      <div class="process-grid reveal" role="list">
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">01</div><div class="proc-txt">Understand current journey — map pain-points and drop-offs in YONO 1.0</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">02</div><div class="proc-txt">Benchmark best-in-class digital insurance experiences across peers and fintechs</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">03</div><div class="proc-txt">Define high-level process flows across all 4 channels</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">04</div><div class="proc-txt">List all exception scenarios across the complete purchase journey</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">05</div><div class="proc-txt">Define exception path process flows for every identified edge case</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">06</div><div class="proc-txt">Define MVP and subsequent feature drops — scope what ships first</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">07</div><div class="proc-txt">Re-iterate all flows based on ISO, Risk, and Compliance inputs</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">08</div><div class="proc-txt">Obtain in-principal approval from all regulatory stakeholders</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">09</div><div class="proc-txt">Build low-fidelity wireframes across all channels</div></div>
+        <div class="proc-item" role="listitem"><div class="proc-n" aria-hidden="true">10</div><div class="proc-txt">Build Business Requirements Document (BRD)</div></div>
+      </div>
+      <h3 class="reveal">Final frozen deliverables — GPAI</h3>
+      <div class="del-grid reveal" role="list">
+        <div class="del-card" role="listitem">
+          <div class="del-channel">App</div>
+          <div class="del-name">Mobile Application</div>
+          <div class="del-desc">Self-serve purchase journey with complete exception and edge case coverage. Optimised for one-handed use.</div>
+          <div class="del-count">~50 screens · Final frozen</div>
+        </div>
+        <div class="del-card" role="listitem">
+          <div class="del-channel">Web</div>
+          <div class="del-name">Web Browser</div>
+          <div class="del-desc">Adapted layout and navigation for browser context. Responsive across mobile, tablet, and desktop breakpoints.</div>
+          <div class="del-count">~40 screens · Final frozen</div>
+        </div>
+        <div class="del-card" role="listitem">
+          <div class="del-channel">Manage</div>
+          <div class="del-name">Policy Management Flows</div>
+          <div class="del-desc">Renewal, top-up, deletion, email, download, password, and policy wordings — with sub-journeys across all channels.</div>
+          <div class="del-count">~80–90 screens · Final frozen</div>
+        </div>
+        <div class="del-card" role="listitem">
+          <div class="del-channel">Branch</div>
+          <div class="del-name">Branch Portal</div>
+          <div class="del-desc">Staff-facing purchase and manage flows. Became the reference standard for all subsequent branch portal journeys.</div>
+          <div class="del-count">Full channel coverage</div>
+        </div>
+        <div class="del-card" role="listitem">
+          <div class="del-channel">WhatsApp</div>
+          <div class="del-name">WhatsApp + ISNP Channel</div>
+          <div class="del-desc">Alternate channel purchase journey via Insurance Self Network Platform. Three payment authentication variants designed.</div>
+          <div class="del-count">3 auth variants</div>
+        </div>
+        <div class="del-card" role="listitem">
+          <div class="del-channel">Responsive</div>
+          <div class="del-name">Responsive Layouts</div>
+          <div class="del-desc">Key screens adapted across mobile browser, tablet, and web browser breakpoints for full layout integrity.</div>
+          <div class="del-count">3 breakpoints</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DECISIONS -->
+<section class="section" id="decisions" aria-labelledby="decisions-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">05</span>
+      <span class="section-title-aside">Key Design Decisions</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="decisions-h2">Three decisions<br>worth <em>examining</em></h2>
+      <p class="reveal">The following document specific design problems, the reasoning applied, and the downstream outcomes. These are the kinds of decisions that are not visible in a screen count but determine whether a product works at scale.</p>
+      <div class="decisions reveal" role="list">
+
+        <div class="dec" role="listitem" tabindex="0" aria-expanded="false">
+          <div class="dec-head">
+            <div class="dec-idx" aria-hidden="true">01</div>
+            <div class="dec-meta">
+              <div class="dec-title">The product details page — when removing a feature creates a larger problem</div>
+              <div class="dec-context">GPAI · App &amp; Web · Product Details Page</div>
+            </div>
+            <div class="dec-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="dec-body">
+            <div class="dec-inner">
+              <p>The insurance landing page presented two CTAs on every product card: <em>Buy Now</em> and <em>Know More</em>. The bank's content operations team requested removal of the FAQ accordion from the product details page — maintaining current FAQs across every insurance product was operationally unsustainable within their CMS workflows.</p>
+              <p>The request was reasonable. My pushback was not on the removal itself, but on what the removal left unresolved. A user selecting <em>Know More</em> is, by definition, in an uncertain state. They are not ready to purchase. Removing the FAQ without replacing the informational function produces a page that fails its only purpose: converting an uncertain browser into a confident buyer. The user selecting <em>Buy Now</em> bypasses this page entirely — so the page was never designed for them.</p>
+              <div class="dec-outcome">
+                <span class="out-label">Outcome</span>
+                <p>FAQ section removed as operationally requested. The remaining content — USP carousel, policy benefits accordion, policy wording — was restructured to carry the full informational weight of the removed section. The page was redesigned explicitly around the uncertain user mental model, not the committed purchaser who bypasses it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dec" role="listitem" tabindex="0" aria-expanded="false">
+          <div class="dec-head">
+            <div class="dec-idx" aria-hidden="true">02</div>
+            <div class="dec-meta">
+              <div class="dec-title">The insurance landing page — consolidation without fragmentation into category silos</div>
+              <div class="dec-context">Web · Insurance Landing Page · General Insurance + Life Insurance</div>
+            </div>
+            <div class="dec-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="dec-body">
+            <div class="dec-inner">
+              <p>The web insurance experience existed across three separate pages: an insurance landing page, individual product detail pages, and a banners and promotions page. The business requirement was to consolidate all three into a single unified insurance landing page that served both General Insurance and Life Insurance — a significant information architecture challenge given the product diversity of each vertical.</p>
+              <p>The initial stakeholder proposal was a simple binary toggle: switch between GI and LI, replace the visible content. I proposed against this model. A toggle-based approach pushes users into a predetermined insurance category on arrival and provides no natural pathway across to the other. It replicates the silo problem digitally. Instead, I designed a persistent top fold — banners auto-scrolling with four quick-action anchors, and a GI/LI selector — that remains constant regardless of selection state. Below the fold, content updates contextually based on the user's selection, with a horizontal tab system for product category browsing within each vertical.</p>
+              <p>Stakeholder objection: the interaction is too complex to build and too unfamiliar for users. My counter was grounded in existing product precedent — the Relationship Overview section of the YONO web portal already implements an identical contextual-update pattern. Users on the platform already understand and use this behaviour. We were not introducing new interaction paradigms; we were applying a known, validated pattern to a new context.</p>
+              <div class="dec-outcome">
+                <span class="out-label">Outcome</span>
+                <p>Approved and built as specified. The browsing-panel model increased cross-category product exposure organically, replacing the forced-category-selection model. Behavioural consistency with existing YONO web patterns reduced both user cognitive load and development risk simultaneously.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dec" role="listitem" tabindex="0" aria-expanded="false">
+          <div class="dec-head">
+            <div class="dec-idx" aria-hidden="true">03</div>
+            <div class="dec-meta">
+              <div class="dec-title">The manage journey — a clear separation between viewing state and action state</div>
+              <div class="dec-context">App &amp; Web · Policy Details Page + Manage Flows</div>
+            </div>
+            <div class="dec-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="dec-body">
+            <div class="dec-inner">
+              <p>The manage journey encompassed 7 distinct policy actions: renewal, deletion, email policy, document download, password management, policy wordings access, and additional servicing options. The initial functional requirement was to surface all 7 CTAs directly on the policy details page.</p>
+              <p>The resulting page was attempting to serve two incompatible purposes simultaneously — a policy information display and a policy action hub. A user arriving to review their coverage is confronted with 7 management actions they did not seek. The interaction model was cluttered and the information architecture was misleading. Separation of concerns was the correct solution. Reaching agreement on it was the actual design problem.</p>
+              <p>My proposal: the policy details page presents only policy information. A single persistent sticky CTA — <em>Manage Policy</em> — anchored at the bottom of the view opens a bottom drawer containing all 7 actions. Secondary, lower-frequency actions (email, download, password) are promoted to a second-level drawer state within the manage flow, keeping the primary action set clean and scannable.</p>
+              <div class="dec-outcome">
+                <span class="out-label">Outcome</span>
+                <p>Approved and implemented. The pattern performed well enough that it was formally adopted as the mandatory reference standard for every manage journey subsequently built across the insurance vertical — all products, all phases, all channels. The web version applied the same separation logic with a viewport-appropriate layout adaptation. Any manage flow in YONO 2.0 insurance today is structurally derived from this decision.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 IMPACT -->
+<section class="section" id="impact" aria-labelledby="impact-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">06</span>
+      <span class="section-title-aside">Impact</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="impact-h2">The patterns<br>became <em>the product</em></h2>
+      <p class="reveal">Because GPAI was the first insurance journey designed and the most thoroughly iterated, it became the de facto pattern library for the entire insurance vertical. The branch portal dashboard work independently became the reference standard for all branch portal journeys across Phase 2 and Phase 3. Both remain active reference points today.</p>
+      <div class="impact-rows reveal">
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>GPAI patterns adopted across all insurance journeys</strong>
+            <span>Consent flows, payment authentication models, nominee capture, policy management drawer structure, and exception handling — all adopted directly into every subsequent insurance product without redesign.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>Group Sampoorna Arogya — Group Health Insurance</strong>
+            <span>Significantly more complex journey involving accordion-based coverage selection, tiered family member management, and conditional eligibility logic — built across all 4 channels using GPAI as the structural foundation.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>Branch portal reference standard</strong>
+            <span>Branch portal insurance journeys and the core employee dashboard became the mandatory design reference for all other teams building branch portal experiences in Phase 2 and Phase 3. This standard is still applied today.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>General Insurance redirection products and Life Insurance manage flows</strong>
+            <span>Extended the GPAI-established pattern library into adjacent product verticals, maintaining cross-vertical design consistency throughout the product.</span>
+          </div>
+        </div>
+      </div>
+      <h3 class="reveal">Project scale</h3>
+      <div class="phase-scale reveal" role="list">
+        <div class="ph-cell" role="listitem">
+          <div class="ph-n">8</div>
+          <div class="ph-lbl">Phase 1 Journeys</div>
+        </div>
+        <div class="ph-cell" role="listitem">
+          <div class="ph-n">42</div>
+          <div class="ph-lbl">Phase 2 Journeys</div>
+        </div>
+        <div class="ph-cell" role="listitem">
+          <div class="ph-n">110+</div>
+          <div class="ph-lbl">Phase 3 Journeys</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 STANDARDISATION -->
+<section class="section" id="standardisation" aria-labelledby="std-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">07</span>
+      <span class="section-title-aside">Standardisation</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="std-h2">The audit<br><em>nobody assigned</em></h2>
+      <p class="reveal">Towards the close of Phase 2, I initiated a design consistency audit across all 42 delivered journeys. No formal assignment existed for this work. The motivation was straightforward: with 65 designers working in parallel across independent journeys, inconsistencies had accumulated across component usage, interaction language, data field labelling, and visual patterns. Left unaddressed, these would compound significantly when Phase 3 scaled to 110+ journeys.</p>
+      <div class="highlight-box reveal">
+        <p>I reviewed every journey individually. Documented current state versus expected state in a structured Excel audit. Tagged each journey owner against their specific issues. Compiled a consolidated report for senior management with a prioritised remediation plan. <strong>Monitored resolution progress to formal closure.</strong></p>
+      </div>
+      <p class="reveal">The exercise generated friction. Surfacing design quality issues in other teams' work, at scale, during active Phase 3 delivery was uncomfortable for everyone. The work was completed regardless.</p>
+      <div class="pull-quote reveal">
+        Having reviewed all 42 Phase 2 journeys in detail, I became the only member of the team with comprehensive end-to-end knowledge of the entire product. <em>Today, when any designer needs to know whether a pattern has been solved elsewhere in the product, they come to me first.</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 CURRENT -->
+<section class="section" id="current" aria-labelledby="current-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">08</span>
+      <span class="section-title-aside">Current Work</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="current-h2">Active work<br>in <em>Phase 3</em></h2>
+      <p class="reveal">Currently leading five concurrent journeys in Phase 3, spanning AI product design, inclusive design for underserved users, international banking, and investments.</p>
+      <div class="curr-grid reveal" role="list">
+        <div class="curr-cell" role="listitem">
+          <div class="curr-status" aria-label="Active"></div>
+          <div>
+            <div class="curr-name">AI Chatbot — Phases 1, 2, 3</div>
+            <div class="curr-note">Phase 1: basic support. Phase 2: competitive parity. Phase 3: full LLM-level banking assistant embedded in YONO.</div>
+          </div>
+        </div>
+        <div class="curr-cell" role="listitem">
+          <div class="curr-status" aria-label="Active"></div>
+          <div>
+            <div class="curr-name">Savings Account — Inclusive Design</div>
+            <div class="curr-note">Redesigning account journeys for illiterate and minor users. Rethinking consent, form interaction, and verification patterns. App, web, branch portal.</div>
+          </div>
+        </div>
+        <div class="curr-cell" role="listitem">
+          <div class="curr-status" aria-label="Active"></div>
+          <div>
+            <div class="curr-name">NRI PIS Journey</div>
+            <div class="curr-note">Demat and trading account for NRI customers — NRE and NRO account types. Branch portal only.</div>
+          </div>
+        </div>
+        <div class="curr-cell" role="listitem">
+          <div class="curr-status" aria-label="Active"></div>
+          <div>
+            <div class="curr-name">Investments Landing Page</div>
+            <div class="curr-note">Entry point and discovery design for the investments vertical on YONO 2.0.</div>
+          </div>
+        </div>
+        <div class="curr-cell" role="listitem">
+          <div class="curr-status pending" aria-label="Pending"></div>
+          <div>
+            <div class="curr-name">Gamification Journey</div>
+            <div class="curr-note">Scoped. Initiation pending.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 REFLECTION -->
+<section class="section" id="reflection" aria-labelledby="reflection-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">09</span>
+      <span class="section-title-aside">Reflection</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="reflection-h2">What this project<br><em>built in me</em></h2>
+      <p class="reveal">The most substantive thing this project developed was not skill in any specific interaction pattern — it was the ability to operate with clarity inside institutional complexity. Knowing how to move a decision through a regulatory approval chain without losing its design intent. Knowing how to make the case for a UX principle to a stakeholder who has never considered UX a constraint on their requirements. Knowing how to maintain system coherence when the system is being built by 65 people simultaneously.</p>
+      <p class="reveal">The standardisation exercise was the most direct expression of that. It was not in anyone's project plan. It created interpersonal friction. The product is more consistent because it happened — and I understood the entire product more deeply as a result of doing it.</p>
+      <div class="callout reveal">
+        <p>The context for this work: functioning in a lead capacity while graded as a Designer, inside a three-partner enterprise engagement, coordinating across regulatory gatekeepers and 11 internal stakeholder teams, at a scale of 110+ product journeys.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reveal">
+  <div class="foot-left">YONO 2.0 — <em>Insurance Vertical</em></div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="cv.html">CV</a>
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com">Email</a>
+  </div>
+</footer>
+
+</div><!-- end page-body -->
+</main>
+
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top" title="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="2,9 7,4 12,9"/>
+  </svg>
+</button>
+
+<script>
+/* SCROLL PROGRESS */
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  const prog=document.getElementById('progress');
+  prog.style.width=pct+'%';
+  prog.setAttribute('aria-valuenow',Math.round(pct));
+  document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+
+/* REVEAL */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ACCORDION — keyboard accessible */
+function toggleDec(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.dec.open').forEach(d=>{d.classList.remove('open');d.setAttribute('aria-expanded','false');});
+  if(!isOpen){el.classList.add('open');el.setAttribute('aria-expanded','true');}
+}
+document.querySelectorAll('.dec').forEach(dec=>{
+  dec.addEventListener('click',()=>toggleDec(dec));
+  dec.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleDec(dec);}});
+});
+
+/* HAMBURGER */
+const burger=document.getElementById('hamburger');
+const menu=document.getElementById('mobile-menu');
+function toggleMenu(open){
+  burger.classList.toggle('open',open);
+  menu.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',String(open));
+  burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>toggleMenu(!burger.classList.contains('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleMenu(false);});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+
+/* BACK TO TOP */
+document.getElementById('btt').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* PAGE TRANSITIONS */
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(h&&h.endsWith('.html')&&!h.startsWith('http')&&!h.startsWith('//')){
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.body.style.opacity='0';
+      document.body.style.transform='translateY(8px)';
+      document.body.style.transition='opacity .25s ease,transform .25s ease';
+      setTimeout(()=>{window.location.href=h;},260);
+    });
+  }
+});
+
+/* NAV ACTIVE */
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+</script>
+</body>
+</html>

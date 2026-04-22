@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozy Nights · M.Des Thesis · Mohit Ahirwar</title>
+<meta name="description" content="Cozy Nights — a systems design intervention for night-time thermal comfort, built into the Havells Sync smart home app. M.Des thesis, IIT Delhi 2023, by Mohit Ahirwar.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ahirwarmohit.github.io/mdes-thesis.html">
+<meta property="og:title" content="Cozy Nights · M.Des Thesis · Mohit Ahirwar">
+<meta property="og:description" content="A systems design intervention for night-time thermal comfort, built into the Havells Sync app. M.Des thesis, IIT Delhi · Havells India · 2023.">
+<meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;--paper:#fafaf8;--bone:#f3f2ef;
+  --rule:#e4e2dc;--rule2:#d0cec7;
+  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
+  --blue:#1a4ed8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;
+  --fs-xs:11px;--fs-sm:13px;--fs-base:15px;--fs-md:17px;--fs-lg:22px;--lh:1.75;--r:3px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:var(--lh);-webkit-font-smoothing:antialiased;animation:pageFadeIn .4s ease both;}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .1s linear;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:var(--fs-xs);font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);}
+.nav-tag{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);color:var(--ink-3);letter-spacing:1px;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s;}
+.hamburger:hover{border-color:var(--blue);}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all;}
+.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s;}
+.mobile-menu a:hover{color:var(--blue);}
+.mobile-menu a:last-of-type{border-bottom:none;}
+.mm-foot{margin-top:32px;display:flex;gap:10px;}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2);}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+.nbtn.s{background:var(--blue);color:white;border:1px solid var(--blue);}
+.nbtn.s:hover{background:#1640b8;}
+
+/* COVER */
+.cover{padding:120px 48px 80px;border-bottom:1px solid var(--rule);max-width:1200px;margin:0 auto;}
+.cover-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:32px;flex-wrap:wrap;}
+.eyebrow-tag{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;}
+.eyebrow-sep{width:1px;height:12px;background:var(--rule2);}
+.eyebrow-secondary{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-xs);letter-spacing:1px;color:var(--ink-3);}
+.cover h1{font-family:'Fraunces',serif;font-size:clamp(44px,6.5vw,88px);font-weight:300;line-height:1.0;letter-spacing:-2px;color:var(--ink);margin-bottom:8px;}
+.cover h1 em{font-style:italic;color:var(--blue);}
+.cover-sub{font-size:var(--fs-md);color:var(--ink-2);font-weight:300;max-width:600px;margin-top:20px;line-height:1.65;}
+.cover-meta{margin-top:56px;padding-top:32px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.meta-cell{padding:0 32px 0 0;border-right:1px solid var(--rule);}
+.meta-cell:last-child{border-right:none;}
+.meta-cell:first-child{padding-left:0;}
+.meta-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px;}
+.meta-value{font-size:var(--fs-sm);font-weight:500;color:var(--ink-1);line-height:1.4;}
+
+/* STATS STRIP */
+.stats-strip{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;max-width:560px;}
+.stat-cell{padding:20px 24px;border-right:1px solid var(--rule);background:var(--paper);}
+.stat-cell:last-child{border-right:none;}
+.stat-num{font-family:'Fraunces',serif;font-size:38px;font-weight:300;color:var(--ink);line-height:1;margin-bottom:6px;}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);}
+
+/* LAYOUT */
+.page-body{max-width:1200px;margin:0 auto;}
+.section{padding:80px 48px;border-bottom:1px solid var(--rule);}
+.section:last-of-type{border-bottom:none;}
+.section-inner{display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start;}
+.section-aside{position:sticky;top:72px;}
+.section-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;font-weight:500;}
+.section-title-aside{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ink-2);line-height:1.4;}
+.section-content h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,42px);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:28px;letter-spacing:-.5px;}
+.section-content h2 em{font-style:italic;color:var(--blue);}
+.section-content h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-2);font-weight:500;margin-top:48px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+.section-content p{font-size:var(--fs-base);color:var(--ink-2);line-height:1.82;margin-bottom:18px;max-width:680px;}
+.section-content p strong{color:var(--ink);font-weight:600;}
+
+/* CALLOUT */
+.callout{background:var(--blue-bg);border:1px solid var(--blue-bd);border-left:3px solid var(--blue);padding:20px 24px;margin:28px 0;max-width:680px;border-radius:0 var(--r) var(--r) 0;}
+.callout p{font-family:'Fraunces',serif;font-size:var(--fs-md);font-style:italic;font-weight:300;color:var(--blue);margin:0;line-height:1.6;max-width:none;}
+.highlight-box{background:var(--paper);border:1px solid var(--rule2);border-left:3px solid var(--ink);padding:20px 24px;margin:28px 0;max-width:680px;border-radius:0 var(--r) var(--r) 0;}
+.highlight-box p{font-size:var(--fs-base);color:var(--ink-1);margin:0;max-width:none;line-height:1.7;}
+
+/* SURVEY ROW */
+.survey-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin:28px 0;max-width:680px;}
+.sv-cell{background:var(--blue-bg);padding:20px 18px;}
+.sv-num{font-family:'Fraunces',serif;font-size:32px;font-weight:300;color:var(--blue);line-height:1;margin-bottom:6px;}
+.sv-label{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.5;}
+
+/* PRINCIPLE GRID */
+.principle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;}
+.pr-card{background:var(--white);padding:24px 22px;transition:background .2s;}
+.pr-card:hover{background:var(--paper);}
+.pr-idx{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:1px;margin-bottom:12px;}
+.pr-title{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:8px;}
+.pr-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* LAYER CARDS */
+.layer-stack{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;max-width:680px;}
+.layer-card{background:var(--white);padding:20px 24px;display:grid;grid-template-columns:80px 1fr;gap:20px;align-items:start;transition:background .2s;}
+.layer-card:hover{background:var(--paper);}
+.layer-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:6px;font-weight:500;}
+.layer-name{font-size:var(--fs-sm);font-weight:600;color:var(--ink);}
+.layer-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.65;}
+
+/* IMPACT ROWS */
+.impact-rows{margin-top:28px;max-width:680px;}
+.impact-row{display:grid;grid-template-columns:20px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:start;}
+.impact-row:last-child{border-bottom:none;}
+.impact-arrow{font-size:14px;color:var(--blue);padding-top:2px;}
+.impact-row strong{display:block;font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:3px;}
+.impact-row span{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* PULL QUOTE */
+.pull-quote{font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,30px);font-weight:300;font-style:italic;color:var(--ink-1);line-height:1.4;padding:40px 0;border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2);margin:48px 0;max-width:680px;}
+.pull-quote em{color:var(--blue);font-style:normal;}
+
+/* LESSON GRID */
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;max-width:680px;}
+.lesson-card{border:1px solid var(--rule);border-radius:var(--r);padding:20px 22px;}
+.lesson-n{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:1px;margin-bottom:10px;}
+.lesson-title{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:8px;}
+.lesson-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.65;}
+
+/* CREDITS */
+.credits-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;max-width:680px;}
+.credit-item{padding:16px 0;border-bottom:1px solid var(--rule);}
+.credit-role{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:4px;}
+.credit-name{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:2px;}
+.credit-title{font-size:var(--fs-sm);color:var(--ink-2);}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,border-color .15s;z-index:90;}
+#btt.vis{opacity:1;transform:translateY(0);}
+#btt:hover{border-color:var(--blue);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1200px;margin:0 auto;}
+.foot-left{font-family:'Fraunces',serif;font-size:var(--fs-lg);font-weight:300;color:var(--ink-2);}
+.foot-left em{color:var(--ink);font-style:italic;}
+.foot-links{display:flex;gap:20px;}
+.foot-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;}
+.foot-links a:hover{color:var(--blue);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  nav{padding:0 20px;}
+  .nav-links,.nav-tag{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu{display:flex;}
+}
+@media(max-width:900px){
+  .cover,.section{padding-left:20px;padding-right:20px;}
+  .cover{padding-top:88px;}
+  .cover-meta{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .meta-cell{border-right:none;padding:0;}
+  .stats-strip{grid-template-columns:1fr;max-width:100%;}
+  .stat-cell{border-right:none;border-bottom:1px solid var(--rule);}
+  .stat-cell:last-child{border-bottom:none;}
+  .section-inner{grid-template-columns:1fr;gap:24px;}
+  .section-aside{position:static;}
+  .principle-grid{grid-template-columns:1fr;}
+  .survey-row{grid-template-columns:1fr;}
+  .lesson-grid{grid-template-columns:1fr;}
+  .credits-grid{grid-template-columns:1fr;}
+  .layer-card{grid-template-columns:1fr;}
+  footer{padding:28px 20px;}
+}
+@media(max-width:480px){
+  .cover-meta{grid-template-columns:1fr;gap:20px;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Mohit Ahirwar — home">
+    <div class="nav-dot" aria-hidden="true"></div>
+    <span class="nav-name">Mohit</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#system">System</a></li>
+    <li><a href="#interface">Interface</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+  <span class="nav-tag">M.Des Thesis · IIT Delhi</span>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="index.html">← Back to Portfolio</a>
+  <a href="#context">Context</a>
+  <a href="#problem">Problem</a>
+  <a href="#research">Research</a>
+  <a href="#system">System</a>
+  <a href="#interface">Interface</a>
+  <a href="#reflection">Reflection</a>
+  <div class="mm-foot">
+    <a href="cv.html" class="nbtn o">View CV</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Email</a>
+  </div>
+</nav>
+
+<main>
+<div class="page-body">
+
+<!-- COVER -->
+<div class="cover reveal" aria-labelledby="cover-h1">
+  <div class="cover-eyebrow">
+    <span class="eyebrow-tag">M.Des Thesis · IIT Delhi</span>
+    <div class="eyebrow-sep" aria-hidden="true"></div>
+    <span class="eyebrow-secondary">Industry Collaboration · Havells India · 2023</span>
+  </div>
+  <h1 id="cover-h1">Cozy<br><em>Nights</em></h1>
+  <p class="cover-sub">A systems design intervention for night-time thermal comfort, built into the Havells Sync smart home app.</p>
+  <div class="cover-meta" role="list" aria-label="Project metadata">
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Degree</span>
+      <span class="meta-value">M.Des — Industrial Design</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Institution</span>
+      <span class="meta-value">IIT Delhi</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Duration</span>
+      <span class="meta-value">5 months · 2023</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Faculty Advisor</span>
+      <span class="meta-value">Prof. Charu Monga</span>
+    </div>
+  </div>
+  <div class="stats-strip" role="list" aria-label="Research metrics">
+    <div class="stat-cell" role="listitem">
+      <div class="stat-num">63</div>
+      <div class="stat-label">Survey Respondents</div>
+    </div>
+    <div class="stat-cell" role="listitem">
+      <div class="stat-num">16</div>
+      <div class="stat-label">Pilot Interviews</div>
+    </div>
+    <div class="stat-cell" role="listitem">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Prototype Iterations</div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 CONTEXT -->
+<section class="section" id="context" aria-labelledby="context-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">01</span>
+      <span class="section-title-aside">Context &amp; Role</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="context-h2">The short<br><em>version</em></h2>
+      <p class="reveal">62% of urban Indians wake up at least once during the night because the AC setpoint they chose before bed no longer matches their body temperature at 3 AM. 92% of them run a fan alongside the AC. 65% of them worry about what this is doing to their electricity bill.</p>
+      <p class="reveal">I designed a feature called <strong>Intellisleep</strong>, inside the Havells Sync app, that couples the AC and fan to maintain perceived thermal comfort through the night, learns from user behaviour over time, and closes its own feedback loop through a morning sleep-quality check-in. It lets people run their AC at 27 degrees with a fan and still feel like 24, saving roughly 18% on electricity while reducing night-time wake-ups.</p>
+      <p class="reveal">The actual contribution is not the app feature. It is the systems reframe that produced it.</p>
+      <h3 class="reveal">My role</h3>
+      <p class="reveal">I was the sole designer on this project, working end to end from research to final prototype — literature review across 80+ papers, 16 stakeholder interviews, a 63-person user survey, competitive analysis of 9 smart home energy products, concept development across four distinct directions, full system architecture, and two iterations of the Havells Sync app feature.</p>
+      <h3 class="reveal">Collaboration</h3>
+      <p class="reveal">I worked within the Havells CXD team, reporting to <strong>Ananya Vetal</strong> (AGM, CXD) and mentored by <strong>Vineet Sharma</strong> (Asst. Manager, CXD). The Havells engineering team validated technical feasibility. Senior designers at Havells will carry the work forward into production.</p>
+      <div class="callout reveal">
+        <p>Solution must be software-only, working with Havells' existing connected devices — integrated into the Havells Sync app architecture, respecting the Indian electricity-cost context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 THE PROBLEM -->
+<section class="section" id="problem" aria-labelledby="problem-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">02</span>
+      <span class="section-title-aside">The Problem</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="problem-h2">Why sleep breaks<br><em>at 3 AM</em></h2>
+      <p class="reveal">Most AC "sleep modes" today work like a simple timer. Every hour or two, the AC raises the setpoint by half a degree. This is a rough approximation of something real, but it misses the underlying physiology.</p>
+      <p class="reveal">When you set your AC to 22 degrees at 11 PM, you have just eaten dinner. Your body is warm, digestion is active, and 22 degrees feels right. By 3 AM, digestion is complete, your metabolic rate has dropped, and your core body temperature has fallen as part of your circadian rhythm. The room is still at 22 degrees. Your body is not. The gap between them is why you wake up shivering, reach for a blanket, or stumble to the AC to change the setting.</p>
+      <p class="reveal">Existing sleep modes cannot solve this because <strong>they don't model the body. They model the clock.</strong></p>
+      <p class="reveal">And there is a second problem stacked on top. Indian households are acutely cost-conscious about AC usage. The common workaround is that someone in the family wakes up at 2 AM to switch the AC off entirely. One person's sleep is sacrificed to protect the electricity bill. Every night. The same person, usually.</p>
+      <div class="highlight-box reveal">
+        <p><strong>Two problems, one system:</strong> Devices operate on a fixed setpoint while bodies operate on a shifting circadian curve. And users cannot manually intervene during the night without sacrificing the very sleep the system is supposed to preserve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RESEARCH -->
+<section class="section" id="research" aria-labelledby="research-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">03</span>
+      <span class="section-title-aside">Research</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="research-h2">What the<br><em>data told us</em></h2>
+      <h3 class="reveal">Stakeholder interviews — 16 participants</h3>
+      <p class="reveal">The original project brief was about energy monitoring. Interviews with engineering, sales, and marketing leads at Havells surfaced something different: the most universally painful HVAC problem is not daytime comfort. It is sleep. That pivot shaped the rest of the project.</p>
+      <h3 class="reveal">User survey — 63 respondents, Delhi NCR</h3>
+      <div class="survey-row reveal" role="list">
+        <div class="sv-cell" role="listitem">
+          <div class="sv-num">62%</div>
+          <div class="sv-label">woke up at least once during the night</div>
+        </div>
+        <div class="sv-cell" role="listitem">
+          <div class="sv-num">92%</div>
+          <div class="sv-label">used a fan and AC in combination</div>
+        </div>
+        <div class="sv-cell" role="listitem">
+          <div class="sv-num">65%</div>
+          <div class="sv-label">reported cost anxiety around AC + fan use</div>
+        </div>
+      </div>
+      <h3 class="reveal">Literature — three load-bearing citations</h3>
+      <div class="impact-rows reveal">
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <div>
+            <strong>India Cooling Action Plan (ICAP, 2022)</strong>
+            <span>Only 8% of Indian households own an AC today. That number is expected to cross 40% within 20 years — making the thermal comfort problem a national-scale design opportunity.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <div>
+            <strong>Bureau of Energy Efficiency "AC @ 24" Campaign</strong>
+            <span>Every 1°C increase in AC setpoint saves approximately 6% on electricity. The system uses this to quantify the value of the coupled AC + fan approach.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <div>
+            <strong>TERI energy savings data</strong>
+            <span>An AC at 27°C with a ceiling fan produces perceived comfort equivalent to 24°C, because the fan creates evaporative cooling on the skin. Combined savings: roughly 18%. This was the insight that made the intervention possible — the AC and fan were already in the room. They just weren't talking to each other.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 THE REFRAME -->
+<section class="section" id="system" aria-labelledby="system-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">04</span>
+      <span class="section-title-aside">The Reframe &amp; System</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="system-h2">From feature<br><em>to system</em></h2>
+      <p class="reveal">I kept getting stuck trying to design a better AC remote. The shift happened when I stopped looking at the AC and the user in isolation, and started looking at the three subsystems that produce the sleep experience.</p>
+      <div class="principle-grid reveal" role="list">
+        <div class="pr-card" role="listitem">
+          <div class="pr-idx">Subsystem 01</div>
+          <div class="pr-title">Physiological</div>
+          <div class="pr-desc">Circadian rhythms, sleep stage architecture, REM sensitivity to thermal disruption. The body is doing what bodies do — on a predictable schedule.</div>
+        </div>
+        <div class="pr-card" role="listitem">
+          <div class="pr-idx">Subsystem 02</div>
+          <div class="pr-title">Thermodynamic</div>
+          <div class="pr-desc">The room as a thermal volume, the AC as a heat pump, the fan as an evaporative cooling aid. Each doing its job — but not coordinated.</div>
+        </div>
+        <div class="pr-card" role="listitem">
+          <div class="pr-idx">Subsystem 03</div>
+          <div class="pr-title">Behavioural</div>
+          <div class="pr-desc">Electricity-cost anxiety, household negotiation, Indian domestic sleep practices. Rational individual decisions producing irrational system-level outcomes.</div>
+        </div>
+      </div>
+      <div class="callout reveal" style="margin-top:36px;">
+        <p>No single subsystem is broken. The disruption emerges from the fact that they are not coupled. The design question stopped being "how do we design a better AC interface?" and became: "how do we introduce dynamic coupling across subsystems using hardware that is already in the home?"</p>
+      </div>
+      <h3 class="reveal">Intellisleep — four layers</h3>
+      <div class="layer-stack reveal" role="list">
+        <div class="layer-card" role="listitem">
+          <div>
+            <span class="layer-label">Layer 01</span>
+            <div class="layer-name">Sensing</div>
+          </div>
+          <div class="layer-desc">The AC and fan discovered and paired over Bluetooth — using the BLE module already in these devices but sitting idle after first-time setup. The room becomes instrumented.</div>
+        </div>
+        <div class="layer-card" role="listitem">
+          <div>
+            <span class="layer-label">Layer 02</span>
+            <div class="layer-name">Actuation</div>
+          </div>
+          <div class="layer-desc">The AC handles thermal load. The fan handles perceived temperature through airflow. Running in coupled mode, they deliver 24°C comfort at the energy cost of 27°C operation.</div>
+        </div>
+        <div class="layer-card" role="listitem">
+          <div>
+            <span class="layer-label">Layer 03</span>
+            <div class="layer-name">Adaptation</div>
+          </div>
+          <div class="layer-desc">A rule-based algorithm at launch that learns the user's actual comfort profile over roughly a week. If you wake up at 3:15 AM three nights in a row and bump the temperature up, it starts pre-empting the adjustment on night four.</div>
+        </div>
+        <div class="layer-card" role="listitem">
+          <div>
+            <span class="layer-label">Layer 04</span>
+            <div class="layer-name">Feedback</div>
+          </div>
+          <div class="layer-desc">The SATED morning check-in (Satisfaction, Alertness, Timing, Efficiency, Duration) — five questions, 30 seconds. The system's only window into whether the intervention worked, since the user was unconscious during the event being optimised.</div>
+        </div>
+      </div>
+      <div class="pull-quote reveal">
+        The app is the handle. <em>The system is the architecture.</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 INTERFACE -->
+<section class="section" id="interface" aria-labelledby="interface-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">05</span>
+      <span class="section-title-aside">The Interface</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="interface-h2">What the<br><em>user sees</em></h2>
+      <p class="reveal">The user never sees the four layers. They see a mode on their AC's device page, or a card on the Automations screen. The first time, they name a group ("Master bedroom"), the app scans for nearby AC and fan over Bluetooth, they set a preferred comfort temperature using a dial, and they choose the time window. Every night after, it runs on its own.</p>
+      <h3 class="reveal">Key interaction design decisions</h3>
+      <div class="impact-rows reveal">
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <div>
+            <strong>Bluetooth auto-discovery over manual device selection</strong>
+            <span>Most Havells smart devices have BLE modules that go unused after first-time pairing. Repurposing them for in-room discovery removed the painful step of scrolling through 15 devices to find the right two.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <div>
+            <strong>Dial-based temperature selection, not +/−</strong>
+            <span>Users often don't know their preferred sleep temperature in absolute terms. The dial made it feel like a feeling, not a number.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <div>
+            <strong>Two discovery paths, not one</strong>
+            <span>New users find it on the device page; power users find it under Automations. Both paths mapped onto the existing app structure so the feature doesn't feel bolted on.</span>
+          </div>
+        </div>
+      </div>
+      <h3 class="reveal">V1 → V2 — what changed</h3>
+      <p class="reveal">V1 was too much like a toggle. Users didn't know what it was going to do. The mode card didn't read as interactive. V2 added a feedback state showing "AC and Fan linked" with a green tick, a micro-animation on the on/off transition so the state change was legible, and "how this works" hints for first-time users that disappeared after first use.</p>
+      <h3 class="reveal">The "feels like" recommendation</h3>
+      <p class="reveal">One finding I took to the Havells engineering team (now in their backlog): Indian users don't think in degrees. They think in whether they feel hot or cold. My recommendation was to show both the <strong>absolute temperature</strong> and the <strong>"feels like" temperature</strong> — the way weather apps do. When the AC is at 27 and the fan is on, the app would tell the user "27° · feels like 24°." This bridges the thermodynamic reality and the user's mental model, and opens a conversation about cost savings without lecturing.</p>
+      <div class="highlight-box reveal">
+        <p><strong>Scope note:</strong> Indian bedrooms are shared. One thermal field cannot optimise for a thin person and a heavy one, a child and a grandparent. Intellisleep reduces wake-ups for a representative sleeper — it doesn't solve the fundamental actuator mismatch in a shared room. That problem needs per-person actuation. The users still self-regulate at the last mile, through blanket thickness and one leg out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 REFLECTION -->
+<section class="section" id="reflection" aria-labelledby="reflection-h2">
+  <div class="section-inner">
+    <div class="section-aside reveal">
+      <span class="section-num" aria-hidden="true">06</span>
+      <span class="section-title-aside">Outcomes &amp; Reflection</span>
+    </div>
+    <div class="section-content">
+      <h2 class="reveal" id="reflection-h2">What was built,<br><em>what was learned</em></h2>
+      <h3 class="reveal">Handed off to Havells</h3>
+      <div class="impact-rows reveal">
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>Complete interactive prototype — Intellisleep in Havells Sync</strong>
+            <span>Full Figma prototype across both discovery paths (device page + Automations), group creation flow, Bluetooth scan state, temperature dial, and morning check-in.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>System architecture across four layers</strong>
+            <span>Sensing → Actuation → Adaptation → Feedback, with the "feels like" recommendation and SATED check-in framework documented for the engineering team.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>Future scope roadmap</strong>
+            <span>Per-person actuation pathways and the broader ecosystem — smart lights, curtains, air purifier — that can plug into the same Intellisleep automation architecture.</span>
+          </div>
+        </div>
+        <div class="impact-row">
+          <span class="impact-arrow" aria-hidden="true">↗</span>
+          <div>
+            <strong>M.Des CGPA 8.0 — IIT Delhi</strong>
+            <span>Completed the M.Des programme with a CGPA of 8.0, combining thesis research with coursework in Applied Ergonomics, Design for User Experience, and Product Interface Design.</span>
+          </div>
+        </div>
+      </div>
+      <h3 class="reveal">Three lessons</h3>
+      <div class="lesson-grid reveal">
+        <div class="lesson-card">
+          <div class="lesson-n">Lesson 01</div>
+          <div class="lesson-title">Specific contexts beat generic users</div>
+          <div class="lesson-desc">Every finding in this project became sharper when I stopped saying "the user" and started saying "an urban Indian adult sleeping in a shared bedroom with a split AC and a ceiling fan." The design got better in proportion to how specifically I could name the user.</div>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-n">Lesson 02</div>
+          <div class="lesson-title">The hardest part of systems design is drawing the boundary</div>
+          <div class="lesson-desc">Everything is connected to everything. The hard discipline is saying: this is in scope, this is not, here is the coupling I am intervening at, here is what I am accepting as given.</div>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-n">Lesson 03</div>
+          <div class="lesson-title">Feedback loops need unconscious observability</div>
+          <div class="lesson-desc">People cannot self-report on experiences they slept through. Morning-after frameworks like SATED are not a workaround. They are the right instrument for the problem.</div>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-n">On the thesis itself</div>
+          <div class="lesson-title">Academic rigour shapes professional instinct</div>
+          <div class="lesson-desc">The M.Des thesis was the first time I had to defend a design position to an academic community asking foundational questions about what design knowledge is. That rigour — justifying not just what you designed but why the framing was valid — has shaped how I approach every significant design problem since.</div>
+        </div>
+      </div>
+      <h3 class="reveal">Credits</h3>
+      <div class="credits-grid reveal">
+        <div>
+          <div class="credit-item">
+            <span class="credit-role">Faculty Supervisor</span>
+            <div class="credit-name">Prof. Charu Monga</div>
+            <div class="credit-title">Department of Design, IIT Delhi</div>
+          </div>
+          <div class="credit-item">
+            <span class="credit-role">Industry Supervisor</span>
+            <div class="credit-name">Ananya Vetal</div>
+            <div class="credit-title">AGM, CXD, Havells India</div>
+          </div>
+        </div>
+        <div>
+          <div class="credit-item">
+            <span class="credit-role">Industry Mentor</span>
+            <div class="credit-name">Vineet Sharma</div>
+            <div class="credit-title">Asst. Manager, CXD, Havells India</div>
+          </div>
+          <div class="credit-item">
+            <span class="credit-role">Special Thanks</span>
+            <div class="credit-name">Ekta Shrivastava</div>
+            <div class="credit-title">And the wider Havells UX team</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reveal">
+  <div class="foot-left">Cozy Nights — <em>M.Des Thesis</em></div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="yono-case-study.html">YONO Case Study</a>
+    <a href="cv.html">CV</a>
+    <a href="mailto:mohitahirwar7@gmail.com">Email</a>
+  </div>
+</footer>
+
+</div>
+</main>
+
+<button id="btt" aria-label="Back to top" title="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="2,9 7,4 12,9"/>
+  </svg>
+</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  const prog=document.getElementById('progress');prog.style.width=pct+'%';
+  prog.setAttribute('aria-valuenow',Math.round(pct));
+  document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const burger=document.getElementById('hamburger');const menu=document.getElementById('mobile-menu');
+function toggleMenu(open){burger.classList.toggle('open',open);menu.classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Close menu':'Open menu');document.body.style.overflow=open?'hidden':'';}
+burger.addEventListener('click',()=>toggleMenu(!burger.classList.contains('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleMenu(false);});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+document.getElementById('btt').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(h&&h.endsWith('.html')&&!h.startsWith('http')&&!h.startsWith('//')){
+    a.addEventListener('click',e=>{e.preventDefault();document.body.style.opacity='0';document.body.style.transform='translateY(8px)';document.body.style.transition='opacity .25s ease,transform .25s ease';setTimeout(()=>{window.location.href=h;},260);});
+  }
+});
+const sections=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));},{passive:true});
+</script>
+</body>
+</html>

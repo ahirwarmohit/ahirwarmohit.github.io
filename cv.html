@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohit Ahirwar — Curriculum Vitae</title>
+<meta name="description" content="Curriculum Vitae — Mohit Ahirwar, Product Designer &amp; UX Lead. M.Des IIT Delhi. 3.6 years enterprise experience across BFSI, IoT, and government digital platforms.">
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://ahirwarmohit.github.io/cv.html">
+<meta property="og:title" content="Mohit Ahirwar — Curriculum Vitae">
+<meta property="og:description" content="Product Designer & UX Lead. M.Des IIT Delhi. Leading the insurance vertical on SBI YONO 2.0 at TCS Interactive.">
+<meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:#ffffff;--paper:#fafaf8;--bone:#f3f2ef;--rule:#e4e2dc;--rule2:#d0cec7;
+  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
+  --blue:#1a4ed8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;--r:3px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;animation:pageFadeIn .4s ease both;}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .1s linear;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);}
+.nav-ctas{display:flex;gap:10px;align-items:center;}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2);}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+.nbtn.s{background:var(--blue);color:white;border:1px solid var(--blue);}
+.nbtn.s:hover{background:#1640b8;}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s;}
+.hamburger:hover{border-color:var(--blue);}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all;}
+.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s;}
+.mobile-menu a:hover{color:var(--blue);}
+.mobile-menu a:last-of-type{border-bottom:none;}
+.mm-foot{margin-top:32px;display:flex;gap:10px;}
+
+/* HERO */
+.hero{padding:112px 48px 72px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:80px;align-items:start;border-bottom:1px solid var(--rule);}
+.h-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+.h-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;}
+.h-sep{width:1px;height:12px;background:var(--rule2);}
+.h-loc{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(44px,6vw,80px);font-weight:300;line-height:1.0;letter-spacing:-2px;color:var(--ink);margin-bottom:6px;}
+.hero h1 em{font-style:italic;color:var(--blue);}
+.h-role{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:24px;}
+.h-bio{font-size:16px;color:var(--ink-2);font-weight:300;max-width:540px;line-height:1.78;margin-bottom:36px;}
+.h-bio strong{color:var(--ink);font-weight:500;}
+.h-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:10px 20px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:8px;}
+.btn.pri{background:var(--blue);color:white;border:1px solid var(--blue);}
+.btn.pri:hover{background:#1640b8;}
+.btn.sec{background:transparent;border:1px solid var(--rule2);color:var(--ink-2);}
+.btn.sec:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+
+/* HERO RIGHT */
+.h-photo{width:100%;height:300px;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;position:relative;overflow:hidden;}
+.h-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.ph-badge{position:absolute;bottom:12px;right:12px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r);padding:8px 12px;display:flex;align-items:center;gap:7px;box-shadow:0 4px 12px rgba(0,0,0,.07);}
+.ph-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;}
+.ph-txt{font-size:11px;font-weight:500;color:var(--ink-1);}
+.qf{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
+.qf-c{background:var(--white);padding:13px 15px;}
+.qf-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:3px;}
+.qf-v{font-size:12px;font-weight:500;color:var(--ink-1);line-height:1.3;}
+
+/* PAGE BODY */
+.pb{max-width:1200px;margin:0 auto;}
+
+/* SECTIONS */
+.sec{padding:72px 48px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start;}
+.s-aside{position:sticky;top:72px;}
+.s-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;font-weight:500;}
+.s-lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ink-2);line-height:1.4;}
+.s-body h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,40px);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:28px;letter-spacing:-.5px;}
+.s-body h2 em{font-style:italic;color:var(--blue);}
+.s-body h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-2);font-weight:500;margin-top:48px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+
+/* EXP */
+.exp-list{display:flex;flex-direction:column;}
+.exp-e{padding:28px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;}
+.exp-e:first-child{padding-top:0;}
+.exp-e:last-child{border-bottom:none;padding-bottom:0;}
+.e-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.5px;padding-top:3px;line-height:1.5;}
+.e-now{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-bd);color:var(--blue);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-top:6px;font-weight:500;}
+.e-role{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.e-co{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:10px;}
+.e-co span{color:var(--ink-3);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;}
+.e-desc{font-size:14px;color:var(--ink-2);line-height:1.78;max-width:580px;}
+.e-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.e-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 8px;border-radius:2px;}
+
+/* EDU */
+.edu-list{display:flex;flex-direction:column;}
+.edu-e{padding:28px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;}
+.edu-e:first-child{padding-top:0;}
+.edu-e:last-child{border-bottom:none;padding-bottom:0;}
+.ed-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.5px;padding-top:3px;}
+.ed-deg{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.ed-sch{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:10px;}
+.ed-txt{font-size:13.5px;color:var(--ink-2);line-height:1.75;max-width:560px;}
+.ed-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.ed-b{display:inline-flex;align-items:center;background:var(--blue-bg);border:1px solid var(--blue-bd);padding:4px 10px;border-radius:2px;}
+.ed-b span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--blue);font-weight:500;}
+
+/* SKILLS */
+.sk-row{padding:20px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:start;}
+.sk-row:first-child{padding-top:0;}
+.sk-row:last-child{border-bottom:none;padding-bottom:0;}
+.sk-cat{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);padding-top:4px;}
+.sk-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.sk-p{font-size:12px;font-weight:400;color:var(--ink-1);background:var(--paper);border:1px solid var(--rule);padding:5px 12px;border-radius:2px;transition:all .15s;}
+.sk-p:hover{border-color:var(--blue-bd);background:var(--blue-bg);color:var(--blue);}
+.sk-p.hi{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue);font-weight:500;}
+
+/* ACHIEVEMENTS */
+.ach-list{display:flex;flex-direction:column;}
+.ach-e{padding:20px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:start;}
+.ach-e:first-child{padding-top:0;}
+.ach-e:last-child{border-bottom:none;padding-bottom:0;}
+.ach-yr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.5px;padding-top:2px;}
+.ach-t{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.ach-d{font-size:13px;color:var(--ink-2);line-height:1.65;}
+
+/* INTEREST GRID */
+.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:4px;}
+.int-c{background:var(--white);padding:20px 18px;transition:background .2s;}
+.int-c:hover{background:var(--paper);}
+.int-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:block;}
+.int-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.int-d{font-size:12px;color:var(--ink-2);line-height:1.55;}
+
+/* CONTACT / CTA */
+.cta{background:var(--ink);padding:60px 48px;}
+.cta-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+.cta h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,46px);font-weight:300;color:white;line-height:1.2;margin-bottom:12px;letter-spacing:-.5px;}
+.cta h2 em{font-style:italic;color:#93b4f8;}
+.cta p{font-size:14px;color:rgba(255,255,255,.5);max-width:480px;line-height:1.7;}
+.cta-acts{display:flex;flex-direction:column;gap:10px;}
+.cta-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:12px 22px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
+.cta-btn.p{background:var(--blue);color:white;border:1px solid var(--blue);}
+.cta-btn.p:hover{background:#1640b8;}
+.cta-btn.o{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);}
+.cta-btn.o:hover{border-color:rgba(255,255,255,.4);color:white;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1200px;margin:0 auto;}
+.f-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);}
+.f-name em{font-style:italic;color:var(--ink);}
+.f-links{display:flex;gap:20px;}
+.f-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;}
+.f-links a:hover{color:var(--blue);}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,border-color .15s;z-index:90;}
+#btt.vis{opacity:1;transform:translateY(0);}
+#btt:hover{border-color:var(--blue);}
+#btt svg{color:var(--ink-2);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
+
+/* PRINT STYLESHEET */
+@media print {
+  #prog,nav,.hamburger,.mobile-menu,.cta,#btt{display:none!important;}
+  body{animation:none;font-size:11pt;color:#000;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .hero{padding:0 0 24pt;display:grid;grid-template-columns:1fr 220pt;gap:32pt;page-break-after:avoid;}
+  .h-actions{display:none;}
+  .sec{padding:18pt 0;grid-template-columns:100pt 1fr;gap:24pt;page-break-inside:avoid;}
+  .s-aside{position:static;}
+  .exp-e,.edu-e,.sk-row,.ach-e{grid-template-columns:100pt 1fr;}
+  .int-grid{grid-template-columns:repeat(3,1fr);}
+  .s-body h2{font-size:18pt;margin-bottom:14pt;}
+  .reveal{opacity:1!important;transform:none!important;}
+  footer{padding:12pt 0;border-top:1pt solid #ccc;}
+  a{color:#000;text-decoration:none;}
+  @page{margin:1.5cm 2cm;size:A4;}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links,.nav-ctas{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu{display:flex;}
+  .hero{grid-template-columns:1fr;padding:88px 20px 48px;gap:36px;}
+  .h-right{order:-1;}
+  .sec{grid-template-columns:1fr;gap:20px;padding:48px 20px;}
+  .s-aside{position:static;}
+  .exp-e,.edu-e,.sk-row,.ach-e{grid-template-columns:1fr;}
+  .int-grid{grid-template-columns:1fr 1fr;}
+  .qf{grid-template-columns:1fr 1fr;}
+  .cta{padding:40px 20px;}
+  .cta-in{grid-template-columns:1fr;}
+  footer{padding:20px;}
+}
+@media(max-width:480px){
+  .int-grid{grid-template-columns:1fr;}
+  .h-actions{flex-direction:column;}
+  .h-actions .btn{width:100%;justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<div id="prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Mohit Ahirwar — home">
+    <div class="nav-dot" aria-hidden="true"></div>
+    <span class="nav-name">Mohit</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#exp">Experience</a></li>
+    <li><a href="#edu">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#ach">Recognition</a></li>
+    <li><a href="yono-case-study.html">Case Study →</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="nbtn o">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Get in touch</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" role="navigation">
+  <a href="index.html">Home</a>
+  <a href="#exp">Experience</a>
+  <a href="#edu">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#ach">Recognition</a>
+  <a href="yono-case-study.html">Case Study</a>
+  <div class="mm-foot">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="nbtn o">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Email</a>
+  </div>
+</nav>
+
+<main>
+<div class="pb">
+
+<!-- HERO -->
+<div class="hero" aria-labelledby="hero-name">
+  <div class="h-left reveal">
+    <div class="h-eyebrow">
+      <span class="h-tag">Product Designer</span>
+      <div class="h-sep" aria-hidden="true"></div>
+      <span class="h-loc">Mumbai, India</span>
+    </div>
+    <h1 id="hero-name">Mohit<br><em>Ahirwar</em></h1>
+    <p class="h-role">UX / Product Designer &nbsp;·&nbsp; M.Des, IIT Delhi</p>
+    <p class="h-bio">
+      Designer with <strong>3.6 years full-time experience + 8 months internships</strong> across BFSI digital transformation, IoT smart home systems, and public digital platforms. Currently leading the insurance vertical on SBI YONO 2.0 at <strong>TCS Interactive</strong> — a McKinsey &amp; Company-led three-partner engagement — designing for India's largest banking platform at enterprise scale.<br><br>
+      Specialising in <strong>systems-level product design</strong>, multi-channel experience architecture, and design leadership inside complex, multi-stakeholder environments.
+    </p>
+    <div class="h-actions">
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="btn pri">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        View LinkedIn
+      </a>
+      <a href="mailto:mohitahirwar7@gmail.com" class="btn sec">mohitahirwar7@gmail.com</a>
+      <a href="yono-case-study.html" class="btn sec">Case Study →</a>
+    </div>
+  </div>
+
+  <div class="h-right reveal d2">
+    <div class="h-photo">
+      <!-- Replace with: <img src="assets/photo-mohit.jpg" alt="Mohit Ahirwar"> -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;" aria-hidden="true">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--bone);border:1px solid var(--rule2);display:flex;align-items:center;justify-content:center;font-size:22px;">👤</div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);">Photo coming soon</span>
+      </div>
+      <div class="ph-badge">
+        <div class="ph-dot" aria-hidden="true"></div>
+        <span class="ph-txt">Open to opportunities</span>
+      </div>
+    </div>
+    <div class="qf" role="list" aria-label="Quick facts">
+      <div class="qf-c" role="listitem"><span class="qf-l">Current</span><span class="qf-v">TCS Interactive × SBI</span></div>
+      <div class="qf-c" role="listitem"><span class="qf-l">Education</span><span class="qf-v">M.Des · IIT Delhi</span></div>
+      <div class="qf-c" role="listitem"><span class="qf-l">Experience</span><span class="qf-v">3.6 Yrs FT + 8 Mo</span></div>
+      <div class="qf-c" role="listitem"><span class="qf-l">CEED</span><span class="qf-v">Qualified · No Coaching</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="exp" aria-labelledby="exp-heading">
+  <div class="s-aside reveal">
+    <span class="s-num" aria-hidden="true">01</span>
+    <span class="s-lbl">Work Experience</span>
+  </div>
+  <div class="s-body">
+    <h2 class="reveal" id="exp-heading">Where I have <em>worked</em></h2>
+    <div class="exp-list">
+
+      <div class="exp-e reveal">
+        <div class="e-date">Jan 2024 — Present<div class="e-now">Current</div></div>
+        <div>
+          <div class="e-role">UX Designer</div>
+          <div class="e-co">TCS Interactive, Mumbai <span>· BFSI · Enterprise</span></div>
+          <div class="e-desc">Led the insurance vertical end-to-end — General Insurance and Life Insurance — across mobile app, web, branch portal, and field tablets for SBI YONO 2.0, serving 500M+ account holders. Designed the GPAI anchor journey through a 10-step Garage methodology, iterating 500–600 screens over 8–10 months while coordinating across 11 internal SBI teams including ISO, Risk, Compliance, and GITC, in a McKinsey &amp; Company-led three-partner engagement. Design patterns established became the reference standard for all 110+ journeys delivered across 3 phases. Solo-audited all 42 Phase 2 journeys for consistency — became the sole holder of end-to-end product knowledge across the platform. Directed 4 visual designers and 1 UX designer, all IIT and NID graduates. <strong>Star Performer of the Year</strong> + 10+ performance awards and written client appreciations. Currently leading: AI Chatbot (3-phase LLM rollout), Inclusive Savings Account for illiterate and minor users, NRI PIS Demat &amp; Trading, and Investments landing page.</div>
+          <div class="e-tags">
+            <span class="e-tag">YONO 2.0</span><span class="e-tag">Insurance Vertical</span><span class="e-tag">Multi-channel</span>
+            <span class="e-tag">Systems Design</span><span class="e-tag">Vertical Lead</span><span class="e-tag">BFSI</span>
+            <span class="e-tag">McKinsey Engagement</span><span class="e-tag">AI Product Design</span><span class="e-tag">Inclusive Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-e reveal">
+        <div class="e-date">Feb 2023 — Jul 2023</div>
+        <div>
+          <div class="e-role">UX Design Intern — Systems &amp; Research</div>
+          <div class="e-co">Havells India, Noida <span>· IoT · Smart Home</span></div>
+          <div class="e-desc">Systems design research for night sleep comfort enhancement using IoT-based HVAC automation. Synthesised secondary research on thermal comfort behaviour and energy-cost anxiety. Supported refinement of the backend IntelliSleep algorithm. Designed journeys and UI flows for the IntelliSleep feature in the Havells Sync smart home automation application.</div>
+          <div class="e-tags">
+            <span class="e-tag">IoT</span><span class="e-tag">Systems Research</span><span class="e-tag">Smart Home</span><span class="e-tag">HVAC UX</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-e reveal">
+        <div class="e-date">Jun 2022 — Jul 2022</div>
+        <div>
+          <div class="e-role">UX &amp; Information Design Intern</div>
+          <div class="e-co">Quality Council of India, New Delhi <span>· Government</span></div>
+          <div class="e-desc">Conducted UX audits for government websites, identifying usability, accessibility, and navigation gaps. Created visual communication design and digital media content. Filmed video podcasts with Padma Shree awardees and senior government officials, generating 80,000+ unique impressions.</div>
+          <div class="e-tags">
+            <span class="e-tag">UX Audit</span><span class="e-tag">Gov. Digital</span><span class="e-tag">Information Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-e reveal">
+        <div class="e-date">Jun 2019 — Sep 2020</div>
+        <div>
+          <div class="e-role">Creative Designer</div>
+          <div class="e-co">Conexus Netcom Solutions, Mumbai <span>· Agency · UK &amp; UAE</span></div>
+          <div class="e-desc">Delivered UX/UI and brand communication projects for clients in the UK and UAE. Managed 20+ end-to-end project deliveries covering requirement gathering, stakeholder coordination, and handoff. Work included UI design for web applications, brand identity, print collateral, social media campaigns, motion graphics, and corporate explainer videos.</div>
+          <div class="e-tags">
+            <span class="e-tag">UI Design</span><span class="e-tag">Brand Identity</span><span class="e-tag">Motion Graphics</span><span class="e-tag">Client Management</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec" id="edu" aria-labelledby="edu-heading">
+  <div class="s-aside reveal">
+    <span class="s-num" aria-hidden="true">02</span>
+    <span class="s-lbl">Education</span>
+  </div>
+  <div class="s-body">
+    <h2 class="reveal" id="edu-heading">Where I <em>studied</em></h2>
+    <div class="edu-list">
+
+      <div class="edu-e reveal">
+        <div class="ed-date">2021 — 2023</div>
+        <div>
+          <div class="ed-deg">Master of Design (M.Des) — Industrial Design</div>
+          <div class="ed-sch">Indian Institute of Technology Delhi</div>
+          <div class="ed-txt">Coursework: Applied Ergonomics, Design &amp; Innovation Methods, Design for User Experience, Product Interface Design, Computer-Aided Product Detailing, Form &amp; Aesthetics.<br><br>
+          <strong>PG Placement &amp; Design Coordinator, IIT Delhi OCS</strong> — designed the official OCS logo and visual brand identity; <strong>logo inaugurated by the Director of IIT Delhi</strong> with a personal design philosophy presentation. Managed PG cohort placements; pitched to 150+ companies. Awarded <strong>Outstanding Performance Award for OCS contributions</strong>.<br><br>
+          <strong>Student Mentor, Board for Student Welfare (BSW)</strong> — mentored B.Des students on academic and design challenges as part of IIT Delhi's official mentorship programme (May 2022 – Jun 2023).<br><br>
+          <strong>Creative &amp; Media Outreach Coordinator, Indradhanu</strong> — IIT Delhi's LGBTQ+ collective, India's first officially recognised among IITs/NITs/CFTIs. Design Head for <strong>Vibhinn'23</strong>, IIT Delhi's first queer festival; managed 150+ executives across Media, Design, and Documentation (Jan 2022 – May 2023).<br><br>
+          <strong>VR/UX Researcher, Indian Military Academy, Dehradun</strong> (Nov 2022 – Jan 2023) — developed a <strong>VR-based training and strategic planning proof-of-concept for the Indian Armed Forces</strong> under Prof. Charu Monga, IIT Delhi. <strong>PoC subsequently presented to the President of India</strong>.<br><br>
+          <strong>M.Des Design Project — Smart Glass</strong>: AI-powered eyewear concept exploring contextual, ambient computing interfaces. Selected image featured on the <strong>IIT Delhi Prospectus Cover</strong>.</div>
+          <div class="ed-badges">
+            <div class="ed-b"><span>CGPA 8.0</span></div>
+            <div class="ed-b"><span>CEED Qualified</span></div>
+            <div class="ed-b"><span>No Coaching</span></div>
+            <div class="ed-b"><span>Industrial Design</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-e reveal">
+        <div class="ed-date">2015 — 2019</div>
+        <div>
+          <div class="ed-deg">Bachelor of Technology — Information Technology</div>
+          <div class="ed-sch">Guru Ghasidas Vishwavidyalaya (Central University), Bilaspur</div>
+          <div class="ed-txt">Final year project: ML-based standalone SPAM classifier — responsible for UI design, data visualisation, user testing, and pitch deck. Innovation and Graphic Design Head at UDAAN student magazine. Conducted design, photography, and marketing workshops for 1,000+ students.</div>
+          <div class="ed-badges">
+            <div class="ed-b"><span>CGPA 7.26</span></div>
+            <div class="ed-b"><span>Information Technology</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills" aria-labelledby="skills-heading">
+  <div class="s-aside reveal">
+    <span class="s-num" aria-hidden="true">03</span>
+    <span class="s-lbl">Skills &amp; Tools</span>
+  </div>
+  <div class="s-body">
+    <h2 class="reveal" id="skills-heading">What I <em>work with</em></h2>
+    <div class="reveal">
+      <div class="sk-row">
+        <span class="sk-cat">UX Research</span>
+        <div class="sk-pills">
+          <span class="sk-p hi">User Interviews</span><span class="sk-p hi">Usability Testing</span>
+          <span class="sk-p">Surveys</span><span class="sk-p">Insight Synthesis</span>
+          <span class="sk-p">Personas</span><span class="sk-p">Journey Mapping</span>
+          <span class="sk-p">Heuristic Evaluation</span><span class="sk-p">Competitive Benchmarking</span>
+          <span class="sk-p">Problem Framing</span><span class="sk-p">Feature Prioritisation</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <span class="sk-cat">Product Design</span>
+        <div class="sk-pills">
+          <span class="sk-p hi">Systems Thinking</span><span class="sk-p hi">Information Architecture</span>
+          <span class="sk-p hi">Interaction Design</span><span class="sk-p">Wireframing</span>
+          <span class="sk-p">Prototyping</span><span class="sk-p">User Flows</span>
+          <span class="sk-p">Service Blueprinting</span><span class="sk-p">Cross-channel Design</span>
+          <span class="sk-p">Design Systems</span><span class="sk-p">Responsive UI</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <span class="sk-cat">Design Tools</span>
+        <div class="sk-pills">
+          <span class="sk-p hi">Figma</span><span class="sk-p">Adobe XD</span>
+          <span class="sk-p">Illustrator</span><span class="sk-p">Photoshop</span>
+          <span class="sk-p">After Effects</span><span class="sk-p">Premiere Pro</span>
+          <span class="sk-p">Framer</span><span class="sk-p">Webflow</span><span class="sk-p">Lovable</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <span class="sk-cat">AI — Prompt Level</span>
+        <div class="sk-pills">
+          <span class="sk-p hi">Claude</span><span class="sk-p hi">ChatGPT</span>
+          <span class="sk-p">Midjourney</span><span class="sk-p">DALL·E</span>
+          <span class="sk-p">Gemini</span><span class="sk-p">AI Prompt Design</span>
+          <span class="sk-p">Multi-shot Prompting</span><span class="sk-p">Format-constrained Output</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <span class="sk-cat">AI — System Level</span>
+        <div class="sk-pills">
+          <span class="sk-p hi">Cursor</span><span class="sk-p hi">Claude Cowork</span>
+          <span class="sk-p">System Prompt Architecture</span><span class="sk-p">Token-Efficient Workflows</span>
+          <span class="sk-p">LLM Product Flows</span><span class="sk-p">Context Window Management</span>
+          <span class="sk-p">AI UX Design</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <span class="sk-cat">Collaboration</span>
+        <div class="sk-pills">
+          <span class="sk-p">Miro</span><span class="sk-p">Notion</span><span class="sk-p">Jira</span>
+          <span class="sk-p">Confluence</span><span class="sk-p">Trello</span><span class="sk-p">MS Office</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <span class="sk-cat">Technical</span>
+        <div class="sk-pills">
+          <span class="sk-p">HTML5 / CSS</span><span class="sk-p">WordPress</span>
+          <span class="sk-p">Agile / Scrum</span><span class="sk-p">VR / AR Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="sec" id="ach" aria-labelledby="ach-heading">
+  <div class="s-aside reveal">
+    <span class="s-num" aria-hidden="true">04</span>
+    <span class="s-lbl">Achievements</span>
+  </div>
+  <div class="s-body">
+    <h2 class="reveal" id="ach-heading">Selected <em>highlights</em></h2>
+    <div class="ach-list reveal">
+
+      <div class="ach-e">
+        <span class="ach-yr">2024</span>
+        <div>
+          <div class="ach-t">Star Performer of the Year — TCS Interactive</div>
+          <div class="ach-d">10+ performance awards and written client appreciations for design leadership and delivery quality on YONO 2.0 within the first year at TCS Interactive.</div>
+        </div>
+      </div>
+
+      <div class="ach-e">
+        <span class="ach-yr">2022–23</span>
+        <div>
+          <div class="ach-t">IIT Delhi Prospectus Cover — Smart Glass AI Project</div>
+          <div class="ach-d">Visual output from the Smart Glass M.Des design project — an AI-powered eyewear concept for ambient computing — was selected for the official IIT Delhi Prospectus Cover.</div>
+        </div>
+      </div>
+
+      <div class="ach-e">
+        <span class="ach-yr">2022–23</span>
+        <div>
+          <div class="ach-t">VR Research — Indian Armed Forces, IMA Dehradun</div>
+          <div class="ach-d">Developed a VR-based training and strategic planning proof-of-concept for the Indian Armed Forces under Prof. Charu Monga, IIT Delhi. PoC subsequently presented to the President of India.</div>
+        </div>
+      </div>
+
+      <div class="ach-e">
+        <span class="ach-yr">2022–23</span>
+        <div>
+          <div class="ach-t">Outstanding Performance Award — IIT Delhi OCS</div>
+          <div class="ach-d">Designed the official IIT Delhi OCS logo and brand identity. Logo inaugurated by the Director of IIT Delhi with a personal design philosophy presentation. Managed PG cohort placements; pitched to 150+ companies.</div>
+        </div>
+      </div>
+
+      <div class="ach-e">
+        <span class="ach-yr">2021</span>
+        <div>
+          <div class="ach-t">CEED Qualified — IIT Delhi (No Coaching)</div>
+          <div class="ach-d">Cleared the Common Entrance Examination for Design self-prepared, without formal coaching. Received offers from IIT Delhi, IIT Kanpur, SPA Bhopal, and IIITDM Jabalpur; waitlisted at IIT Guwahati and IIT Hyderabad. Chose IIT Delhi M.Des Industrial Design.</div>
+        </div>
+      </div>
+
+      <div class="ach-e">
+        <span class="ach-yr">2019</span>
+        <div>
+          <div class="ach-t">Ek Bharat Shreshtha Bharat — Government of India</div>
+          <div class="ach-d">Selected from 7,000+ university students as one of 12 national envoys to represent Chhattisgarh in Gujarat under the Ministry of Education's Cultural Exchange Programme.</div>
+        </div>
+      </div>
+
+      <div class="ach-e">
+        <span class="ach-yr">2023–Present</span>
+        <div>
+          <div class="ach-t">Design Mentor — 35+ Students into IITs and NIDs</div>
+          <div class="ach-d">Following M.Des at IIT Delhi, began mentoring CEED aspirants. 35+ mentees placed into IITs and NIDs. Provides portfolio reviews, interview preparation, and presentation coaching.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <h3 class="reveal">Interest areas</h3>
+    <div class="int-grid reveal" role="list" aria-label="Interest areas">
+      <div class="int-c" role="listitem"><span class="int-l">Current Focus</span><div class="int-t">AI Product Design</div><div class="int-d">Designing conversational and LLM-integrated banking experiences on YONO 2.0.</div></div>
+      <div class="int-c" role="listitem"><span class="int-l">Research Interest</span><div class="int-t">Inclusive Design</div><div class="int-d">Currently designing for illiterate and minor users within India's banking inclusion agenda.</div></div>
+      <div class="int-c" role="listitem"><span class="int-l">Side Interest</span><div class="int-t">Gamified Experiences</div><div class="int-d">Longstanding interest in serious gaming and VR-based experiential design.</div></div>
+      <div class="int-c" role="listitem"><span class="int-l">Domain</span><div class="int-t">Strategic Design</div><div class="int-d">Working at the intersection of business strategy, regulatory compliance, and UX at enterprise scale.</div></div>
+      <div class="int-c" role="listitem"><span class="int-l">Domain</span><div class="int-t">BFSI &amp; Fintech</div><div class="int-d">Deep familiarity with Indian banking product complexity — insurance, investments, lending, KYC, and payments.</div></div>
+      <div class="int-c" role="listitem"><span class="int-l">Background</span><div class="int-t">Tech Foundation</div><div class="int-d">B.Tech in IT enables fluent collaboration with engineering and comfort with technical constraints.</div></div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end pb -->
+</main>
+
+<!-- CTA -->
+<div class="cta" role="complementary" aria-label="Get in touch">
+  <div class="cta-in">
+    <div>
+      <h2>Let's work<br><em>together</em></h2>
+      <p>Open to Product Designer and UX Lead roles at BFSI, consulting, and enterprise product companies. Targeting Deloitte, Barclays, Standard Chartered, Atlassian, Salesforce, and Razorpay. Based in Mumbai — open to hybrid and remote arrangements.</p>
+    </div>
+    <div class="cta-acts">
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="cta-btn p">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Connect on LinkedIn
+      </a>
+      <a href="mailto:mohitahirwar7@gmail.com" class="cta-btn o">mohitahirwar7@gmail.com</a>
+      <a href="tel:+917007825909" class="cta-btn o">+91 70078 25909</a>
+      <a href="yono-case-study.html" class="cta-btn o">View Case Study →</a>
+    </div>
+  </div>
+</div>
+
+<div class="pb">
+<footer class="reveal">
+  <div class="f-name"><em>Mohit</em> Ahirwar</div>
+  <div class="f-links">
+    <a href="index.html">Home</a>
+    <a href="yono-case-study.html">Case Study</a>
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com">Email</a>
+  </div>
+</footer>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top" title="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="2,9 7,4 12,9"/>
+  </svg>
+</button>
+
+<script>
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  const prog=document.getElementById('prog');
+  prog.style.width=pct+'%';
+  prog.setAttribute('aria-valuenow',Math.round(pct));
+  document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+
+/* ── REVEAL ON SCROLL ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+  });
+},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ── HAMBURGER / MOBILE MENU ── */
+const burger=document.getElementById('hamburger');
+const menu=document.getElementById('mobile-menu');
+function toggleMenu(open){
+  burger.classList.toggle('open',open);
+  menu.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',String(open));
+  burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>toggleMenu(!burger.classList.contains('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleMenu(false);});
+menu.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click',()=>toggleMenu(false));
+});
+
+/* ── BACK TO TOP ── */
+document.getElementById('btt').addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ── PAGE TRANSITIONS (internal links) ── */
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(h&&h.endsWith('.html')&&!h.startsWith('http')&&!h.startsWith('//')){
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.body.style.opacity='0';
+      document.body.style.transform='translateY(8px)';
+      document.body.style.transition='opacity .25s ease,transform .25s ease';
+      setTimeout(()=>{window.location.href=h;},260);
+    });
+  }
+});
+
+/* ── NAV ACTIVE STATE ── */
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-80)cur=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+},{passive:true});
+</script>
+</body>
+</html>
