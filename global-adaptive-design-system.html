@@ -153,10 +153,55 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
 .foot-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;}
 .foot-links a:hover{color:var(--blue);}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}
+/* REVEAL — enhanced with blur */
+.reveal{opacity:0;transform:translateY(24px);filter:blur(2px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1),filter .7s cubic-bezier(0.16,1,0.3,1);}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
+
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s cubic-bezier(0.16,1,0.3,1),height .22s cubic-bezier(0.16,1,0.3,1),background .2s,border .2s;will-change:transform;}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue);}
+@media(hover:none){#cur{display:none;}body{cursor:auto;}}
+
+/* PRINCIPLE GRID — big stats */
+.pr-stat{font-family:'Fraunces',serif;font-size:clamp(36px,5vw,56px);font-weight:300;color:var(--blue);letter-spacing:-2px;line-height:1;margin-bottom:12px;display:block;}
+.pr-card{background:var(--white);padding:28px 24px;transition:background .2s,transform .2s;position:relative;overflow:hidden;}
+.pr-card:hover{background:var(--paper);transform:translateY(-2px);}
+.pr-card::after{content:'';position:absolute;inset:0;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(26,78,216,0.06) 0%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.pr-card:hover::after{opacity:1;}
+.pr-idx{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:1px;margin-bottom:8px;}
+.pr-title{font-size:var(--fs-sm);font-weight:600;color:var(--ink);margin-bottom:8px;}
+.pr-desc{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.6;}
+
+/* STATE MATRIX */
+.state-matrix{margin-top:32px;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;max-width:680px;}
+.matrix-header{display:grid;grid-template-columns:60px 1fr 1fr 1fr;gap:1px;background:var(--rule);}
+.matrix-corner{background:var(--bone);padding:10px;}
+.matrix-col-label{background:var(--bone);padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-2);font-weight:500;}
+.matrix-row{display:grid;grid-template-columns:60px 1fr 1fr 1fr;gap:1px;background:var(--rule);}
+.matrix-row-label{background:var(--paper);padding:14px 10px;display:flex;align-items:center;justify-content:center;}
+.matrix-row-label span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-2);font-weight:500;writing-mode:horizontal-tb;}
+.matrix-cell{background:var(--white);padding:14px 12px;transition:background .2s;}
+.matrix-cell:hover{background:var(--paper);}
+.matrix-cell .cell-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--ink-3);display:block;margin-bottom:4px;}
+.matrix-cell .cell-status{font-size:12px;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:5px;}
+.matrix-cell.active{background:var(--blue-bg);}
+.matrix-cell.active .cell-status{color:var(--blue);}
+.matrix-cell.wip{background:#fffbf0;}
+.matrix-cell.wip .cell-status{color:#b45309;}
+
+/* NAV UL link underline */
+.nav-links a{position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .2s cubic-bezier(0.16,1,0.3,1);transform-origin:left;}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+
+/* Axis card hover */
+.axis-card{border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s,transform .2s;}
+.axis-card:hover{box-shadow:0 8px 28px rgba(0,0,0,0.07);transform:translateY(-2px);}
+
+/* Nav dot pulse */
+.nav-dot{animation:pulse 3s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
 
 /* RESPONSIVE */
 @media(max-width:1000px){
@@ -184,6 +229,7 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
 </head>
 <body>
 
+<div id="cur" aria-hidden="true"></div>
 <div id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
 
 <nav role="navigation" aria-label="Main navigation">
@@ -269,18 +315,21 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
       <div class="principle-grid reveal" role="list">
         <div class="pr-card" role="listitem">
           <div class="pr-idx">Assumption 01</div>
+          <span class="pr-stat" data-val="660" data-suf="M">660M</span>
           <div class="pr-title">Users read left-to-right</div>
-          <div class="pr-desc"><strong>~660 million people read right-to-left.</strong> Arabic, Hebrew, Urdu, Farsi. That's more people than the entire population of Europe.</div>
+          <div class="pr-desc">People read right-to-left — Arabic, Hebrew, Urdu, Farsi. That's more than the entire population of Europe. Most design systems ignore them by default.</div>
         </div>
         <div class="pr-card" role="listitem">
           <div class="pr-idx">Assumption 02</div>
+          <span class="pr-stat" data-val="40" data-suf="%">40%</span>
           <div class="pr-title">Users hold high-end devices</div>
-          <div class="pr-desc"><strong>Roughly 40% of smartphones sold in Africa cost under $100.</strong> Another 40% under $200. These devices are not edge cases — they are the market.</div>
+          <div class="pr-desc">Of smartphones sold in Africa cost under $100. Another 40% under $200. These devices are not edge cases — they are the market.</div>
         </div>
         <div class="pr-card" role="listitem">
           <div class="pr-idx">Assumption 03</div>
+          <span class="pr-stat" data-val="18" data-suf="%">18%</span>
           <div class="pr-title">English is the default</div>
-          <div class="pr-desc"><strong>English is the first language of only ~18% of internet users</strong>, yet it dominates ~50% of online content. That gap is a product failure at scale.</div>
+          <div class="pr-desc">English is the first language of only ~18% of internet users, yet it dominates ~50% of online content. That gap is a product failure at scale.</div>
         </div>
       </div>
       <div class="callout reveal" style="margin-top:36px;">
@@ -338,7 +387,35 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
           </div>
         </div>
       </div>
-      <div class="highlight-box reveal" style="margin-top:36px;">
+      <!-- Visual 9-state matrix -->
+      <div class="state-matrix reveal" style="margin-top:28px;" aria-label="9-state combination matrix: 3 directions × 3 device tiers">
+        <div class="matrix-header">
+          <div class="matrix-corner"></div>
+          <div class="matrix-col-label">L1 — Full</div>
+          <div class="matrix-col-label">L2 — Reduced</div>
+          <div class="matrix-col-label">L3 — Minimal</div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-row-label"><span>LTR</span></div>
+          <div class="matrix-cell wip"><span class="cell-label">LTR × L1</span><span class="cell-status">🔧 In progress</span></div>
+          <div class="matrix-cell"><span class="cell-label">LTR × L2</span><span class="cell-status">⬜ Upcoming</span></div>
+          <div class="matrix-cell"><span class="cell-label">LTR × L3</span><span class="cell-status">⬜ Upcoming</span></div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-row-label"><span>RTL</span></div>
+          <div class="matrix-cell"><span class="cell-label">RTL × L1</span><span class="cell-status">⬜ Upcoming</span></div>
+          <div class="matrix-cell"><span class="cell-label">RTL × L2</span><span class="cell-status">⬜ Upcoming</span></div>
+          <div class="matrix-cell"><span class="cell-label">RTL × L3</span><span class="cell-status">⬜ Upcoming</span></div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-row-label"><span>TTB</span></div>
+          <div class="matrix-cell"><span class="cell-label">TTB × L1</span><span class="cell-status">⬜ Upcoming</span></div>
+          <div class="matrix-cell"><span class="cell-label">TTB × L2</span><span class="cell-status">⬜ Upcoming</span></div>
+          <div class="matrix-cell"><span class="cell-label">TTB × L3</span><span class="cell-status">⬜ Upcoming</span></div>
+        </div>
+      </div>
+
+      <div class="highlight-box reveal" style="margin-top:28px;">
         <p>Layouts aren't "LTR with RTL support." They're direction-agnostic from the ground up. The system replaces physical coordinates (Left, Right, Top, Bottom) with logical ones (Inline Start, Inline End, Block Start, Block End) — so the same component flows correctly in any script direction by design, not by override.</p>
       </div>
     </div>
@@ -521,6 +598,20 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
 </button>
 
 <script>
+// Custom cursor
+(function(){
+  const cur=document.getElementById('cur');
+  if(!cur||!window.matchMedia('(hover:hover)').matches)return;
+  let cx=window.innerWidth/2,cy=window.innerHeight/2,tx=cx,ty=cy;
+  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover-state'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover-state'));
+  });
+})();
+
+// Progress + back-to-top
 window.addEventListener('scroll',()=>{
   const d=document.documentElement;
   const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
@@ -529,10 +620,42 @@ window.addEventListener('scroll',()=>{
   prog.setAttribute('aria-valuenow',Math.round(pct));
   document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
 },{passive:true});
+
+// Scroll reveal
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-},{threshold:.07});
+},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Animated counters
+function counter(el,target,suffix){
+  const dur=1600,start=performance.now();
+  (function step(now){
+    const p=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-p,4);
+    const val=Number.isInteger(target)?Math.round(target*ease):(target*ease).toFixed(1);
+    el.textContent=val+suffix;
+    if(p<1)requestAnimationFrame(step);else el.textContent=target+suffix;
+  })(start);
+}
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.target.dataset.val){
+      counter(e.target,parseFloat(e.target.dataset.val),e.target.dataset.suf||'');
+      cio.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-val]').forEach(el=>cio.observe(el));
+
+// Card shimmer
+document.querySelectorAll('.pr-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    card.style.setProperty('--my',(e.clientY-r.top)+'px');
+  },{passive:true});
+});
 const burger=document.getElementById('hamburger');
 const menu=document.getElementById('mobile-menu');
 function toggleMenu(open){

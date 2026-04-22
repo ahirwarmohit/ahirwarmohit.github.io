@@ -4,41 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mohit Ahirwar — Product Designer & UX Lead</title>
-<meta name="description" content="Mohit Ahirwar — Product Designer and UX Lead with 3.6 years of enterprise experience. M.Des IIT Delhi. Currently leading the insurance vertical on SBI YONO 2.0 at TCS Interactive, a McKinsey-led engagement.">
-<!-- Open Graph -->
+<meta name="description" content="Mohit Ahirwar — Product Designer and UX Lead with 3.6 years of enterprise experience. M.Des IIT Delhi. Currently leading the insurance vertical on SBI YONO 2.0 at TCS Interactive.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ahirwarmohit.github.io/">
 <meta property="og:title" content="Mohit Ahirwar — Product Designer & UX Lead">
 <meta property="og:description" content="Systems-level product design at enterprise scale. M.Des IIT Delhi. Leading the insurance vertical on SBI YONO 2.0.">
 <meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="alternate icon" href="assets/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* ── TOKENS ──────────────────────────────────── */
 :root {
   --white:#ffffff; --paper:#fafaf8; --bone:#f3f2ef;
   --rule:#e4e2dc; --rule2:#d0cec7;
   --ink-3:#9b9890; --ink-2:#6b6860; --ink-1:#2e2c28; --ink:#141210;
   --blue:#1a4ed8; --blue-bg:#eef2fd; --blue-bd:#c7d4f8;
   --r:3px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease2: cubic-bezier(0.65, 0, 0.35, 1);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;animation:pageFadeIn .4s ease both;}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;cursor:none;animation:pageFadeIn .5s var(--ease) both;}
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
 
-/* PROGRESS */
-#prog{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .1s linear;}
+/* ── CUSTOM CURSOR ───────────────────────────── */
+#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease),background .2s,border .2s;will-change:transform;}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue);}
+#cur.link-state{width:20px;height:20px;mix-blend-mode:multiply;background:var(--blue);}
+@media(hover:none){#cur{display:none;}body{cursor:auto;}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+/* ── PROGRESS ─────────────────────────────────── */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .08s linear;}
+
+/* ── NAV ──────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;animation:navIn .6s var(--ease) .1s both;}
+@keyframes navIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
 .nav-id{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
+.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;animation:pulse 3s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
 .nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500;}
 .nav-links{display:flex;gap:24px;list-style:none;}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .2s var(--ease);transform-origin:left;}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
 .nav-links a:hover,.nav-links a.active{color:var(--blue);}
 .nav-ctas{display:flex;gap:10px;}
 .nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
@@ -47,7 +58,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .nbtn.s{background:var(--blue);color:white;border:1px solid var(--blue);}
 .nbtn.s:hover{background:#1640b8;}
 
-/* HAMBURGER */
+/* ── HAMBURGER ───────────────────────────────── */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s;}
 .hamburger:hover{border-color:var(--blue);}
 .hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s;}
@@ -55,7 +66,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 
-/* MOBILE MENU */
+/* ── MOBILE MENU ─────────────────────────────── */
 .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
 .mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all;}
 .mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s;}
@@ -63,66 +74,139 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .mobile-menu a:last-of-type{border-bottom:none;}
 .mm-foot{margin-top:32px;display:flex;gap:10px;}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 72px;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--rule);}
-.h-pre{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:28px;display:flex;align-items:center;gap:14px;}
+/* ── HERO ─────────────────────────────────────── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 64px;max-width:1200px;margin:0 auto;position:relative;border-bottom:1px solid var(--rule);}
+
+/* Dot grid background */
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,0.1) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);}
+
+/* Gradient mesh */
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 45% at 85% 25%,rgba(26,78,216,0.07) 0%,transparent 70%),radial-gradient(ellipse 40% 35% at 10% 75%,rgba(26,78,216,0.04) 0%,transparent 60%);pointer-events:none;}
+
+.h-pre{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:32px;display:flex;align-items:center;gap:14px;position:relative;z-index:1;animation:fadeUp .6s var(--ease) .2s both;}
 .h-pre::before{content:'';width:28px;height:1px;background:var(--blue);}
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(52px,8vw,110px);font-weight:300;line-height:.95;letter-spacing:-3px;color:var(--ink);margin-bottom:0;}
-.hero h1 em{font-style:italic;color:var(--blue);}
-.hero h1 .line2{display:block;padding-left:clamp(40px,8vw,120px);}
-.h-desc{font-size:clamp(15px,1.8vw,18px);color:var(--ink-2);font-weight:300;max-width:560px;line-height:1.75;margin-top:36px;margin-bottom:48px;}
-.h-desc strong{color:var(--ink);font-weight:500;}
-.h-bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;padding-top:40px;border-top:1px solid var(--rule);}
-.h-stats{display:flex;gap:40px;flex-wrap:wrap;}
-.h-stat .stat-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:4px;}
-.h-stat .stat-val{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);letter-spacing:-.5px;display:block;}
-.h-ctas{display:flex;gap:10px;}
-.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:11px 22px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:8px;}
+
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(56px,9.5vw,130px);font-weight:300;line-height:.92;letter-spacing:-3px;color:var(--ink);position:relative;z-index:1;}
+.h-line{display:block;overflow:hidden;}
+.h-line span{display:block;animation:lineUp .9s var(--ease) both;}
+.h-line:nth-child(1) span{animation-delay:.3s;}
+.h-line:nth-child(2) span{animation-delay:.45s;}
+.h-line:nth-child(2) em{font-style:italic;color:var(--blue);}
+.h-line.indent{padding-left:clamp(40px,8vw,120px);}
+@keyframes lineUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+
+.h-sub{font-size:clamp(14px,1.6vw,17px);color:var(--ink-2);font-weight:300;max-width:520px;line-height:1.75;margin-top:36px;margin-bottom:48px;position:relative;z-index:1;animation:fadeUp .8s var(--ease) .65s both;}
+.h-sub strong{color:var(--ink);font-weight:500;}
+
+.h-bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;padding-top:40px;border-top:1px solid var(--rule);position:relative;z-index:1;animation:fadeUp .7s var(--ease) .8s both;}
+
+.h-stats{display:flex;gap:0;background:var(--bone);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
+.h-stat{padding:16px 28px;border-right:1px solid var(--rule);position:relative;}
+.h-stat:last-child{border-right:none;}
+.stat-val{font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--ink);display:block;letter-spacing:-1px;line-height:1.1;margin-bottom:3px;}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;}
+
+.h-ctas{display:flex;gap:10px;align-items:center;}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:13px 24px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;}
 .btn.pri{background:var(--blue);color:white;}
-.btn.pri:hover{background:#1640b8;}
+.btn.pri::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);transform:translateX(-100%);transition:transform .5s;}
+.btn.pri:hover::before{transform:translateX(100%);}
+.btn.pri:hover{background:#1640b8;transform:translateY(-1px);box-shadow:0 8px 24px rgba(26,78,216,.35);}
 .btn.sec{background:transparent;border:1px solid var(--rule2);color:var(--ink-2);}
 .btn.sec:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
 
-/* SECTION WRAPPER */
-.wrap{max-width:1200px;margin:0 auto;padding:80px 48px;border-bottom:1px solid var(--rule);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION WRAPPER ─────────────────────────── */
+.wrap{max-width:1200px;margin:0 auto;padding:80px 48px;border-bottom:1px solid var(--rule);position:relative;}
 .wrap:last-of-type{border-bottom:none;}
 .sec-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:14px;font-weight:500;}
 .sec-tag::before{content:'';width:20px;height:1px;background:var(--blue);}
-.wrap h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,48px);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:12px;letter-spacing:-.5px;}
+.sec-num{position:absolute;top:48px;right:48px;font-family:'Fraunces',serif;font-size:clamp(80px,10vw,160px);font-weight:300;color:var(--bone);line-height:1;letter-spacing:-5px;pointer-events:none;user-select:none;transition:color .3s;}
+.wrap:hover .sec-num{color:var(--rule);}
+.wrap h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,52px);font-weight:300;line-height:1.08;color:var(--ink);margin-bottom:12px;letter-spacing:-.5px;}
 .wrap h2 em{font-style:italic;color:var(--blue);}
-.wrap .intro{font-size:15px;color:var(--ink-2);max-width:600px;line-height:1.8;margin-bottom:48px;}
+.wrap .intro{font-size:15px;color:var(--ink-2);max-width:580px;line-height:1.8;margin-bottom:48px;}
 
-/* WORK GRID */
-.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
+/* ── WORK GRID ───────────────────────────────── */
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:8px;}
 .work-featured{grid-column:1/-1;}
-.work-card{background:var(--white);padding:40px 36px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .25s,transform .2s,box-shadow .2s;}
-.work-card:not(.locked):hover{background:var(--paper);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.07);}
+
+.work-card{background:var(--white);padding:40px 36px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .25s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);}
+.work-card:not(.locked):hover{background:var(--paper);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.08);}
 .work-card.locked{cursor:default;}
-.work-card.locked:hover{background:var(--white);}
-.wc-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.work-card.locked:hover{background:var(--white);transform:none;box-shadow:none;}
+
+/* Mouse-tracking shimmer */
+.work-card::after{content:'';position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(26,78,216,0.07) 0%,transparent 65%);opacity:0;transition:opacity .35s;pointer-events:none;}
+.work-card:hover::after{opacity:1;}
+
+/* Dark featured card */
+.work-card.dark-card{background:var(--ink);}
+.dark-card:hover{background:#1a1815 !important;transform:none !important;box-shadow:none !important;}
+.dark-card::after{background:radial-gradient(500px circle at var(--mx,30%) var(--my,50%),rgba(100,150,255,0.12) 0%,transparent 65%);}
+.dark-card .wc-tag{color:rgba(255,255,255,0.4);}
+.dark-card .wc-tag .pill{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.14);color:rgba(255,255,255,0.45);}
+.dark-card .wc-num{color:rgba(255,255,255,0.04);}
+.dark-card:hover .wc-num{color:rgba(255,255,255,0.08);}
+.dark-card .wc-co{color:rgba(255,255,255,0.35);}
+.dark-card .wc-title{color:white;}
+.dark-card .wc-title em{color:#93b4f8;}
+.dark-card .wc-desc{color:rgba(255,255,255,0.5);}
+.dark-card .wc-chip{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);}
+.dark-card .wc-arrow{color:#93b4f8;}
+.dark-card .featured-accent{position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--blue),#6092f8);}
+
+.wc-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .wc-tag .pill{background:var(--blue-bg);border:1px solid var(--blue-bd);padding:2px 8px;border-radius:2px;}
 .wc-tag .pill.soon{background:var(--bone);border-color:var(--rule2);color:var(--ink-3);}
-.wc-num{font-family:'Fraunces',serif;font-size:72px;font-weight:300;color:var(--bone);line-height:1;position:absolute;right:32px;top:28px;letter-spacing:-3px;pointer-events:none;transition:color .25s;}
-.work-card:hover .wc-num{color:var(--rule2);}
+.wc-num{font-family:'Fraunces',serif;font-size:80px;font-weight:300;color:var(--bone);line-height:1;position:absolute;right:32px;top:28px;letter-spacing:-3px;pointer-events:none;transition:color .3s,transform .3s var(--ease);}
+.work-card:hover .wc-num{color:var(--rule2);transform:translateX(-4px);}
 .wc-co{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);margin-bottom:10px;}
-.wc-title{font-family:'Fraunces',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:12px;letter-spacing:-.5px;}
+.wc-title{font-family:'Fraunces',serif;font-size:clamp(24px,2.8vw,36px);font-weight:300;color:var(--ink);line-height:1.15;margin-bottom:14px;letter-spacing:-.5px;}
 .wc-title em{font-style:italic;color:var(--blue);}
-.wc-desc{font-size:14px;color:var(--ink-2);line-height:1.75;max-width:560px;margin-bottom:24px;}
+.wc-desc{font-size:14px;color:var(--ink-2);line-height:1.78;max-width:560px;margin-bottom:28px;}
 .wc-meta{display:flex;flex-wrap:wrap;gap:6px;}
-.wc-chip{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 9px;border-radius:2px;}
-.wc-arrow{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-top:24px;}
+.wc-chip{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 9px;border-radius:2px;transition:border-color .15s,color .15s;}
+.work-card:hover .wc-chip{border-color:var(--rule2);}
+.wc-arrow{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-top:24px;transition:gap .2s var(--ease);}
+.work-card:hover .wc-arrow{gap:14px;}
 .wc-lock{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-top:20px;}
-.lock-icon{width:16px;height:16px;border:1.5px solid var(--rule2);border-radius:2px;display:flex;align-items:center;justify-content:center;}
-.work-card.featured-card{border-left:3px solid var(--blue);}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start;}
-.about-text p{font-size:15px;color:var(--ink-2);line-height:1.85;margin-bottom:18px;max-width:600px;}
+/* ── AI PRACTICE ─────────────────────────────── */
+.ai-intro{font-size:15px;color:var(--ink-2);line-height:1.82;max-width:720px;margin-top:16px;margin-bottom:0;}
+.ai-intro strong{color:var(--ink);}
+
+.ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:40px;}
+
+.ai-card{background:var(--white);padding:32px 28px;transition:background .2s;position:relative;overflow:hidden;}
+.ai-card:hover{background:var(--paper);}
+.ai-card::before{content:attr(data-glyph);position:absolute;bottom:16px;right:24px;font-size:52px;opacity:.08;pointer-events:none;transition:opacity .3s,transform .3s var(--ease);line-height:1;}
+.ai-card:hover::before{opacity:.15;transform:scale(1.1) rotate(-5deg);}
+.ai-card-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:12px;}
+.ai-card h3{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--ink);margin-bottom:10px;line-height:1.25;letter-spacing:-.2px;}
+.ai-card p{font-size:13.5px;color:var(--ink-2);line-height:1.72;margin:0;}
+
+/* Tool split */
+.ai-split{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
+.ai-split-col{background:var(--paper);padding:20px 24px;}
+.ai-col-head{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px;display:block;}
+.ai-tool-row{display:flex;flex-wrap:wrap;gap:5px;}
+.ai-tool{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.5px;color:var(--ink-2);background:var(--white);border:1px solid var(--rule);padding:4px 10px;border-radius:2px;transition:border-color .15s,color .15s;}
+.ai-tool.hi{color:var(--blue);background:var(--blue-bg);border-color:var(--blue-bd);}
+.ai-tool:hover{border-color:var(--blue-bd);color:var(--blue);}
+
+/* ── ABOUT ───────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:1fr 340px;gap:72px;align-items:start;}
+.about-text p{font-size:15px;color:var(--ink-2);line-height:1.85;margin-bottom:20px;max-width:580px;}
 .about-text p strong{color:var(--ink);font-weight:500;}
-.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:32px;max-width:560px;}
-.af-cell{background:var(--white);padding:14px 16px;}
-.af-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:4px;}
+
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:32px;max-width:540px;}
+.af-cell{background:var(--white);padding:14px 18px;transition:background .2s;}
+.af-cell:hover{background:var(--paper);}
+.af-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:5px;}
 .af-val{font-size:13px;font-weight:500;color:var(--ink-1);line-height:1.4;}
+
 .about-photo{width:100%;aspect-ratio:3/4;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-bottom:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
 .about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .photo-placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:10px;}
@@ -131,43 +215,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .about-cv-link{display:flex;align-items:center;justify-content:space-between;background:var(--paper);border:1px solid var(--rule);padding:14px 18px;border-radius:var(--r);text-decoration:none;transition:all .2s;}
 .about-cv-link:hover{border-color:var(--blue);background:var(--blue-bg);}
 .about-cv-link span{font-size:13px;font-weight:500;color:var(--ink-1);}
-.about-cv-link .arr{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue);}
+.about-cv-link .arr{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue);transition:transform .2s var(--ease);}
+.about-cv-link:hover .arr{transform:translateX(4px);}
 
-/* RECOGNITION */
-.rec-intro{font-size:15px;color:var(--ink-2);max-width:600px;line-height:1.8;margin-bottom:40px;}
-.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
+/* ── RECOGNITION ─────────────────────────────── */
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:40px;}
 .pg-cell{background:var(--paper);aspect-ratio:1;position:relative;overflow:hidden;transition:background .2s;}
 .pg-cell.tall{grid-row:span 2;aspect-ratio:unset;}
-.pg-cell:hover .pg-overlay{opacity:1;}
-.pg-cell img{width:100%;height:100%;object-fit:cover;display:block;}
-.pg-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:160px;}
-.pg-placeholder .pg-ico{font-size:24px;opacity:.3;}
+.pg-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:160px;}
+.pg-placeholder .pg-ico{font-size:28px;opacity:.25;transition:opacity .3s,transform .3s var(--ease);}
+.pg-cell:hover .pg-ico{opacity:.4;transform:scale(1.15);}
 .pg-placeholder span{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);}
-.pg-overlay{position:absolute;inset:0;background:rgba(20,18,16,.6);display:flex;align-items:flex-end;padding:14px;opacity:0;transition:opacity .25s;}
-.pg-caption{font-size:11px;color:rgba(255,255,255,.85);font-weight:500;line-height:1.4;}
+.pg-overlay{position:absolute;inset:0;background:rgba(20,18,16,.7);display:flex;align-items:flex-end;padding:16px;opacity:0;transition:opacity .28s;}
+.pg-cell:hover .pg-overlay{opacity:1;}
+.pg-caption{font-size:11px;color:rgba(255,255,255,.88);font-weight:500;line-height:1.45;}
 
-/* WRITING */
-.writing-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px;}
-.writing-empty{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:56px 40px;text-align:center;}
-.we-icon{font-size:28px;margin-bottom:16px;opacity:.3;}
-.we-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--ink-2);margin-bottom:8px;}
-.we-desc{font-size:13px;color:var(--ink-3);max-width:400px;margin:0 auto;line-height:1.65;}
-.we-note{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-top:16px;}
+/* ── WRITING ─────────────────────────────────── */
+.writing-empty{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:64px 40px;text-align:center;margin-top:40px;}
+.we-icon{font-size:32px;margin-bottom:20px;opacity:.2;}
+.we-title{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink-2);margin-bottom:10px;}
+.we-desc{font-size:13px;color:var(--ink-3);max-width:400px;margin:0 auto;line-height:1.7;}
+.we-note{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-top:20px;}
 
-/* CONTACT STRIP */
-.cta-strip{background:var(--ink);}
-.cta-inner{max-width:1200px;margin:0 auto;padding:64px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
-.cta-inner h2{font-family:'Fraunces',serif;font-size:clamp(30px,4.5vw,52px);font-weight:300;color:white;line-height:1.15;margin-bottom:12px;letter-spacing:-.5px;}
+/* ── CTA STRIP ───────────────────────────────── */
+.cta-strip{background:var(--ink);position:relative;overflow:hidden;}
+.cta-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 15% 50%,rgba(26,78,216,0.18) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 85% 30%,rgba(26,78,216,0.1) 0%,transparent 60%);pointer-events:none;}
+.cta-inner{max-width:1200px;margin:0 auto;padding:72px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;}
+.cta-inner h2{font-family:'Fraunces',serif;font-size:clamp(32px,4.5vw,56px);font-weight:300;color:white;line-height:1.1;margin-bottom:14px;letter-spacing:-.5px;}
 .cta-inner h2 em{font-style:italic;color:#93b4f8;}
-.cta-inner p{font-size:14px;color:rgba(255,255,255,.5);max-width:480px;line-height:1.75;}
+.cta-inner p{font-size:14px;color:rgba(255,255,255,.45);max-width:500px;line-height:1.78;}
 .cta-btns{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
-.cbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:12px 22px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
+.cbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:13px 22px;border-radius:var(--r);text-decoration:none;transition:all .18s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
 .cbtn.p{background:var(--blue);color:white;border:1px solid var(--blue);}
-.cbtn.p:hover{background:#1640b8;}
-.cbtn.o{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);}
-.cbtn.o:hover{border-color:rgba(255,255,255,.4);color:white;}
+.cbtn.p:hover{background:#1640b8;transform:translateY(-1px);box-shadow:0 8px 24px rgba(26,78,216,.4);}
+.cbtn.o{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.12);}
+.cbtn.o:hover{border-color:rgba(255,255,255,.35);color:white;}
 
-/* FOOTER */
+/* ── FOOTER ──────────────────────────────────── */
 .foot{border-top:1px solid var(--rule);max-width:1200px;margin:0 auto;padding:32px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
 .foot-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);}
 .foot-name em{font-style:italic;color:var(--ink);}
@@ -176,23 +260,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .foot-nav a:hover{color:var(--blue);}
 .foot-sep{color:var(--rule2);padding:0 2px;}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+/* ── SCROLL REVEAL ───────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);filter:blur(2px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}.d5{transition-delay:.4s;}
 
-/* BACK TO TOP */
-#back-top{position:fixed;bottom:32px;right:32px;width:44px;height:44px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .15s,background .15s;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+/* ── BACK TO TOP ─────────────────────────────── */
+#back-top{position:fixed;bottom:32px;right:32px;width:44px;height:44px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .15s,background .15s;box-shadow:0 4px 20px rgba(0,0,0,.1);}
 #back-top.show{opacity:1;transform:translateY(0);}
 #back-top:hover{border-color:var(--blue);background:var(--blue-bg);}
 
-/* RESPONSIVE */
+/* ── RESPONSIVE ─────────────────────────────── */
 @media(max-width:1000px){
   nav{padding:0 20px;}
   .nav-links,.nav-ctas{display:none;}
   .hamburger{display:flex;}
   .mobile-menu{display:flex;}
-  .hero{padding:88px 20px 56px;padding-top:100px;}
+  .hero{padding:88px 20px 56px;}
   .wrap{padding:56px 20px;}
   .work-grid{grid-template-columns:1fr;}
   .work-featured{grid-column:1;}
@@ -200,40 +284,33 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   .about-photo{aspect-ratio:4/3;}
   .photo-grid{grid-template-columns:repeat(2,1fr);}
   .pg-cell.tall{grid-row:span 1;aspect-ratio:1;}
-  .cta-inner{grid-template-columns:1fr;padding:40px 20px;}
+  .cta-inner{grid-template-columns:1fr;padding:48px 20px;}
   .foot{padding:24px 20px;}
-  .h-stats{gap:20px;}
+  .h-stats{flex-wrap:wrap;}
+  .sec-num{display:none;}
   #back-top{bottom:20px;right:20px;}
+  .ai-split{grid-template-columns:1fr;}
 }
-@media(max-width:480px){
-  .h-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .cta-inner h2{font-size:clamp(24px,7vw,32px);}
-}
-
-/* AI PRACTICE SECTION */
-.ai-intro{font-size:var(--fs-base);color:var(--ink-2);line-height:1.82;max-width:720px;margin-top:20px;}
-.ai-intro strong{color:var(--ink);}
-.ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:40px;}
-.ai-card{background:var(--white);padding:28px 26px;transition:background .2s;}
-.ai-card:hover{background:var(--paper);}
-.ai-card-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:10px;}
-.ai-card h3{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink);margin-bottom:10px;line-height:1.3;}
-.ai-card p{font-size:var(--fs-sm);color:var(--ink-2);line-height:1.7;margin:0;}
-.ai-split{margin-top:40px;padding-top:32px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:840px;}
-.ai-col-head{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px;display:block;}
-.ai-tool-row{display:flex;flex-wrap:wrap;gap:6px;}
-.ai-tool{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.5px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 9px;border-radius:2px;}
-.ai-tool.hi{color:var(--blue);background:var(--blue-bg);border-color:var(--blue-bd);}
 @media(max-width:700px){
   .ai-grid{grid-template-columns:1fr;}
-  .ai-split{grid-template-columns:1fr;gap:24px;}
+  .h-stats{display:grid;grid-template-columns:1fr 1fr;}
+  .h-stat{padding:14px 18px;}
+}
+@media(max-width:480px){
+  .cta-inner h2{font-size:clamp(26px,7vw,36px);}
+  .h-stats{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
 <body>
 
+<!-- Custom cursor -->
+<div id="cur" aria-hidden="true"></div>
+
+<!-- Progress bar -->
 <div id="prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
 
+<!-- Nav -->
 <nav aria-label="Main navigation">
   <a href="index.html" class="nav-id">
     <div class="nav-dot" aria-hidden="true"></div>
@@ -258,6 +335,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   </button>
 </nav>
 
+<!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
   <a href="#work">Work</a>
   <a href="#ai">AI Practice</a>
@@ -273,54 +351,55 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 
 <main>
 
-<!-- HERO -->
-<section class="hero reveal" aria-labelledby="hero-heading">
+<!-- ── HERO ──────────────────────────────────── -->
+<section class="hero" aria-labelledby="hero-heading">
   <p class="h-pre">Product Designer &amp; UX Lead · Mumbai, India</p>
   <h1 id="hero-heading">
-    Designing systems<br>
-    <em class="line2">that scale</em>
+    <span class="h-line"><span>Designing systems</span></span>
+    <span class="h-line indent"><span><em>that scale.</em></span></span>
   </h1>
-  <p class="h-desc">
-    I design <strong>complex digital products at enterprise scale</strong> — from multi-channel banking journeys to AI-integrated interfaces. Currently leading the insurance vertical on <strong>SBI YONO 2.0</strong> at TCS Interactive, in a McKinsey &amp; Company-led three-partner engagement serving 500M+ account holders.
-    <br><br>
-    M.Des from IIT Delhi. CEED Qualified. Deep expertise in BFSI, systems thinking, and cross-channel product design. <strong>AI-native</strong> — structured prompt engineering and token-efficient workflows integrated across every phase of research, design, and delivery.
+  <p class="h-sub">
+    <strong>Enterprise product design at its hardest</strong> — multi-channel banking journeys, 500M+ user platforms, AI-integrated interfaces. Currently leading the insurance vertical on <strong>SBI YONO 2.0</strong> at TCS Interactive in a McKinsey-led three-partner engagement.<br><br>
+    M.Des from IIT Delhi. CEED Qualified. <strong>AI-native</strong> — prompt engineering and token-efficient workflows integrated across every phase.
   </p>
   <div class="h-bottom">
-    <div class="h-stats">
-      <div class="h-stat">
-        <span class="stat-label">Full-time exp.</span>
+    <div class="h-stats" role="list">
+      <div class="h-stat" role="listitem">
         <span class="stat-val" data-val="3.6" data-suf=" Yrs">3.6 Yrs</span>
+        <span class="stat-label">Full-time exp.</span>
       </div>
-      <div class="h-stat">
-        <span class="stat-label">Internships</span>
+      <div class="h-stat" role="listitem">
         <span class="stat-val" data-val="8" data-suf=" Mo">8 Mo</span>
+        <span class="stat-label">Internships</span>
       </div>
-      <div class="h-stat">
-        <span class="stat-label">Current project</span>
-        <span class="stat-val">YONO 2.0</span>
-      </div>
-      <div class="h-stat">
-        <span class="stat-label">Journeys delivered</span>
+      <div class="h-stat" role="listitem">
         <span class="stat-val" data-val="110" data-suf="+">110+</span>
+        <span class="stat-label">Journeys delivered</span>
+      </div>
+      <div class="h-stat" role="listitem">
+        <span class="stat-val">YONO 2.0</span>
+        <span class="stat-label">Current project</span>
       </div>
     </div>
     <div class="h-ctas">
-      <a href="#work" class="btn pri">View Work</a>
+      <a href="#work" class="btn pri magnetic">View Work ↓</a>
       <a href="cv.html" class="btn sec">Full CV</a>
     </div>
   </div>
 </section>
 
-<!-- WORK -->
+<!-- ── WORK ───────────────────────────────────── -->
 <section class="wrap" id="work" aria-labelledby="work-heading">
+  <div class="sec-num" aria-hidden="true">01</div>
   <div class="sec-tag reveal" aria-hidden="true">Selected Work</div>
   <h2 id="work-heading" class="reveal">Case <em>Studies</em></h2>
-  <p class="intro reveal">End-to-end documentation of significant design problems — the process, the decisions, and the downstream impact.</p>
+  <p class="intro reveal d1">End-to-end documentation of significant design problems — the process, the decisions, and the downstream impact.</p>
 
-  <div class="work-grid reveal">
+  <div class="work-grid">
 
     <!-- YONO 2.0 — FEATURED -->
-    <a href="yono-case-study.html" class="work-card featured-card work-featured">
+    <a href="yono-case-study.html" class="work-card dark-card work-featured reveal">
+      <div class="featured-accent" aria-hidden="true"></div>
       <div class="wc-tag">
         <span>2024–Present</span>
         <span class="pill">TCS Interactive × SBI × McKinsey</span>
@@ -329,23 +408,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
       <div class="wc-num" aria-hidden="true">01</div>
       <div class="wc-co">State Bank of India · YONO 2.0</div>
       <h3 class="wc-title">Insurance Vertical —<br><em>Multi-channel Systems Design</em></h3>
-      <p class="wc-desc">Redesigning the end-to-end insurance purchase and management experience — General Insurance and Life Insurance — across app, web, branch portal, and field tablets. 500–600 screens iterated. Design patterns adopted across 110+ product journeys in a McKinsey-led three-partner engagement.</p>
+      <p class="wc-desc">Redesigning the end-to-end insurance purchase and management experience across app, web, branch portal, and field tablets. 500–600 screens iterated. Design patterns adopted across 110+ product journeys.</p>
       <div class="wc-meta">
         <span class="wc-chip">BFSI</span>
         <span class="wc-chip">Systems Design</span>
         <span class="wc-chip">Multi-channel</span>
         <span class="wc-chip">Insurance Vertical</span>
-        <span class="wc-chip">Stakeholder Management</span>
         <span class="wc-chip">Design Systems</span>
       </div>
-      <div class="wc-arrow">
-        Read Case Study
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-      </div>
+      <div class="wc-arrow">Read Case Study <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></div>
     </a>
 
     <!-- GLOBAL ADAPTIVE DESIGN SYSTEM -->
-    <a href="global-adaptive-design-system.html" class="work-card">
+    <a href="global-adaptive-design-system.html" class="work-card reveal d1">
       <div class="wc-tag">
         <span>2025–Present</span>
         <span class="pill">Self-Initiated · WIP</span>
@@ -353,22 +428,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
       <div class="wc-num" aria-hidden="true">02</div>
       <div class="wc-co">Self-Initiated · Strategic Design</div>
       <h3 class="wc-title">Global Adaptive<br><em>Design System</em></h3>
-      <p class="wc-desc">A design system built for the 70% of internet users most products quietly ignore — direction-agnostic layouts (LTR, RTL, vertical scripts) across three device constraint tiers. Built openly as a live portfolio project.</p>
+      <p class="wc-desc">A design system built for the 70% of internet users most products quietly ignore — direction-agnostic layouts (LTR, RTL, vertical scripts) across three device constraint tiers.</p>
       <div class="wc-meta">
         <span class="wc-chip">Design Systems</span>
         <span class="wc-chip">RTL · LTR · TTB</span>
         <span class="wc-chip">Global UX</span>
-        <span class="wc-chip">Figma</span>
         <span class="wc-chip">Strategic Design</span>
       </div>
-      <div class="wc-arrow">
-        See the Project
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-      </div>
+      <div class="wc-arrow">See the Project <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></div>
     </a>
 
-    <!-- COZY NIGHTS — M.DES THESIS -->
-    <a href="mdes-thesis.html" class="work-card">
+    <!-- COZY NIGHTS -->
+    <a href="mdes-thesis.html" class="work-card reveal d2">
       <div class="wc-tag">
         <span>2023</span>
         <span class="pill">IIT Delhi · Havells India</span>
@@ -376,85 +447,85 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
       <div class="wc-num" aria-hidden="true">03</div>
       <div class="wc-co">M.Des Thesis · IIT Delhi × Havells India</div>
       <h3 class="wc-title">Cozy Nights —<br><em>Sleep Systems Design</em></h3>
-      <p class="wc-desc">A systems design intervention for night-time thermal comfort — coupling AC and fan intelligently inside the Havells Sync app. 63-person survey, 16 interviews, 80+ papers. 18% electricity savings at equivalent comfort.</p>
+      <p class="wc-desc">A systems design intervention for night-time thermal comfort — coupling AC and fan intelligently inside the Havells Sync app. 18% electricity savings at equivalent comfort.</p>
       <div class="wc-meta">
         <span class="wc-chip">Systems Design</span>
         <span class="wc-chip">Smart Home</span>
         <span class="wc-chip">IIT Delhi</span>
-        <span class="wc-chip">Havells India</span>
         <span class="wc-chip">Interaction Design</span>
       </div>
-      <div class="wc-arrow">
-        Read Case Study
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-      </div>
+      <div class="wc-arrow">Read Case Study <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></div>
     </a>
 
   </div>
 </section>
 
-<!-- AI IN PRACTICE -->
+<!-- ── AI IN PRACTICE ─────────────────────────── -->
 <section class="wrap" id="ai" aria-labelledby="ai-heading">
+  <div class="sec-num" aria-hidden="true">02</div>
   <div class="sec-tag reveal" aria-hidden="true">AI-Native Practice</div>
   <h2 id="ai-heading" class="reveal">AI isn't a tool I reach for.<br><em>It's the environment I work in.</em></h2>
-  <p class="ai-intro reveal">Every phase of my design process has an AI layer — not as a shortcut, but as a force multiplier for quality and speed. I distinguish between <strong>prompt-level usage</strong> (structured, multi-shot prompts with explicit constraints and format instructions for repeatable creative output) and <strong>token-efficient workflow design</strong> (persistent system prompts, batched tasks, and cumulative project context so AI collaboration scales across complex, multi-month engagements without drift or setup overhead).</p>
-  <div class="ai-grid reveal">
-    <div class="ai-card">
+  <p class="ai-intro reveal d1">I distinguish between <strong>prompt-level usage</strong> (structured multi-shot prompts with explicit format constraints) and <strong>token-efficient workflow design</strong> (persistent system prompts, batched tasks, and cumulative project context that make AI sustainable across complex multi-month engagements without drift).</p>
+
+  <div class="ai-grid reveal d2">
+    <div class="ai-card" data-glyph="🔍">
       <div class="ai-card-tag">Research &amp; Synthesis</div>
       <h3>Interview synthesis at speed and coverage</h3>
-      <p>Structured prompts to analyse transcripts, cluster themes, and generate insight hierarchies from raw user data. What used to take a full day of affinity mapping now takes an hour — and surfaces patterns I'd have missed by hand.</p>
+      <p>Structured prompts to analyse transcripts, cluster themes, and generate insight hierarchies from raw user data. What used to take a full day of affinity mapping now takes an hour.</p>
     </div>
-    <div class="ai-card">
+    <div class="ai-card" data-glyph="⚙️">
       <div class="ai-card-tag">Prompt Engineering</div>
       <h3>Multi-shot prompts with format constraints</h3>
-      <p>I write prompts the way I write design specs — with explicit output format, examples, edge cases, and constraints. Consistent quality across every call. No re-explaining context. No lottery output. Repeatable at scale across 110+ journey projects.</p>
+      <p>I write prompts the way I write design specs — with explicit output format, examples, edge cases, and constraints. Consistent, repeatable quality across 110+ journey projects.</p>
     </div>
-    <div class="ai-card">
+    <div class="ai-card" data-glyph="🧠">
       <div class="ai-card-tag">Token-Efficient Workflow Design</div>
       <h3>System prompts that carry project memory</h3>
-      <p>Persistent system prompts that front-load design system vocabulary, component rules, and project constraints. Every AI call is informed by cumulative context — not a blank slate. This is what makes AI sustainable on long enterprise projects, not just good for one-off tasks.</p>
+      <p>Persistent system prompts that front-load design system vocabulary, component rules, and project constraints. Every AI call is informed by cumulative context — not a blank slate.</p>
     </div>
-    <div class="ai-card">
+    <div class="ai-card" data-glyph="✦">
       <div class="ai-card-tag">LLM Product Design</div>
       <h3>Designing UX for AI features themselves</h3>
-      <p>Conversation flows, uncertainty states, progressive disclosure of AI recommendations, feedback loops for model improvement. Cozy Nights' Intellisleep adaptation algorithm — and how a user interacts with a system optimising their sleep while they're unconscious — is one worked example.</p>
+      <p>Conversation flows, uncertainty states, progressive disclosure of AI recommendations, feedback loops for model improvement — including Cozy Nights' Intellisleep adaptation algorithm.</p>
     </div>
   </div>
-  <div class="ai-split reveal">
-    <div>
+
+  <div class="ai-split reveal d3">
+    <div class="ai-split-col">
       <span class="ai-col-head">Prompt-level usage</span>
       <div class="ai-tool-row">
         <span class="ai-tool hi">Claude</span>
         <span class="ai-tool hi">ChatGPT</span>
         <span class="ai-tool">Midjourney</span>
         <span class="ai-tool">DALL·E</span>
-        <span class="ai-tool">AI Prompt Design</span>
         <span class="ai-tool">Gemini</span>
+        <span class="ai-tool">Multi-shot Prompting</span>
       </div>
     </div>
-    <div>
+    <div class="ai-split-col">
       <span class="ai-col-head">System &amp; workflow-level usage</span>
       <div class="ai-tool-row">
         <span class="ai-tool hi">Cursor</span>
         <span class="ai-tool hi">Claude Cowork</span>
-        <span class="ai-tool">LLM Product Flows</span>
         <span class="ai-tool">System Prompt Architecture</span>
-        <span class="ai-tool">Token Optimisation</span>
+        <span class="ai-tool">Token-Efficient Workflows</span>
+        <span class="ai-tool">LLM Product Flows</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ── ABOUT ───────────────────────────────────── -->
 <section class="wrap" id="about" aria-labelledby="about-heading">
+  <div class="sec-num" aria-hidden="true">03</div>
   <div class="sec-tag reveal" aria-hidden="true">About</div>
   <div class="about-grid">
     <div class="about-text">
       <h2 id="about-heading" class="reveal">The designer<br><em>behind the work</em></h2>
-      <p class="reveal">I'm a product designer who works at the intersection of <strong>systems thinking, enterprise complexity, and human-centred design</strong>. My background spans a B.Tech in Information Technology and an M.Des from IIT Delhi — which means I'm equally comfortable talking to engineers about API constraints and to business stakeholders about regulatory requirements. I'm also fully AI-native: structured prompt engineering, token-efficient multi-session workflows, and LLM product design are part of how I work, not tools I occasionally pick up.</p>
-      <p class="reveal">Most of my career has been spent solving problems that don't have clean boundaries — multi-channel journeys spanning apps, web portals, and physical bank branches simultaneously; insurance products requiring clearance from 11 internal SBI teams before a single screen is frozen; a design system holding together across 65 designers and 110+ journeys. I also contributed to a VR research project for the Indian Armed Forces under IIT Delhi — a proof-of-concept later presented to the President of India.</p>
-      <p class="reveal">Outside of product work, I mentor CEED aspirants — <strong>35+ mentees have been selected into IITs and NIDs</strong>. I believe good design decisions can always be explained clearly, and that the best work comes from being inside a problem long enough to understand it completely.</p>
-      <div class="about-facts reveal">
+      <p class="reveal d1">I'm a product designer who works at the intersection of <strong>systems thinking, enterprise complexity, and human-centred design</strong>. My background spans a B.Tech in Information Technology and an M.Des from IIT Delhi — which means I'm equally comfortable talking to engineers about API constraints and to business stakeholders about regulatory requirements. I'm also fully AI-native: structured prompt engineering, token-efficient multi-session workflows, and LLM product design are part of how I work, not tools I occasionally pick up.</p>
+      <p class="reveal d2">Most of my career has been spent solving problems that don't have clean boundaries — multi-channel journeys spanning apps, web portals, and physical bank branches simultaneously; insurance products requiring clearance from 11 internal SBI teams; a design system holding together across 65 designers and 110+ journeys. I also contributed to a VR research project for the Indian Armed Forces under IIT Delhi — a proof-of-concept later presented to the President of India.</p>
+      <p class="reveal d3">Outside of product work, I mentor CEED aspirants — <strong>35+ mentees have been selected into IITs and NIDs</strong>.</p>
+      <div class="about-facts reveal d4">
         <div class="af-cell"><span class="af-label">Current Role</span><span class="af-val">UX Designer, TCS Interactive × SBI YONO 2.0</span></div>
         <div class="af-cell"><span class="af-label">Education</span><span class="af-val">M.Des · IIT Delhi · CGPA 8.0</span></div>
         <div class="af-cell"><span class="af-label">CEED</span><span class="af-val">Qualified (no coaching)</span></div>
@@ -462,16 +533,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
         <div class="af-cell"><span class="af-label">Full-time Experience</span><span class="af-val">3.6 Years</span></div>
         <div class="af-cell"><span class="af-label">Internships</span><span class="af-val">8 Months</span></div>
       </div>
-      <div style="margin-top:24px;" class="reveal">
-        <a href="cv.html" class="btn sec" style="display:inline-flex;">
-          Full CV &amp; Experience
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-        </a>
+      <div style="margin-top:28px;" class="reveal d5">
+        <a href="cv.html" class="btn sec" style="display:inline-flex;">Full CV &amp; Experience <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></a>
       </div>
     </div>
     <div class="about-right reveal d2">
       <div class="about-photo" role="img" aria-label="Photo placeholder — Mohit Ahirwar">
-        <!-- Replace with: <img src="assets/mohit.jpg" alt="Mohit Ahirwar, Product Designer"> -->
         <div class="photo-placeholder-inner">
           <div class="ico" aria-hidden="true">👤</div>
           <span>Photo coming soon</span>
@@ -485,14 +552,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   </div>
 </section>
 
-<!-- RECOGNITION -->
+<!-- ── RECOGNITION ────────────────────────────── -->
 <section class="wrap" id="recognition" aria-labelledby="recognition-heading">
+  <div class="sec-num" aria-hidden="true">04</div>
   <div class="sec-tag reveal" aria-hidden="true">Recognition &amp; Activities</div>
   <h2 id="recognition-heading" class="reveal">Beyond the <em>screen</em></h2>
-  <p class="rec-intro reveal">Star Performer of the Year, TCS Interactive · IIT Delhi Prospectus Cover, Smart Glass AI Project · VR Research for Indian Armed Forces (PoC presented to President of India) · Outstanding Performance Award, IIT Delhi OCS · CEED Qualified without coaching · Government of India cultural envoy (EBSB) · Design mentor — 35+ students into IITs and NIDs.</p>
+  <p class="intro reveal d1">Star Performer of the Year · IIT Delhi Prospectus Cover · VR Research for Indian Armed Forces · Outstanding Performance Award, IIT Delhi OCS · CEED Qualified · Government of India cultural envoy · Design mentor — 35+ students into IITs and NIDs.</p>
 
-  <div class="photo-grid reveal">
-    <!-- To add photos: replace <div class="pg-placeholder">...</div> with <img src="assets/photo-name.jpg" alt="Description"> -->
+  <div class="photo-grid reveal d2">
     <div class="pg-cell tall">
       <div class="pg-placeholder"><div class="pg-ico" aria-hidden="true">🏆</div><span>TCS Award</span></div>
       <div class="pg-overlay"><p class="pg-caption">Star Performer of the Year — TCS Interactive 2024</p></div>
@@ -524,16 +591,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   </div>
 </section>
 
-<!-- WRITING -->
+<!-- ── WRITING ────────────────────────────────── -->
 <section class="wrap" id="writing" aria-labelledby="writing-heading">
+  <div class="sec-num" aria-hidden="true">05</div>
   <div class="sec-tag reveal" aria-hidden="true">Writing</div>
-  <div class="writing-header reveal">
-    <div>
-      <h2 id="writing-heading">Articles &amp; <em>Thinking</em></h2>
-      <p class="intro">Notes on product design, enterprise UX, systems thinking, and working inside complexity.</p>
-    </div>
-  </div>
-  <div class="writing-empty reveal">
+  <h2 id="writing-heading" class="reveal">Articles &amp; <em>Thinking</em></h2>
+  <p class="intro reveal d1">Notes on product design, enterprise UX, systems thinking, and working inside complexity.</p>
+  <div class="writing-empty reveal d2">
     <div class="we-icon" aria-hidden="true">✍️</div>
     <p class="we-title">Articles coming soon</p>
     <p class="we-desc">Writing on product design, BFSI UX, enterprise systems, and design at scale.</p>
@@ -541,12 +605,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ── CTA STRIP ──────────────────────────────── -->
 <div class="cta-strip">
-  <div class="cta-inner">
+  <div class="cta-inner reveal">
     <div>
       <h2>Open to<br><em>new opportunities</em></h2>
-      <p>Looking for Senior Product Designer and UX Lead roles at BFSI, consulting, and enterprise product companies. Targeting Deloitte, Barclays, Standard Chartered, Atlassian, Salesforce, Razorpay, and similar. Based in Mumbai — open to hybrid and remote.</p>
+      <p>Looking for Senior Product Designer and UX Lead roles at BFSI, consulting, and enterprise product companies. Targeting Deloitte, Barclays, Atlassian, Razorpay, and similar. Based in Mumbai — open to hybrid and remote.</p>
     </div>
     <div class="cta-btns">
       <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="cbtn p">
@@ -586,7 +650,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 </button>
 
 <script>
-// Progress bar
+// ── Custom cursor ────────────────────────────────
+(function(){
+  const cur = document.getElementById('cur');
+  if (!cur || !window.matchMedia('(hover: hover)').matches) return;
+  let cx = window.innerWidth/2, cy = window.innerHeight/2;
+  let tx = cx, ty = cy;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, {passive:true});
+  (function loop(){
+    cx += (tx - cx) * 0.18;
+    cy += (ty - cy) * 0.18;
+    cur.style.transform = `translate(${cx}px, ${cy}px)`;
+    requestAnimationFrame(loop);
+  })();
+  // State changes on hover
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('hover-state'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('hover-state'));
+  });
+})();
+
+// ── Progress bar ─────────────────────────────────
 const prog = document.getElementById('prog');
 window.addEventListener('scroll', () => {
   const d = document.documentElement;
@@ -595,29 +679,28 @@ window.addEventListener('scroll', () => {
   prog.setAttribute('aria-valuenow', Math.round(pct));
 }, {passive:true});
 
-// Scroll reveal
-const io = new IntersectionObserver(e => {
-  e.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); }});
-}, {threshold:.07});
+// ── Scroll reveal ────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+}, {threshold:.06});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-setTimeout(() => document.querySelector('.hero.reveal')?.classList.add('in'), 80);
 
-// Nav active section
-const secs = document.querySelectorAll('section[id], div.wrap[id]');
+// ── Active nav ───────────────────────────────────
+const secs = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 function updateActive() {
   let cur = '';
-  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.id; });
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
 }
 window.addEventListener('scroll', updateActive, {passive:true});
 
-// Animated counters
+// ── Animated counters ────────────────────────────
 function counter(el, target, suffix) {
-  const dur = 1400, start = performance.now();
+  const dur = 1600, start = performance.now();
   (function step(now) {
     const p = Math.min((now - start) / dur, 1);
-    const ease = 1 - Math.pow(1 - p, 3);
+    const ease = 1 - Math.pow(1 - p, 4);
     const val = Number.isInteger(target) ? Math.round(target * ease) : (target * ease).toFixed(1);
     el.textContent = val + suffix;
     if (p < 1) requestAnimationFrame(step);
@@ -631,10 +714,32 @@ const cio = new IntersectionObserver(entries => {
       cio.unobserve(e.target);
     }
   });
-}, {threshold:.6});
-document.querySelectorAll('.stat-val[data-val]').forEach(el => cio.observe(el));
+}, {threshold:.5});
+document.querySelectorAll('[data-val]').forEach(el => cio.observe(el));
 
-// Hamburger mobile menu
+// ── Card shimmer (mouse-tracking) ────────────────
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, {passive:true});
+});
+
+// ── Magnetic buttons ─────────────────────────────
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width/2)) * 0.28;
+    const dy = (e.clientY - (r.top + r.height/2)) * 0.28;
+    btn.style.transform = `translate(${dx}px,${dy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+// ── Hamburger ────────────────────────────────────
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
@@ -654,13 +759,10 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-    hamburger.click();
-    hamburger.focus();
-  }
+  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { hamburger.click(); hamburger.focus(); }
 });
 
-// Page transitions
+// ── Page transitions ─────────────────────────────
 document.querySelectorAll('a[href]').forEach(a => {
   const href = a.getAttribute('href');
   if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && href.endsWith('.html')) {
@@ -674,10 +776,10 @@ document.querySelectorAll('a[href]').forEach(a => {
   }
 });
 
-// Back to top
-const backTop = document.getElementById('back-top');
-window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 500), {passive:true});
-backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+// ── Back to top ──────────────────────────────────
+const btt = document.getElementById('back-top');
+window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 </script>
 </body>
 </html>
