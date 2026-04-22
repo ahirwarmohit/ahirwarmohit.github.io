@@ -183,10 +183,15 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 #btt:hover{border-color:var(--blue);}
 #btt svg{color:var(--ink-2);}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
+/* REVEAL — enhanced with blur */
+.reveal{opacity:0;transform:translateY(24px);filter:blur(2px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1),filter .7s cubic-bezier(0.16,1,0.3,1);}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0);}
 .d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
+
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s cubic-bezier(0.16,1,0.3,1),height .22s cubic-bezier(0.16,1,0.3,1),background .2s,border .2s;will-change:transform;}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue);}
+@media(hover:none){#cur{display:none;}body{cursor:auto;}}
 
 /* PRINT STYLESHEET */
 @media print {
@@ -231,6 +236,7 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 </head>
 <body>
 
+<div id="cur" aria-hidden="true"></div>
 <div id="prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
 
 <!-- NAV -->
@@ -637,12 +643,25 @@ window.addEventListener('scroll',()=>{
   document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
 },{passive:true});
 
+// Custom cursor
+(function(){
+  const cur=document.getElementById('cur');
+  if(!cur||!window.matchMedia('(hover:hover)').matches)return;
+  let cx=window.innerWidth/2,cy=window.innerHeight/2,tx=cx,ty=cy;
+  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover-state'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover-state'));
+  });
+})();
+
 /* ── REVEAL ON SCROLL ── */
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
   });
-},{threshold:.07});
+},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ── HAMBURGER / MOBILE MENU ── */
