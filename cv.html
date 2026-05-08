@@ -3,323 +3,346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohit Ahirwar — Curriculum Vitae</title>
-<meta name="description" content="Curriculum Vitae — Mohit Ahirwar, Product Designer &amp; UX Lead. M.Des IIT Delhi. 3.6 years enterprise experience across BFSI, IoT, and government digital platforms.">
-<!-- Open Graph -->
+<title>Mohit Ahirwar — Curriculum Vitae · Design Strategist</title>
+<meta name="description" content="Curriculum Vitae — Mohit Ahirwar, Design Strategist working in digital transformation. M.Des IIT Delhi. Three years inside the McKinsey-led SBI YONO 2.0 programme at TCS Interactive.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://ahirwarmohit.github.io/cv.html">
-<meta property="og:title" content="Mohit Ahirwar — Curriculum Vitae">
-<meta property="og:description" content="Product Designer & UX Lead. M.Des IIT Delhi. Leading the insurance vertical on SBI YONO 2.0 at TCS Interactive.">
-<meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<!-- Favicon -->
+<meta property="og:title" content="Mohit Ahirwar — Curriculum Vitae · Design Strategist">
+<meta property="og:description" content="Design strategist & AI-augmented thinker. M.Des IIT Delhi. Insurance vertical lead, SBI YONO 2.0.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="alternate icon" href="assets/favicon.ico">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --white:#ffffff;--paper:#fafaf8;--bone:#f3f2ef;--rule:#e4e2dc;--rule2:#d0cec7;
-  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
-  --blue:#1a4ed8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;--r:3px;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;animation:pageFadeIn .4s ease both;}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-/* PROGRESS */
-#prog{position:fixed;top:0;left:0;height:2px;background:var(--blue);z-index:200;width:0%;transition:width .1s linear;}
+<style>
+:root{
+  --white:#fff;--paper:#fafaf8;--bone:#f3f2ef;--rule:#e4e2dc;--rule2:#d0cec7;
+  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
+  --blue:#1a4ed8;--blue-d:#1640b8;--blue-l:#6092f8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;
+  --sand:#f5efe4;--sand-l:#fbf6ec;--sand-bd:#e6dcc7;--sand-ink:#8a7558;--sand-ink-d:#5e4f3a;
+  --sage:#ecf0eb;--sage-l:#f5f7f4;--sage-bd:#d6dcd2;--sage-ink:#5a7763;--sage-ink-d:#3e5645;
+  --r:3px;--ease:cubic-bezier(0.16,1,0.3,1);--max:1200px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;cursor:none;animation:pageFadeIn .5s var(--ease) both;overflow-x:hidden}
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
+::selection{background:var(--blue);color:#fff}
+
+#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease);will-change:transform;mix-blend-mode:multiply}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue)}
+@media(hover:none){#cur{display:none}body{cursor:auto}}
+@media(prefers-reduced-motion:reduce){#cur{display:none}body{cursor:auto}*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--blue),var(--blue-l));z-index:200;width:0%;transition:width .08s linear}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
-.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.nav-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
-.nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500;}
-.nav-links{display:flex;gap:24px;list-style:none;}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;}
-.nav-links a:hover,.nav-links a.active{color:var(--blue);}
-.nav-ctas{display:flex;gap:10px;align-items:center;}
-.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:7px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
-.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2);}
-.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
-.nbtn.s{background:var(--blue);color:white;border:1px solid var(--blue);}
-.nbtn.s:hover{background:#1640b8;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--rule);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;animation:navIn .6s var(--ease) .1s both}
+@keyframes navIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-mark{width:28px;height:28px;border:1px solid var(--ink);border-radius:var(--r);display:flex;align-items:center;justify-content:center;background:#fff;position:relative;transition:transform .3s var(--ease)}
+.nav-mark::after{content:'';position:absolute;inset:3px;border:1px solid var(--blue);border-radius:1px;opacity:0;transition:opacity .3s}
+.nav-id:hover .nav-mark{transform:rotate(-8deg)}
+.nav-id:hover .nav-mark::after{opacity:1}
+.nav-mark span{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:var(--ink);font-style:italic;line-height:1}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .25s var(--ease);transform-origin:left}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-ctas{display:flex;gap:10px;align-items:center}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:8px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2)}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+.nbtn.s{background:var(--blue);color:#fff;border:1px solid var(--blue)}
+.nbtn.s:hover{background:var(--blue-d)}
 
-/* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s;}
-.hamburger:hover{border-color:var(--blue);}
-.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s;}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all}
+.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block}
+.mobile-menu a:last-of-type{border-bottom:none}
+.mm-foot{margin-top:32px;display:flex;gap:10px}
 
-/* MOBILE MENU */
-.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
-.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all;}
-.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s;}
-.mobile-menu a:hover{color:var(--blue);}
-.mobile-menu a:last-of-type{border-bottom:none;}
-.mm-foot{margin-top:32px;display:flex;gap:10px;}
+/* HERO — split layout */
+.hero{padding:120px 48px 72px;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:start;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,.07) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 25%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 25%,transparent 100%)}
+.hero > *{position:relative;z-index:1}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:32px;animation:fadeUp .6s var(--ease) .15s both}
+.h-eyebrow::before{content:'';width:28px;height:1px;background:var(--blue)}
+.h-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:500}
+.h-sep{color:var(--rule2);padding:0 4px}
+.h-loc{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3)}
+.h-eyebrow .available{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--sage-ink-d);text-transform:uppercase;padding-left:14px;border-left:1px solid var(--rule)}
+.dot-live{width:6px;height:6px;border-radius:50%;background:#3e8e54;animation:liveDot 2s ease-in-out infinite}
+@keyframes liveDot{0%,100%{box-shadow:0 0 0 0 rgba(62,142,84,.5)}50%{box-shadow:0 0 0 8px rgba(62,142,84,0)}}
 
-/* HERO */
-.hero{padding:112px 48px 72px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:80px;align-items:start;border-bottom:1px solid var(--rule);}
-.h-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
-.h-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;}
-.h-sep{width:1px;height:12px;background:var(--rule2);}
-.h-loc{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);}
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(44px,6vw,80px);font-weight:300;line-height:1.0;letter-spacing:-2px;color:var(--ink);margin-bottom:6px;}
-.hero h1 em{font-style:italic;color:var(--blue);}
-.h-role{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:24px;}
-.h-bio{font-size:16px;color:var(--ink-2);font-weight:300;max-width:540px;line-height:1.78;margin-bottom:36px;}
-.h-bio strong{color:var(--ink);font-weight:500;}
-.h-actions{display:flex;gap:10px;flex-wrap:wrap;}
-.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:10px 20px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:8px;}
-.btn.pri{background:var(--blue);color:white;border:1px solid var(--blue);}
-.btn.pri:hover{background:#1640b8;}
-.btn.sec{background:transparent;border:1px solid var(--rule2);color:var(--ink-2);}
-.btn.sec:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg);}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(56px,8vw,108px);font-weight:300;line-height:.95;letter-spacing:-3px;color:var(--ink);margin-bottom:14px}
+.h-line{display:block;overflow:hidden}
+.h-line span{display:block;animation:lineUp .9s var(--ease) both}
+.h-line:nth-child(1) span{animation-delay:.25s}
+.h-line:nth-child(2) span{animation-delay:.4s}
+.h-line:nth-child(2) em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
+@keyframes lineUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.h-role{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:28px;animation:fadeUp .8s var(--ease) .55s both}
+.h-bio{font-size:15px;color:var(--ink-2);font-weight:300;max-width:560px;line-height:1.85;margin-bottom:32px;animation:fadeUp .8s var(--ease) .65s both}
+.h-bio strong{color:var(--ink);font-weight:500}
+.h-bio .accent{font-family:'Fraunces',serif;font-style:italic;color:var(--blue);font-weight:400}
 
-/* HERO RIGHT */
-.h-photo{width:100%;height:300px;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;position:relative;overflow:hidden;}
-.h-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-.ph-badge{position:absolute;bottom:12px;right:12px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r);padding:8px 12px;display:flex;align-items:center;gap:7px;box-shadow:0 4px 12px rgba(0,0,0,.07);}
-.ph-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;}
-.ph-txt{font-size:11px;font-weight:500;color:var(--ink-1);}
-.qf{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;}
-.qf-c{background:var(--white);padding:13px 15px;}
-.qf-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:3px;}
-.qf-v{font-size:12px;font-weight:500;color:var(--ink-1);line-height:1.3;}
+.h-actions{display:flex;gap:10px;flex-wrap:wrap;animation:fadeUp .8s var(--ease) .8s both}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:12px 20px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;gap:8px;cursor:none;position:relative;overflow:hidden}
+.btn.pri{background:var(--blue);color:#fff;border:1px solid var(--blue)}
+.btn.pri::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);transform:translateX(-100%);transition:transform .55s}
+.btn.pri:hover::before{transform:translateX(100%)}
+.btn.pri:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 10px 26px rgba(26,78,216,.3)}
+.btn.sec{background:transparent;border:1px solid var(--rule2);color:var(--ink-2)}
+.btn.sec:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
 
-/* PAGE BODY */
-.pb{max-width:1200px;margin:0 auto;}
+/* HERO RIGHT — quick facts + photo */
+.h-right{position:sticky;top:96px;animation:fadeUp 1s var(--ease) .55s both}
+.h-photo{width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,var(--sand-l),var(--bone));border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:14px}
+.h-photo::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,.06) 1px,transparent 1px);background-size:14px 14px;pointer-events:none}
+.photo-mono{font-family:'Fraunces',serif;font-size:120px;font-weight:300;color:var(--ink);font-style:italic;line-height:.8;letter-spacing:-6px;position:relative;z-index:1;text-align:center}
+.photo-mono em{color:var(--blue);font-family:'Instrument Serif',serif}
+.photo-mono .ml{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-3);font-style:normal;font-weight:500;margin-top:14px}
+.ph-badge{position:absolute;bottom:14px;left:14px;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:6px 10px;border:1px solid var(--rule);border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--sage-ink-d);text-transform:uppercase;font-weight:500;z-index:2}
+.qf{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden}
+.qf-c{background:#fff;padding:12px 14px;transition:background .2s}
+.qf-c:hover{background:var(--paper)}
+.qf-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:4px}
+.qf-v{font-size:12.5px;font-weight:500;color:var(--ink-1);line-height:1.4}
+.qf-v em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
 
 /* SECTIONS */
-.sec{padding:72px 48px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start;}
-.s-aside{position:sticky;top:72px;}
-.s-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:8px;font-weight:500;}
-.s-lbl{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ink-2);line-height:1.4;}
-.s-body h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,40px);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:28px;letter-spacing:-.5px;}
-.s-body h2 em{font-style:italic;color:var(--blue);}
-.s-body h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-2);font-weight:500;margin-top:48px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+.pb{max-width:var(--max);margin:0 auto;padding:0 48px}
+.sec{padding:80px 0;display:grid;grid-template-columns:200px 1fr;gap:64px;border-bottom:1px solid var(--rule);position:relative}
+.s-aside{position:sticky;top:100px;align-self:start}
+.s-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--blue);font-weight:500;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.s-num::before{content:'';width:18px;height:1px;background:var(--blue)}
+.s-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--ink-3);text-transform:uppercase}
+.sec h2{font-family:'Fraunces',serif;font-size:clamp(30px,3.6vw,48px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:32px;letter-spacing:-.6px}
+.sec h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+.sec h3{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);margin:36px 0 16px;letter-spacing:-.2px;display:flex;align-items:baseline;gap:10px}
+.sec h3::before{content:'';width:14px;height:1px;background:var(--rule2);position:relative;top:-4px;flex-shrink:0}
 
-/* EXP */
-.exp-list{display:flex;flex-direction:column;}
-.exp-e{padding:28px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;}
-.exp-e:first-child{padding-top:0;}
-.exp-e:last-child{border-bottom:none;padding-bottom:0;}
-.e-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.5px;padding-top:3px;line-height:1.5;}
-.e-now{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-bd);color:var(--blue);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-top:6px;font-weight:500;}
-.e-role{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px;}
-.e-co{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:10px;}
-.e-co span{color:var(--ink-3);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;}
-.e-desc{font-size:14px;color:var(--ink-2);line-height:1.78;max-width:580px;}
-.e-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
-.e-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 8px;border-radius:2px;}
+/* EXPERIENCE LIST */
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-e{display:grid;grid-template-columns:160px 1fr;gap:32px;padding:28px 0;border-top:1px solid var(--rule);position:relative;transition:padding .25s var(--ease)}
+.exp-e:first-child{border-top:none;padding-top:0}
+.exp-e:hover{padding-left:6px}
+.e-date{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);font-weight:500;text-transform:uppercase}
+.e-now{display:inline-block;background:var(--blue);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;padding:3px 8px;border-radius:2px;margin-top:8px;font-weight:500}
+.e-role{font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:6px;letter-spacing:-.3px}
+.e-co{font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:var(--ink-2);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.e-co span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);font-weight:400;text-transform:uppercase;padding-left:10px;border-left:1px solid var(--rule)}
+.e-desc{font-size:13.5px;color:var(--ink-2);line-height:1.78;margin-bottom:14px}
+.e-desc strong{color:var(--ink);font-weight:500}
+.e-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.e-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 8px;border-radius:2px;transition:border-color .15s,color .15s}
+.e-tag:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
 
-/* EDU */
-.edu-list{display:flex;flex-direction:column;}
-.edu-e{padding:28px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;}
-.edu-e:first-child{padding-top:0;}
-.edu-e:last-child{border-bottom:none;padding-bottom:0;}
-.ed-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.5px;padding-top:3px;}
-.ed-deg{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px;}
-.ed-sch{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:10px;}
-.ed-txt{font-size:13.5px;color:var(--ink-2);line-height:1.75;max-width:560px;}
-.ed-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
-.ed-b{display:inline-flex;align-items:center;background:var(--blue-bg);border:1px solid var(--blue-bd);padding:4px 10px;border-radius:2px;}
-.ed-b span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--blue);font-weight:500;}
+/* Featured experience — sand wash */
+.exp-e.feat{background:linear-gradient(135deg,var(--sand-l) 0%,#fff 100%);border:1px solid var(--sand-bd);padding:28px 28px;border-radius:var(--r);margin-bottom:18px}
+.exp-e.feat:first-child{padding-top:28px;border-top:1px solid var(--sand-bd)}
+.exp-e.feat:hover{padding-left:32px}
+.exp-e.feat .e-date{color:var(--sand-ink-d)}
+
+/* EDUCATION */
+.edu-list{display:flex;flex-direction:column;gap:24px}
+.edu-e{display:grid;grid-template-columns:160px 1fr;gap:32px;padding:24px 0;border-top:1px solid var(--rule)}
+.edu-e:first-child{border-top:none;padding-top:0}
+.ed-date{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;font-weight:500}
+.ed-deg{font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:4px;letter-spacing:-.3px}
+.ed-sch{font-size:13px;color:var(--ink-2);font-weight:500;margin-bottom:14px}
+.ed-txt{font-size:13.5px;color:var(--ink-2);line-height:1.78;margin-bottom:18px}
+.ed-txt strong{color:var(--ink);font-weight:500}
+.ed-badges{display:flex;flex-wrap:wrap;gap:5px}
+.ed-b{display:inline-flex;align-items:center;background:var(--blue-bg);border:1px solid var(--blue-bd);padding:4px 10px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.2px;color:var(--blue);font-weight:500;text-transform:uppercase}
 
 /* SKILLS */
-.sk-row{padding:20px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:start;}
-.sk-row:first-child{padding-top:0;}
-.sk-row:last-child{border-bottom:none;padding-bottom:0;}
-.sk-cat{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);padding-top:4px;}
-.sk-pills{display:flex;flex-wrap:wrap;gap:6px;}
-.sk-p{font-size:12px;font-weight:400;color:var(--ink-1);background:var(--paper);border:1px solid var(--rule);padding:5px 12px;border-radius:2px;transition:all .15s;}
-.sk-p:hover{border-color:var(--blue-bd);background:var(--blue-bg);color:var(--blue);}
-.sk-p.hi{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue);font-weight:500;}
+.sk-row{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:18px 0;border-top:1px solid var(--rule);align-items:start}
+.sk-row:first-of-type{border-top:none;padding-top:0}
+.sk-cat{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-1);font-weight:500;padding-top:5px;display:flex;align-items:center;gap:8px}
+.sk-cat::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%}
+.sk-pills{display:flex;flex-wrap:wrap;gap:5px}
+.sk-p{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:5px 10px;border-radius:2px;transition:all .18s}
+.sk-p.hi{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue)}
+.sk-p:hover{border-color:var(--ink-2);color:var(--ink-1)}
 
 /* ACHIEVEMENTS */
-.ach-list{display:flex;flex-direction:column;}
-.ach-e{padding:20px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:start;}
-.ach-e:first-child{padding-top:0;}
-.ach-e:last-child{border-bottom:none;padding-bottom:0;}
-.ach-yr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.5px;padding-top:2px;}
-.ach-t{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-.ach-d{font-size:13px;color:var(--ink-2);line-height:1.65;}
+.ach-list{display:grid;grid-template-columns:1fr;gap:0}
+.ach-e{display:grid;grid-template-columns:120px 56px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--rule);align-items:start;transition:padding .25s var(--ease)}
+.ach-e:first-child{border-top:none;padding-top:0}
+.ach-e:hover{padding-left:6px}
+.ach-yr{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;font-weight:500;padding-top:14px}
+.ach-icon{width:36px;height:36px;border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-1);background:#fff;transition:transform .35s var(--ease),background .2s,border-color .2s}
+.ach-e:hover .ach-icon{transform:rotate(-12deg);background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+.ach-t{font-family:'Fraunces',serif;font-size:17px;font-weight:400;color:var(--ink);line-height:1.25;margin-bottom:6px;letter-spacing:-.2px}
+.ach-t em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif}
+.ach-d{font-size:13px;color:var(--ink-2);line-height:1.7}
+.ach-d strong{color:var(--ink);font-weight:500}
 
-/* INTEREST GRID */
-.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:4px;}
-.int-c{background:var(--white);padding:20px 18px;transition:background .2s;}
-.int-c:hover{background:var(--paper);}
-.int-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:block;}
-.int-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-.int-d{font-size:12px;color:var(--ink-2);line-height:1.55;}
+/* INTERESTS */
+.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:18px}
+.int-c{background:var(--paper);padding:22px 20px;transition:background .25s,transform .25s var(--ease)}
+.int-c:hover{background:#fff;transform:translateY(-2px);z-index:2}
+.int-l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:10px;display:block}
+.int-t{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:8px;line-height:1.2;letter-spacing:-.2px}
+.int-d{font-size:12.5px;color:var(--ink-2);line-height:1.65}
 
-/* CONTACT / CTA */
-.cta{background:var(--ink);padding:60px 48px;}
-.cta-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
-.cta h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,46px);font-weight:300;color:white;line-height:1.2;margin-bottom:12px;letter-spacing:-.5px;}
-.cta h2 em{font-style:italic;color:#93b4f8;}
-.cta p{font-size:14px;color:rgba(255,255,255,.5);max-width:480px;line-height:1.7;}
-.cta-acts{display:flex;flex-direction:column;gap:10px;}
-.cta-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:12px 22px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
-.cta-btn.p{background:var(--blue);color:white;border:1px solid var(--blue);}
-.cta-btn.p:hover{background:#1640b8;}
-.cta-btn.o{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);}
-.cta-btn.o:hover{border-color:rgba(255,255,255,.4);color:white;}
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);position:relative;overflow:hidden;margin-top:0}
+.cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%)}
+.cta::after{content:'';position:absolute;top:-30%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
+.cta-in{max-width:var(--max);margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;z-index:1}
+.cta-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:18px;display:flex;align-items:center;gap:14px;font-weight:500}
+.cta-tag::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.5)}
+.cta h2{font-family:'Fraunces',serif;font-size:clamp(32px,4.5vw,56px);font-weight:300;color:#fff;line-height:1.05;margin-bottom:18px;letter-spacing:-.7px}
+.cta h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:#cdd9f8;font-weight:400}
+.cta p{font-size:14px;color:rgba(255,255,255,.78);max-width:560px;line-height:1.78}
+.cta p strong{color:#fff;font-weight:500}
+.cta-acts{display:flex;flex-direction:column;gap:10px;flex-shrink:0;min-width:240px}
+.cta-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:13px 22px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:none;white-space:nowrap}
+.cta-btn.p{background:#fff;color:var(--blue);border:1px solid #fff}
+.cta-btn.p:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.cta-btn.o{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.22)}
+.cta-btn.o:hover{border-color:rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.05)}
 
 /* FOOTER */
-footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1200px;margin:0 auto;}
-.f-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);}
-.f-name em{font-style:italic;color:var(--ink);}
-.f-links{display:flex;gap:20px;}
-.f-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;}
-.f-links a:hover{color:var(--blue);}
+footer{border-top:1px solid var(--rule);padding:36px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.f-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);display:flex;align-items:center;gap:10px}
+.f-name em{font-style:italic;color:var(--ink);font-family:'Instrument Serif',serif}
+.f-name .copy{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;padding-left:14px;border-left:1px solid var(--rule);margin-left:6px}
+.f-links{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.f-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;padding:4px 8px}
+.f-links a:hover{color:var(--blue)}
+.f-sep{color:var(--rule2);padding:0 2px}
 
-/* BACK TO TOP */
-#btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,border-color .15s;z-index:90;}
-#btt.vis{opacity:1;transform:translateY(0);}
-#btt:hover{border-color:var(--blue);}
-#btt svg{color:var(--ink-2);}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);filter:blur(2px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
 
-/* REVEAL — enhanced with blur */
-.reveal{opacity:0;transform:translateY(24px);filter:blur(2px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1),filter .7s cubic-bezier(0.16,1,0.3,1);}
-.reveal.in{opacity:1;transform:translateY(0);filter:blur(0);}
-.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
+#btt{position:fixed;bottom:32px;right:32px;width:46px;height:46px;background:#fff;border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .15s,background .15s,box-shadow .2s;box-shadow:0 4px 22px rgba(0,0,0,.08);color:var(--ink-2)}
+#btt.vis{opacity:1;transform:translateY(0)}
+#btt:hover{border-color:var(--blue);background:var(--blue-bg);color:var(--blue)}
 
-/* CURSOR */
-#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s cubic-bezier(0.16,1,0.3,1),height .22s cubic-bezier(0.16,1,0.3,1),background .2s,border .2s;will-change:transform;}
-#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue);}
-@media(hover:none){#cur{display:none;}body{cursor:auto;}}
-
-/* PRINT STYLESHEET */
-@media print {
-  #prog,nav,.hamburger,.mobile-menu,.cta,#btt{display:none!important;}
-  body{animation:none;font-size:11pt;color:#000;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .hero{padding:0 0 24pt;display:grid;grid-template-columns:1fr 220pt;gap:32pt;page-break-after:avoid;}
-  .h-actions{display:none;}
-  .sec{padding:18pt 0;grid-template-columns:100pt 1fr;gap:24pt;page-break-inside:avoid;}
-  .s-aside{position:static;}
-  .exp-e,.edu-e,.sk-row,.ach-e{grid-template-columns:100pt 1fr;}
-  .int-grid{grid-template-columns:repeat(3,1fr);}
-  .s-body h2{font-size:18pt;margin-bottom:14pt;}
-  .reveal{opacity:1!important;transform:none!important;}
-  footer{padding:12pt 0;border-top:1pt solid #ccc;}
-  a{color:#000;text-decoration:none;}
-  @page{margin:1.5cm 2cm;size:A4;}
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:120px 48px 64px}
+  .h-right{position:static}
+  .h-photo{aspect-ratio:4/3;max-width:380px}
+  .sec{grid-template-columns:1fr;gap:32px}
+  .s-aside{position:static}
+  .exp-e,.edu-e{grid-template-columns:1fr}
+  .ach-e{grid-template-columns:80px 40px 1fr;gap:14px}
+  .int-grid{grid-template-columns:1fr 1fr}
 }
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:0 20px;}
-  .nav-links,.nav-ctas{display:none;}
-  .hamburger{display:flex;}
-  .mobile-menu{display:flex;}
-  .hero{grid-template-columns:1fr;padding:88px 20px 48px;gap:36px;}
-  .h-right{order:-1;}
-  .sec{grid-template-columns:1fr;gap:20px;padding:48px 20px;}
-  .s-aside{position:static;}
-  .exp-e,.edu-e,.sk-row,.ach-e{grid-template-columns:1fr;}
-  .int-grid{grid-template-columns:1fr 1fr;}
-  .qf{grid-template-columns:1fr 1fr;}
-  .cta{padding:40px 20px;}
-  .cta-in{grid-template-columns:1fr;}
-  footer{padding:20px;}
+@media(max-width:1000px){
+  nav{padding:0 20px}
+  .nav-links,.nav-ctas{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+  .pb{padding:0 20px}
+  .hero{padding:96px 20px 48px}
+  .cta-in{grid-template-columns:1fr;padding:56px 20px}
+  .cta-acts{min-width:0}
+  .sk-row{grid-template-columns:1fr;gap:10px}
+  .qf{grid-template-columns:1fr 1fr}
+  #btt{bottom:20px;right:20px}
 }
-@media(max-width:480px){
-  .int-grid{grid-template-columns:1fr;}
-  .h-actions{flex-direction:column;}
-  .h-actions .btn{width:100%;justify-content:center;}
+@media(max-width:600px){
+  .int-grid{grid-template-columns:1fr}
+  .ach-e{grid-template-columns:60px 36px 1fr;gap:12px}
 }
 </style>
 </head>
 <body>
 
 <div id="cur" aria-hidden="true"></div>
-<div id="prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
+<div id="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 
-<!-- NAV -->
-<nav role="navigation" aria-label="Main navigation">
-  <a href="index.html" class="nav-id" aria-label="Mohit Ahirwar — home">
-    <div class="nav-dot" aria-hidden="true"></div>
-    <span class="nav-name">Mohit</span>
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Home — Mohit Ahirwar">
+    <div class="nav-mark" aria-hidden="true"><span>M</span></div>
+    <span class="nav-name">Ahirwar</span>
   </a>
-  <ul class="nav-links" role="list">
-    <li><a href="#exp">Experience</a></li>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="#exp" class="active">Experience</a></li>
     <li><a href="#edu">Education</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#ach">Recognition</a></li>
-    <li><a href="yono-case-study.html">Case Study →</a></li>
+    <li><a href="#ach">Achievements</a></li>
   </ul>
   <div class="nav-ctas">
-    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="nbtn o">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       LinkedIn
     </a>
-    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Get in touch</a>
+    <a href="index.html" class="nbtn s">Portfolio</a>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+  <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
-
-<!-- MOBILE MENU -->
-<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" role="navigation">
+<div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a>
   <a href="#exp">Experience</a>
   <a href="#edu">Education</a>
   <a href="#skills">Skills</a>
-  <a href="#ach">Recognition</a>
+  <a href="#ach">Achievements</a>
   <a href="yono-case-study.html">Case Study</a>
   <div class="mm-foot">
-    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="nbtn o">LinkedIn</a>
-    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Email</a>
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o" style="font-size:10px;">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s" style="font-size:10px;">Email</a>
   </div>
-</nav>
+</div>
 
 <main>
 <div class="pb">
 
 <!-- HERO -->
 <div class="hero" aria-labelledby="hero-name">
-  <div class="h-left reveal">
+  <div class="h-left">
     <div class="h-eyebrow">
-      <span class="h-tag">Product Designer</span>
-      <div class="h-sep" aria-hidden="true"></div>
+      <span class="h-tag">Curriculum Vitae · Design Strategist</span>
+      <span class="h-sep">·</span>
       <span class="h-loc">Mumbai, India</span>
+      <span class="available"><span class="dot-live"></span>Open to consulting roles</span>
     </div>
-    <h1 id="hero-name">Mohit<br><em>Ahirwar</em></h1>
-    <p class="h-role">UX / Product Designer &nbsp;·&nbsp; M.Des, IIT Delhi</p>
+    <h1 id="hero-name">
+      <span class="h-line"><span>Mohit</span></span>
+      <span class="h-line"><span><em>Ahirwar</em></span></span>
+    </h1>
+    <p class="h-role">Design Strategist · Digital Transformation &nbsp;·&nbsp; M.Des, IIT Delhi</p>
     <p class="h-bio">
-      Designer with <strong>3.6 years full-time experience + 8 months internships</strong> across BFSI digital transformation, IoT smart home systems, and public digital platforms. Currently leading the insurance vertical on SBI YONO 2.0 at <strong>TCS Interactive</strong> — a McKinsey &amp; Company-led three-partner engagement — designing for India's largest banking platform at enterprise scale.<br><br>
-      Specialising in <strong>systems-level product design</strong>, multi-channel experience architecture, and design leadership inside complex, multi-stakeholder environments.
+      <strong>Design-trained business problem solver</strong> — pattern recognizer, systems thinker, operator inside enterprise complexity. Three years deep into a <strong>McKinsey-led digital transformation of SBI YONO 2.0</strong> at TCS Interactive, leading the insurance vertical across mobile, web, branch, and field-tablet channels for India's largest banking platform.<br><br>
+      <span class="accent">Early ChatGPT adopter</span> since December 2022 — AI-augmented across research, synthesis, and ideation. M.Des, IIT Delhi · CEED Qualified, no coaching · 3.6 years full-time + 8 months internships across BFSI, IoT smart home, and public digital platforms.
     </p>
     <div class="h-actions">
-      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="btn pri">
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="btn pri">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         View LinkedIn
       </a>
       <a href="mailto:mohitahirwar7@gmail.com" class="btn sec">mohitahirwar7@gmail.com</a>
-      <a href="yono-case-study.html" class="btn sec">Case Study →</a>
+      <a href="yono-case-study.html" class="btn sec">YONO Case Study →</a>
     </div>
   </div>
 
-  <div class="h-right reveal d2">
-    <div class="h-photo">
-      <!-- Replace with: <img src="assets/photo-mohit.jpg" alt="Mohit Ahirwar"> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;" aria-hidden="true">
-        <div style="width:52px;height:52px;border-radius:50%;background:var(--bone);border:1px solid var(--rule2);display:flex;align-items:center;justify-content:center;font-size:22px;">👤</div>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);">Photo coming soon</span>
-      </div>
-      <div class="ph-badge">
-        <div class="ph-dot" aria-hidden="true"></div>
-        <span class="ph-txt">Open to opportunities</span>
-      </div>
+  <div class="h-right">
+    <div class="h-photo" role="img" aria-label="Monogram — Mohit Ahirwar">
+      <div class="photo-mono" aria-hidden="true">M<em>·</em>A<span class="ml">Mumbai · India</span></div>
+      <div class="ph-badge"><span class="dot-live"></span>Available 2026</div>
     </div>
     <div class="qf" role="list" aria-label="Quick facts">
-      <div class="qf-c" role="listitem"><span class="qf-l">Current</span><span class="qf-v">TCS Interactive × SBI</span></div>
-      <div class="qf-c" role="listitem"><span class="qf-l">Education</span><span class="qf-v">M.Des · IIT Delhi</span></div>
+      <div class="qf-c" role="listitem"><span class="qf-l">Current</span><span class="qf-v">TCS × <em>SBI</em></span></div>
+      <div class="qf-c" role="listitem"><span class="qf-l">Education</span><span class="qf-v"><em>M.Des</em> · IIT Delhi</span></div>
       <div class="qf-c" role="listitem"><span class="qf-l">Experience</span><span class="qf-v">3.6 Yrs FT + 8 Mo</span></div>
       <div class="qf-c" role="listitem"><span class="qf-l">CEED</span><span class="qf-v">Qualified · No Coaching</span></div>
     </div>
@@ -329,32 +352,32 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 <!-- EXPERIENCE -->
 <section class="sec" id="exp" aria-labelledby="exp-heading">
   <div class="s-aside reveal">
-    <span class="s-num" aria-hidden="true">01</span>
+    <span class="s-num">01</span>
     <span class="s-lbl">Work Experience</span>
   </div>
   <div class="s-body">
     <h2 class="reveal" id="exp-heading">Where I have <em>worked</em></h2>
     <div class="exp-list">
 
-      <div class="exp-e reveal">
+      <div class="exp-e feat reveal">
         <div class="e-date">Jan 2024 — Present<div class="e-now">Current</div></div>
         <div>
-          <div class="e-role">UX Designer</div>
-          <div class="e-co">TCS Interactive, Mumbai <span>· BFSI · Enterprise</span></div>
-          <div class="e-desc">Led the insurance vertical end-to-end — General Insurance and Life Insurance — across mobile app, web, branch portal, and field tablets for SBI YONO 2.0, serving 500M+ account holders. Designed the GPAI anchor journey through a 10-step Garage methodology, iterating 500–600 screens over 8–10 months while coordinating across 11 internal SBI teams including ISO, Risk, Compliance, and GITC, in a McKinsey &amp; Company-led three-partner engagement. Design patterns established became the reference standard for all 110+ journeys delivered across 3 phases. Solo-audited all 42 Phase 2 journeys for consistency — became the sole holder of end-to-end product knowledge across the platform. Directed 4 visual designers and 1 UX designer, all IIT and NID graduates. <strong>Star Performer of the Year</strong> + 10+ performance awards and written client appreciations. Currently leading: AI Chatbot (3-phase LLM rollout), Inclusive Savings Account for illiterate and minor users, NRI PIS Demat &amp; Trading, and Investments landing page.</div>
+          <div class="e-role">Design Strategist — Insurance Vertical Lead</div>
+          <div class="e-co">TCS Interactive, Mumbai <span>BFSI · McKinsey-led Transformation</span></div>
+          <div class="e-desc">Three years inside the McKinsey-led digital transformation of SBI YONO 2.0 — leading the insurance vertical end-to-end across mobile app, web, branch portal, and field tablets for India's largest banking platform. <strong>SBI's insurance portfolio spans 40+ products</strong> across General and Life Insurance; I led design for the anchor journeys (GPAI, GSA, and 5–6 others) through a 10-step Garage methodology, iterating <strong>500–600 screens over 8–10 months</strong>. The patterns established became the reference standard adopted across the rest of the portfolio — leverage through systems, not per-product execution. Coordinated across 11 internal SBI teams including ISO, Risk, Compliance, and GITC. Solo-audited all 42 Phase 2 journeys for consistency, becoming the <strong>institutional knowledge owner of the entire product</strong>. Directed 4 visual designers and 1 UX designer (IIT and NID graduates). <strong>Star Performer of the Year</strong> + 10+ performance awards and written client appreciations from SBI product owners. Currently leading: AI Chatbot (3-phase LLM rollout), Inclusive Savings Account for illiterate and minor users, NRI PIS Demat &amp; Trading, Investments landing.</div>
           <div class="e-tags">
-            <span class="e-tag">YONO 2.0</span><span class="e-tag">Insurance Vertical</span><span class="e-tag">Multi-channel</span>
-            <span class="e-tag">Systems Design</span><span class="e-tag">Vertical Lead</span><span class="e-tag">BFSI</span>
-            <span class="e-tag">McKinsey Engagement</span><span class="e-tag">AI Product Design</span><span class="e-tag">Inclusive Design</span>
+            <span class="e-tag">YONO 2.0</span><span class="e-tag">Digital Transformation</span><span class="e-tag">Multi-channel</span>
+            <span class="e-tag">Pattern Leverage</span><span class="e-tag">Vertical Lead</span><span class="e-tag">BFSI</span>
+            <span class="e-tag">McKinsey Engagement</span><span class="e-tag">AI-Augmented</span><span class="e-tag">Inclusive Design</span>
           </div>
         </div>
       </div>
 
-      <div class="exp-e reveal">
+      <div class="exp-e reveal d1">
         <div class="e-date">Feb 2023 — Jul 2023</div>
         <div>
           <div class="e-role">UX Design Intern — Systems &amp; Research</div>
-          <div class="e-co">Havells India, Noida <span>· IoT · Smart Home</span></div>
+          <div class="e-co">Havells India, Noida <span>IoT · Smart Home</span></div>
           <div class="e-desc">Systems design research for night sleep comfort enhancement using IoT-based HVAC automation. Synthesised secondary research on thermal comfort behaviour and energy-cost anxiety. Supported refinement of the backend IntelliSleep algorithm. Designed journeys and UI flows for the IntelliSleep feature in the Havells Sync smart home automation application.</div>
           <div class="e-tags">
             <span class="e-tag">IoT</span><span class="e-tag">Systems Research</span><span class="e-tag">Smart Home</span><span class="e-tag">HVAC UX</span>
@@ -362,11 +385,11 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
         </div>
       </div>
 
-      <div class="exp-e reveal">
+      <div class="exp-e reveal d2">
         <div class="e-date">Jun 2022 — Jul 2022</div>
         <div>
           <div class="e-role">UX &amp; Information Design Intern</div>
-          <div class="e-co">Quality Council of India, New Delhi <span>· Government</span></div>
+          <div class="e-co">Quality Council of India, New Delhi <span>Government</span></div>
           <div class="e-desc">Conducted UX audits for government websites, identifying usability, accessibility, and navigation gaps. Created visual communication design and digital media content. Filmed video podcasts with Padma Shree awardees and senior government officials, generating 80,000+ unique impressions.</div>
           <div class="e-tags">
             <span class="e-tag">UX Audit</span><span class="e-tag">Gov. Digital</span><span class="e-tag">Information Design</span>
@@ -374,11 +397,11 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
         </div>
       </div>
 
-      <div class="exp-e reveal">
+      <div class="exp-e reveal d3">
         <div class="e-date">Jun 2019 — Sep 2020</div>
         <div>
           <div class="e-role">Creative Designer</div>
-          <div class="e-co">Conexus Netcom Solutions, Mumbai <span>· Agency · UK &amp; UAE</span></div>
+          <div class="e-co">Conexus Netcom Solutions, Mumbai <span>Agency · UK &amp; UAE</span></div>
           <div class="e-desc">Delivered UX/UI and brand communication projects for clients in the UK and UAE. Managed 20+ end-to-end project deliveries covering requirement gathering, stakeholder coordination, and handoff. Work included UI design for web applications, brand identity, print collateral, social media campaigns, motion graphics, and corporate explainer videos.</div>
           <div class="e-tags">
             <span class="e-tag">UI Design</span><span class="e-tag">Brand Identity</span><span class="e-tag">Motion Graphics</span><span class="e-tag">Client Management</span>
@@ -393,7 +416,7 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 <!-- EDUCATION -->
 <section class="sec" id="edu" aria-labelledby="edu-heading">
   <div class="s-aside reveal">
-    <span class="s-num" aria-hidden="true">02</span>
+    <span class="s-num">02</span>
     <span class="s-lbl">Education</span>
   </div>
   <div class="s-body">
@@ -412,23 +435,23 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
           <strong>VR/UX Researcher, Indian Military Academy, Dehradun</strong> (Nov 2022 – Jan 2023) — developed a <strong>VR-based training and strategic planning proof-of-concept for the Indian Armed Forces</strong> under Prof. Charu Monga, IIT Delhi. <strong>PoC subsequently presented to the President of India</strong>.<br><br>
           <strong>M.Des Design Project — Smart Glass</strong>: AI-powered eyewear concept exploring contextual, ambient computing interfaces. Selected image featured on the <strong>IIT Delhi Prospectus Cover</strong>.</div>
           <div class="ed-badges">
-            <div class="ed-b"><span>CGPA 8.0</span></div>
-            <div class="ed-b"><span>CEED Qualified</span></div>
-            <div class="ed-b"><span>No Coaching</span></div>
-            <div class="ed-b"><span>Industrial Design</span></div>
+            <div class="ed-b">CGPA 8.0</div>
+            <div class="ed-b">CEED Qualified</div>
+            <div class="ed-b">No Coaching</div>
+            <div class="ed-b">Industrial Design</div>
           </div>
         </div>
       </div>
 
-      <div class="edu-e reveal">
+      <div class="edu-e reveal d1">
         <div class="ed-date">2015 — 2019</div>
         <div>
           <div class="ed-deg">Bachelor of Technology — Information Technology</div>
           <div class="ed-sch">Guru Ghasidas Vishwavidyalaya (Central University), Bilaspur</div>
           <div class="ed-txt">Final year project: ML-based standalone SPAM classifier — responsible for UI design, data visualisation, user testing, and pitch deck. Innovation and Graphic Design Head at UDAAN student magazine. Conducted design, photography, and marketing workshops for 1,000+ students.</div>
           <div class="ed-badges">
-            <div class="ed-b"><span>CGPA 7.26</span></div>
-            <div class="ed-b"><span>Information Technology</span></div>
+            <div class="ed-b">CGPA 7.26</div>
+            <div class="ed-b">Information Technology</div>
           </div>
         </div>
       </div>
@@ -440,12 +463,12 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 <!-- SKILLS -->
 <section class="sec" id="skills" aria-labelledby="skills-heading">
   <div class="s-aside reveal">
-    <span class="s-num" aria-hidden="true">03</span>
+    <span class="s-num">03</span>
     <span class="s-lbl">Skills &amp; Tools</span>
   </div>
   <div class="s-body">
     <h2 class="reveal" id="skills-heading">What I <em>work with</em></h2>
-    <div class="reveal">
+    <div class="reveal d1">
       <div class="sk-row">
         <span class="sk-cat">UX Research</span>
         <div class="sk-pills">
@@ -479,18 +502,17 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
         <span class="sk-cat">AI — Prompt Level</span>
         <div class="sk-pills">
           <span class="sk-p hi">Claude</span><span class="sk-p hi">ChatGPT</span>
-          <span class="sk-p">Midjourney</span><span class="sk-p">DALL·E</span>
-          <span class="sk-p">Gemini</span><span class="sk-p">AI Prompt Design</span>
+          <span class="sk-p">Gamma.ai</span><span class="sk-p">Adobe Firefly</span>
+          <span class="sk-p">Kling.ai</span><span class="sk-p">Suno.ai</span>
           <span class="sk-p">Multi-shot Prompting</span><span class="sk-p">Format-constrained Output</span>
         </div>
       </div>
       <div class="sk-row">
-        <span class="sk-cat">AI — System Level</span>
+        <span class="sk-cat">AI — Workflow Level</span>
         <div class="sk-pills">
           <span class="sk-p hi">Cursor</span><span class="sk-p hi">Claude Cowork</span>
           <span class="sk-p">System Prompt Architecture</span><span class="sk-p">Token-Efficient Workflows</span>
-          <span class="sk-p">LLM Product Flows</span><span class="sk-p">Context Window Management</span>
-          <span class="sk-p">AI UX Design</span>
+          <span class="sk-p">Open-Source Models</span><span class="sk-p">Context Window Management</span>
         </div>
       </div>
       <div class="sk-row">
@@ -514,23 +536,29 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 <!-- ACHIEVEMENTS -->
 <section class="sec" id="ach" aria-labelledby="ach-heading">
   <div class="s-aside reveal">
-    <span class="s-num" aria-hidden="true">04</span>
+    <span class="s-num">04</span>
     <span class="s-lbl">Achievements</span>
   </div>
   <div class="s-body">
     <h2 class="reveal" id="ach-heading">Selected <em>highlights</em></h2>
-    <div class="ach-list reveal">
+    <div class="ach-list reveal d1">
 
       <div class="ach-e">
         <span class="ach-yr">2024</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h12v3a6 6 0 01-12 0V4zM4 4h2v3a4 4 0 002 3.5M20 4h-2v3a4 4 0 01-2 3.5M9 14v3h6v-3M7 21h10"/></svg>
+        </div>
         <div>
-          <div class="ach-t">Star Performer of the Year — TCS Interactive</div>
+          <div class="ach-t">Star Performer of the Year — <em>TCS Interactive</em></div>
           <div class="ach-d">10+ performance awards and written client appreciations for design leadership and delivery quality on YONO 2.0 within the first year at TCS Interactive.</div>
         </div>
       </div>
 
       <div class="ach-e">
         <span class="ach-yr">2022–23</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-6 9 6-9 6-9-6z"/><path d="M3 14l9 6 9-6M3 18l9 6 9-6"/></svg>
+        </div>
         <div>
           <div class="ach-t">IIT Delhi Prospectus Cover — Smart Glass AI Project</div>
           <div class="ach-d">Visual output from the Smart Glass M.Des design project — an AI-powered eyewear concept for ambient computing — was selected for the official IIT Delhi Prospectus Cover.</div>
@@ -539,14 +567,20 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 
       <div class="ach-e">
         <span class="ach-yr">2022–23</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+        </div>
         <div>
-          <div class="ach-t">VR Research — Indian Armed Forces, IMA Dehradun</div>
+          <div class="ach-t">VR Research — <em>Indian Armed Forces</em>, IMA Dehradun</div>
           <div class="ach-d">Developed a VR-based training and strategic planning proof-of-concept for the Indian Armed Forces under Prof. Charu Monga, IIT Delhi. PoC subsequently presented to the President of India.</div>
         </div>
       </div>
 
       <div class="ach-e">
         <span class="ach-yr">2022–23</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19h16M5 19V8l7-4 7 4v11M9 19v-6h6v6"/></svg>
+        </div>
         <div>
           <div class="ach-t">Outstanding Performance Award — IIT Delhi OCS</div>
           <div class="ach-d">Designed the official IIT Delhi OCS logo and brand identity. Logo inaugurated by the Director of IIT Delhi with a personal design philosophy presentation. Managed PG cohort placements; pitched to 150+ companies.</div>
@@ -555,14 +589,20 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 
       <div class="ach-e">
         <span class="ach-yr">2021</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2 6h6l-5 4 2 7-7-4.5L5 19l2-7L2 8h6z"/></svg>
+        </div>
         <div>
-          <div class="ach-t">CEED Qualified — IIT Delhi (No Coaching)</div>
+          <div class="ach-t">CEED Qualified — IIT Delhi (<em>No Coaching</em>)</div>
           <div class="ach-d">Cleared the Common Entrance Examination for Design self-prepared, without formal coaching. Received offers from IIT Delhi, IIT Kanpur, SPA Bhopal, and IIITDM Jabalpur; waitlisted at IIT Guwahati and IIT Hyderabad. Chose IIT Delhi M.Des Industrial Design.</div>
         </div>
       </div>
 
       <div class="ach-e">
         <span class="ach-yr">2019</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        </div>
         <div>
           <div class="ach-t">Ek Bharat Shreshtha Bharat — Government of India</div>
           <div class="ach-d">Selected from 7,000+ university students as one of 12 national envoys to represent Chhattisgarh in Gujarat under the Ministry of Education's Cultural Exchange Programme.</div>
@@ -571,22 +611,25 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 
       <div class="ach-e">
         <span class="ach-yr">2023–Present</span>
+        <div class="ach-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v6M9 5h6M5 14a7 7 0 0114 0v8H5v-8z"/></svg>
+        </div>
         <div>
-          <div class="ach-t">Design Mentor — 35+ Students into IITs and NIDs</div>
+          <div class="ach-t">Design Mentor — <em>35+ mentees</em> into IITs &amp; NIDs</div>
           <div class="ach-d">Following M.Des at IIT Delhi, began mentoring CEED aspirants. 35+ mentees placed into IITs and NIDs. Provides portfolio reviews, interview preparation, and presentation coaching.</div>
         </div>
       </div>
 
     </div>
 
-    <h3 class="reveal">Interest areas</h3>
-    <div class="int-grid reveal" role="list" aria-label="Interest areas">
-      <div class="int-c" role="listitem"><span class="int-l">Current Focus</span><div class="int-t">AI Product Design</div><div class="int-d">Designing conversational and LLM-integrated banking experiences on YONO 2.0.</div></div>
-      <div class="int-c" role="listitem"><span class="int-l">Research Interest</span><div class="int-t">Inclusive Design</div><div class="int-d">Currently designing for illiterate and minor users within India's banking inclusion agenda.</div></div>
-      <div class="int-c" role="listitem"><span class="int-l">Side Interest</span><div class="int-t">Gamified Experiences</div><div class="int-d">Longstanding interest in serious gaming and VR-based experiential design.</div></div>
-      <div class="int-c" role="listitem"><span class="int-l">Domain</span><div class="int-t">Strategic Design</div><div class="int-d">Working at the intersection of business strategy, regulatory compliance, and UX at enterprise scale.</div></div>
-      <div class="int-c" role="listitem"><span class="int-l">Domain</span><div class="int-t">BFSI &amp; Fintech</div><div class="int-d">Deep familiarity with Indian banking product complexity — insurance, investments, lending, KYC, and payments.</div></div>
-      <div class="int-c" role="listitem"><span class="int-l">Background</span><div class="int-t">Tech Foundation</div><div class="int-d">B.Tech in IT enables fluent collaboration with engineering and comfort with technical constraints.</div></div>
+    <h3 class="reveal d2">Interest areas</h3>
+    <div class="int-grid reveal d3">
+      <div class="int-c"><span class="int-l">Current Focus</span><div class="int-t">Digital Transformation</div><div class="int-d">Design-led transformation programmes inside enterprise BFSI — multi-channel, multi-stakeholder, regulator-cleared.</div></div>
+      <div class="int-c"><span class="int-l">Working Method</span><div class="int-t">AI-Augmented Practice</div><div class="int-d">Compressing research, synthesis, and ideation cycles using structured prompts and persistent context — without losing rigour.</div></div>
+      <div class="int-c"><span class="int-l">Domain Depth</span><div class="int-t">BFSI &amp; Fintech</div><div class="int-d">Three years inside SBI YONO 2.0 — insurance, investments, lending, KYC, payments. Deep familiarity with Indian banking product complexity and regulatory gates.</div></div>
+      <div class="int-c"><span class="int-l">Approach</span><div class="int-t">Pattern Leverage</div><div class="int-d">Designing the system that governs 40+ products, not 40+ products individually. Pattern recognition at scale is the discipline.</div></div>
+      <div class="int-c"><span class="int-l">Research Interest</span><div class="int-t">Inclusive Design</div><div class="int-d">Currently designing for illiterate and minor users within India's banking inclusion agenda — UX as a regulatory and ethical commitment.</div></div>
+      <div class="int-c"><span class="int-l">Background</span><div class="int-t">Tech Foundation</div><div class="int-d">B.Tech in IT enables fluent collaboration with engineering and comfort with technical and architectural constraints.</div></div>
     </div>
   </div>
 </section>
@@ -595,58 +638,53 @@ footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-c
 </main>
 
 <!-- CTA -->
-<div class="cta" role="complementary" aria-label="Get in touch">
-  <div class="cta-in">
+<div class="cta">
+  <div class="cta-in reveal">
     <div>
-      <h2>Let's work<br><em>together</em></h2>
-      <p>Open to Product Designer and UX Lead roles at BFSI, consulting, and enterprise product companies. Targeting Deloitte, Barclays, Standard Chartered, Atlassian, Salesforce, and Razorpay. Based in Mumbai — open to hybrid and remote arrangements.</p>
+      <div class="cta-tag">Open to consulting roles</div>
+      <h2>Let's work<br><em>together.</em></h2>
+      <p>Targeting <strong>design-led digital transformation roles</strong> at <strong>Accenture Song</strong>, <strong>Deloitte Digital</strong>, and <strong>Publicis Sapient</strong>. Also exploring UX strategy and digital transformation consultant roles in <strong>Dubai</strong>. Based in Mumbai · open to hybrid &amp; relocation.</p>
     </div>
     <div class="cta-acts">
-      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener" class="cta-btn p">
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="cta-btn p">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         Connect on LinkedIn
       </a>
       <a href="mailto:mohitahirwar7@gmail.com" class="cta-btn o">mohitahirwar7@gmail.com</a>
       <a href="tel:+917007825909" class="cta-btn o">+91 70078 25909</a>
-      <a href="yono-case-study.html" class="cta-btn o">View Case Study →</a>
+      <a href="yono-case-study.html" class="cta-btn o">YONO Case Study →</a>
     </div>
   </div>
 </div>
 
 <div class="pb">
 <footer class="reveal">
-  <div class="f-name"><em>Mohit</em> Ahirwar</div>
+  <div class="f-name"><em>Mohit</em> Ahirwar<span class="copy">© 2026 · All rights reserved</span></div>
   <div class="f-links">
     <a href="index.html">Home</a>
-    <a href="yono-case-study.html">Case Study</a>
-    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="f-sep">·</span>
+    <a href="yono-case-study.html">YONO 2.0</a>
+    <span class="f-sep">·</span>
+    <a href="global-adaptive-design-system.html">GADS</a>
+    <span class="f-sep">·</span>
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <span class="f-sep">·</span>
     <a href="mailto:mohitahirwar7@gmail.com">Email</a>
   </div>
 </footer>
 </div>
 
-<!-- BACK TO TOP -->
-<button id="btt" aria-label="Back to top" title="Back to top">
+<button id="btt" aria-label="Back to top">
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <polyline points="2,9 7,4 12,9"/>
   </svg>
 </button>
 
 <script>
-/* ── SCROLL PROGRESS ── */
-window.addEventListener('scroll',()=>{
-  const d=document.documentElement;
-  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
-  const prog=document.getElementById('prog');
-  prog.style.width=pct+'%';
-  prog.setAttribute('aria-valuenow',Math.round(pct));
-  document.getElementById('btt').classList.toggle('vis',d.scrollTop>500);
-},{passive:true});
-
 // Custom cursor
 (function(){
   const cur=document.getElementById('cur');
-  if(!cur||!window.matchMedia('(hover:hover)').matches)return;
+  if(!cur||!window.matchMedia('(hover:hover)').matches||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   let cx=window.innerWidth/2,cy=window.innerHeight/2,tx=cx,ty=cy;
   document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
   (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop);})();
@@ -656,61 +694,55 @@ window.addEventListener('scroll',()=>{
   });
 })();
 
-/* ── REVEAL ON SCROLL ── */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
-  });
-},{threshold:.06});
+// Scroll progress + back-to-top
+const prog=document.getElementById('prog');
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  prog.style.width=pct+'%';prog.setAttribute('aria-valuenow',Math.round(pct));
+  btt.classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Reveal
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ── HAMBURGER / MOBILE MENU ── */
-const burger=document.getElementById('hamburger');
-const menu=document.getElementById('mobile-menu');
-function toggleMenu(open){
-  burger.classList.toggle('open',open);
-  menu.classList.toggle('open',open);
-  burger.setAttribute('aria-expanded',String(open));
-  burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+// Active nav
+const secs=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+
+// Hamburger
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  const open=hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open',open);
+  hamburger.setAttribute('aria-expanded',open);
   document.body.style.overflow=open?'hidden':'';
-}
-burger.addEventListener('click',()=>toggleMenu(!burger.classList.contains('open')));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleMenu(false);});
-menu.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click',()=>toggleMenu(false));
 });
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  hamburger.classList.remove('open');mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');document.body.style.overflow='';
+}));
 
-/* ── BACK TO TOP ── */
-document.getElementById('btt').addEventListener('click',()=>{
-  window.scrollTo({top:0,behavior:'smooth'});
-});
-
-/* ── PAGE TRANSITIONS (internal links) ── */
+// Page transitions
 document.querySelectorAll('a[href]').forEach(a=>{
-  const h=a.getAttribute('href');
-  if(h&&h.endsWith('.html')&&!h.startsWith('http')&&!h.startsWith('//')){
+  const href=a.getAttribute('href');
+  if(href&&!href.startsWith('#')&&!href.startsWith('http')&&!href.startsWith('mailto')&&!href.startsWith('tel')&&href.endsWith('.html')){
     a.addEventListener('click',e=>{
       e.preventDefault();
-      document.body.style.opacity='0';
-      document.body.style.transform='translateY(8px)';
-      document.body.style.transition='opacity .25s ease,transform .25s ease';
-      setTimeout(()=>{window.location.href=h;},260);
+      document.body.style.transition='opacity .22s ease, transform .22s ease';
+      document.body.style.opacity='0';document.body.style.transform='translateY(-6px)';
+      setTimeout(()=>window.location.href=href,230);
     });
   }
 });
-
-/* ── NAV ACTIVE STATE ── */
-const sections=document.querySelectorAll('section[id]');
-const navLinks=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  sections.forEach(s=>{
-    if(window.scrollY>=s.offsetTop-80)cur=s.id;
-  });
-  navLinks.forEach(a=>{
-    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
-  });
-},{passive:true});
 </script>
 </body>
 </html>
