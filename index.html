@@ -172,15 +172,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 
 /* HERO VISUAL — system diagram */
 .hero-visual{position:relative;z-index:1;animation:fadeUp 1s var(--ease) .7s both;will-change:transform}
-.hv-frame{aspect-ratio:1;width:100%;max-width:480px;margin:0 0 0 auto;position:relative}
-.hv-frame svg{width:100%;height:100%;overflow:visible}
-
-/* Photo treatment for hero visual — editorial portrait */
-.hv-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;border-radius:3px;display:block;box-shadow:0 30px 80px rgba(20,18,16,.14),0 12px 28px rgba(20,18,16,.06);filter:contrast(1.02)}
-.hv-frame::after{content:'';position:absolute;top:18px;right:-22px;bottom:-22px;left:18px;background:var(--sand-l);border:1px solid var(--sand-bd);border-radius:3px;z-index:-1;pointer-events:none}
-.hv-caption{position:absolute;left:0;right:0;bottom:-72px;display:flex;flex-direction:column;gap:4px;animation:fadeUp .8s var(--ease) 1.2s both}
-.hv-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);letter-spacing:-.3px;line-height:1.2}
-.hv-role{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+/* Hero visual — editorial portrait, restrained composition */
+.hero-visual{display:flex;justify-content:flex-end;align-items:flex-start}
+.hv-frame{width:100%;max-width:340px;margin:8px 0 0 auto;position:relative}
+.hv-photo-wrap{position:relative;aspect-ratio:4/5;width:100%;border-radius:3px;overflow:hidden;background:var(--bone)}
+.hv-photo{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;filter:contrast(1.03) brightness(1.01)}
+.hv-frame::before{content:'';position:absolute;top:14px;right:-14px;bottom:-14px;left:14px;background:var(--sand-l);border:1px solid var(--sand-bd);border-radius:3px;z-index:-1;pointer-events:none}
+.hv-meta{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:8px;animation:fadeUp .8s var(--ease) 1s both}
+.hv-meta-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);letter-spacing:-.3px;line-height:1.2}
+.hv-meta-role{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);font-weight:500;line-height:1.5}
+.hv-meta-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-2);font-weight:500;line-height:1.7}
+.hv-meta-facts span{position:relative;padding-right:10px;margin-right:2px}
+.hv-meta-facts span:not(:last-child)::after{content:'·';color:var(--rule2);margin-left:4px}
+.hv-meta-facts em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px}
 .hv-pulse{transform-origin:center;animation:nodePulse 2.6s ease-in-out infinite}
 .hv-pulse2{animation-delay:.4s}
 .hv-pulse3{animation-delay:.8s}
@@ -197,12 +201,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 @keyframes orbDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-6px)}}
 
 /* Floating annotation chips */
-.hv-chip{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;background:var(--white);border:1px solid var(--rule);color:var(--ink-2);padding:5px 10px;border-radius:2px;box-shadow:0 4px 14px rgba(0,0,0,.05);animation:chipIn .6s var(--ease) both;white-space:nowrap}
-.hv-chip.c1{top:6%;left:-4%;animation-delay:1.4s}
-.hv-chip.c2{top:32%;right:-2%;animation-delay:1.6s;border-color:var(--blue-bd);color:var(--blue);background:var(--blue-bg)}
-.hv-chip.c3{bottom:16%;left:6%;animation-delay:1.8s;border-color:var(--sand-bd);color:var(--sand-ink-d);background:var(--sand-l)}
-.hv-chip.c4{bottom:0%;right:14%;animation-delay:2s;border-color:var(--sage-bd);color:var(--sage-ink-d);background:var(--sage-l)}
-@keyframes chipIn{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 /* ═══════════════════════════════════════════════════════════════
    TRUSTED BY STRIP
@@ -538,8 +536,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
    ═══════════════════════════════════════════════════════════════ */
 @media(max-width:1100px){
   .hero{grid-template-columns:1fr;gap:48px;padding:120px 48px 64px}
-  .hv-frame{max-width:380px;margin:0 auto}
-  .hero-visual{margin-bottom:72px}
+  .hv-frame{max-width:300px;margin:0 auto}
+  .hero-visual{margin-bottom:0;justify-content:center}
   .work-card,.work-card.feat{grid-template-columns:1fr}
   .wc-visual{border-left:none;border-top:1px solid var(--rule);min-height:220px}
   .proc-grid{grid-template-columns:repeat(3,1fr)}
@@ -574,7 +572,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   .tl-rail{left:20px;right:20px}
 }
 @media(max-width:700px){
-  .hv-frame::after{display:none}
+  .hv-frame::before{display:none}
   .ai-grid{grid-template-columns:1fr}
   .impact-grid{grid-template-columns:1fr}
   .imp-cell{padding:24px 20px}
@@ -591,7 +589,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   .cta-inner h2{font-size:clamp(26px,7vw,36px)}
   .photo-mono{font-size:90px}
   .tl-item{flex:0 0 180px}
-  .hv-chip{font-size:8px;padding:4px 8px}
 }
 </style>
 </head>
@@ -690,20 +687,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
     </div>
   </div>
 
-  <!-- Hero visual: editorial portrait + recruiter-relevant context chips -->
+  <!-- Hero visual: editorial portrait + meta strip -->
   <div class="hero-visual" aria-hidden="false">
     <div class="hv-frame" id="heroVisual">
-      <!-- Editorial annotation chips — recruiter context, not design jargon -->
-      <div class="hv-chip c1">Mumbai · India</div>
-      <div class="hv-chip c2">M.Des · IIT Delhi</div>
-      <div class="hv-chip c3">TCS × SBI</div>
-      <div class="hv-chip c4">Available 2026</div>
-
-      <img src="assets/profile/mohit-hero.jpg" alt="Mohit Ahirwar — Design Strategist" class="hv-photo">
-
-      <div class="hv-caption">
-        <span class="hv-name">Mohit Ahirwar</span>
-        <span class="hv-role">Design Strategist · Digital Transformation</span>
+      <div class="hv-photo-wrap">
+        <img src="assets/profile/mohit-hero.jpg" alt="Mohit Ahirwar — Design Strategist" class="hv-photo">
+      </div>
+      <div class="hv-meta">
+        <span class="hv-meta-name">Mohit Ahirwar</span>
+        <span class="hv-meta-role">Design Strategist · Digital Transformation</span>
+        <div class="hv-meta-facts">
+          <span>Mumbai</span>
+          <span>M.Des, IIT Delhi</span>
+          <span>TCS × SBI</span>
+          <span><em>Available 2026</em></span>
+        </div>
       </div>
     </div>
   </div>
