@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background tile with subtle rounded corner -->
+  <rect x="2" y="2" width="60" height="60" rx="8" fill="#fafaf8" stroke="#141210" stroke-width="2"/>
+  <!-- Inner blue accent frame (echoes nav-mark hover state) -->
+  <rect x="8" y="8" width="48" height="48" rx="3" fill="none" stroke="#1a4ed8" stroke-width="1.5"/>
+  <!-- The M letterform — italic Fraunces-style serif treatment -->
+  <text x="32" y="44" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-style="italic" font-weight="500" fill="#141210" letter-spacing="-1">M</text>
+</svg>
