@@ -143,7 +143,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .h-line span{display:block;animation:lineUp .9s var(--ease) both}
 .h-line:nth-child(1) span{animation-delay:.3s}
 .h-line:nth-child(2) span{animation-delay:.45s}
-.h-line:nth-child(2) em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
+.h-line:nth-child(3) span{animation-delay:.6s}
+.h-line em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
 .h-line.indent{padding-left:clamp(24px,4vw,56px)}
 @keyframes lineUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
 
@@ -173,6 +174,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .hero-visual{position:relative;z-index:1;animation:fadeUp 1s var(--ease) .7s both;will-change:transform}
 .hv-frame{aspect-ratio:1;width:100%;max-width:480px;margin:0 0 0 auto;position:relative}
 .hv-frame svg{width:100%;height:100%;overflow:visible}
+
+/* Photo treatment for hero visual — editorial portrait */
+.hv-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;border-radius:3px;display:block;box-shadow:0 30px 80px rgba(20,18,16,.14),0 12px 28px rgba(20,18,16,.06);filter:contrast(1.02)}
+.hv-frame::after{content:'';position:absolute;top:18px;right:-22px;bottom:-22px;left:18px;background:var(--sand-l);border:1px solid var(--sand-bd);border-radius:3px;z-index:-1;pointer-events:none}
+.hv-caption{position:absolute;left:0;right:0;bottom:-72px;display:flex;flex-direction:column;gap:4px;animation:fadeUp .8s var(--ease) 1.2s both}
+.hv-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);letter-spacing:-.3px;line-height:1.2}
+.hv-role{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);font-weight:500}
 .hv-pulse{transform-origin:center;animation:nodePulse 2.6s ease-in-out infinite}
 .hv-pulse2{animation-delay:.4s}
 .hv-pulse3{animation-delay:.8s}
@@ -459,14 +467,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 /* ═══════════════════════════════════════════════════════════════
    WRITING
    ═══════════════════════════════════════════════════════════════ */
-.writing-empty{background:var(--paper);border:1px dashed var(--rule2);border-radius:var(--r);padding:64px 40px;text-align:center;margin-top:40px;position:relative;overflow:hidden}
-.writing-empty::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,var(--rule) 1px,transparent 1px);background-size:24px 24px;opacity:.4;pointer-events:none}
-.we-icon{width:52px;height:52px;border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-2);background:var(--white);margin:0 auto 20px;position:relative;z-index:1}
-.we-title{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:8px;position:relative;z-index:1;letter-spacing:-.3px}
-.we-title em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif}
-.we-desc{font-size:14px;color:var(--ink-2);max-width:440px;margin:0 auto;line-height:1.7;position:relative;z-index:1}
-.we-note{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-top:18px;display:inline-flex;align-items:center;gap:8px;position:relative;z-index:1}
-.we-note::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:liveDot 2s ease-in-out infinite}
+.writing-card{display:grid;grid-template-columns:240px 1fr;gap:48px;padding:32px;background:linear-gradient(135deg,#fff 0%,var(--paper) 100%);border:1px solid var(--rule);border-radius:var(--r);text-decoration:none;color:inherit;transition:border-color .25s,transform .25s var(--ease),box-shadow .25s;position:relative;overflow:hidden;margin-top:40px}
+.writing-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue)}
+.writing-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 12px 36px rgba(26,78,216,.08)}
+.wc-meta{padding-top:4px;display:flex;flex-direction:column;gap:12px}
+.wc-cat{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);padding:5px 10px;border-radius:2px;width:fit-content;font-weight:500}
+.wc-date{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);font-weight:400}
+.wc-content{display:flex;flex-direction:column;gap:14px}
+.wc-title{font-family:'Fraunces',serif;font-size:clamp(28px,3.4vw,42px);font-weight:300;line-height:1.05;letter-spacing:-.6px;color:var(--ink);margin-bottom:4px}
+.wc-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+.wc-subtitle{font-family:'Fraunces',serif;font-size:17px;font-weight:300;color:var(--ink-2);line-height:1.45;letter-spacing:-.2px;max-width:660px}
+.wc-subtitle em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+.wc-excerpt{font-size:14.5px;color:var(--ink-2);line-height:1.78;max-width:660px;margin-top:6px}
+.wc-excerpt strong{color:var(--ink);font-weight:500}
+.wc-cta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-top:18px;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}
+.writing-card:hover .wc-cta{gap:14px}
+.writing-more{margin-top:24px;text-align:right}
+.wm-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-2);text-decoration:none;font-weight:500;padding:10px 16px;border:1px solid var(--rule2);border-radius:var(--r);display:inline-block;transition:all .15s}
+.wm-link:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+@media(max-width:800px){.writing-card{grid-template-columns:1fr;gap:18px;padding:24px}}
 
 /* ═══════════════════════════════════════════════════════════════
    CTA STRIP — branded blue
@@ -520,6 +539,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 @media(max-width:1100px){
   .hero{grid-template-columns:1fr;gap:48px;padding:120px 48px 64px}
   .hv-frame{max-width:380px;margin:0 auto}
+  .hero-visual{margin-bottom:72px}
   .work-card,.work-card.feat{grid-template-columns:1fr}
   .wc-visual{border-left:none;border-top:1px solid var(--rule);min-height:220px}
   .proc-grid{grid-template-columns:repeat(3,1fr)}
@@ -554,6 +574,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   .tl-rail{left:20px;right:20px}
 }
 @media(max-width:700px){
+  .hv-frame::after{display:none}
   .ai-grid{grid-template-columns:1fr}
   .impact-grid{grid-template-columns:1fr}
   .imp-cell{padding:24px 20px}
@@ -592,7 +613,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
   </a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
-    <li><a href="#process">Process</a></li>
+    <li><a href="articles.html">Writing</a></li>
     <li><a href="#timeline">Trajectory</a></li>
     <li><a href="#ai">AI Practice</a></li>
     <li><a href="#about">About</a></li>
@@ -613,7 +634,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
   <a href="#work">Work</a>
-  <a href="#process">Process</a>
+  <a href="articles.html">Writing</a>
   <a href="#timeline">Trajectory</a>
   <a href="#ai">AI Practice</a>
   <a href="#about">About</a>
@@ -637,11 +658,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
       <span class="available"><span class="dot-live"></span>Open to consulting roles</span>
     </p>
     <h1 id="hero-heading">
-      <span class="h-line"><span>Design-led</span></span>
+      <span class="h-line"><span>Inside India's</span></span>
+      <span class="h-line indent"><span>largest banking</span></span>
       <span class="h-line indent"><span><em>transformation.</em></span></span>
     </h1>
     <p class="h-sub">
-      Design strategist working inside enterprise transformation programmes. Three years deep into a <strong>McKinsey-led digital transformation of SBI YONO 2.0</strong> — leading the insurance vertical at TCS Interactive across mobile, web, branch, and field-tablet channels for India's largest banking platform.<br><br>
+      <strong>Design strategist</strong> at TCS Interactive on the McKinsey-led transformation of <strong>SBI YONO 2.0</strong>. Leading the insurance vertical end-to-end across four channels — mobile, web, branch, and field tablets.<br><br>
       <strong>M.Des, IIT Delhi</strong> · CEED Qualified · <span class="accent">Early ChatGPT adopter</span> since Dec 2022, AI-augmented across research, synthesis, and ideation.
     </p>
     <div class="h-stats" role="list">
@@ -668,103 +690,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
     </div>
   </div>
 
-  <!-- Hero visual: multi-channel system diagram -->
-  <div class="hero-visual" aria-hidden="true">
+  <!-- Hero visual: editorial portrait + recruiter-relevant context chips -->
+  <div class="hero-visual" aria-hidden="false">
     <div class="hv-frame" id="heroVisual">
-      <!-- Floating annotation chips -->
-      <div class="hv-chip c1">Multi-channel</div>
-      <div class="hv-chip c2">Design System</div>
-      <div class="hv-chip c3">Branch Portal</div>
-      <div class="hv-chip c4">Field Tablet</div>
+      <!-- Editorial annotation chips — recruiter context, not design jargon -->
+      <div class="hv-chip c1">Mumbai · India</div>
+      <div class="hv-chip c2">M.Des · IIT Delhi</div>
+      <div class="hv-chip c3">TCS × SBI</div>
+      <div class="hv-chip c4">Available 2026</div>
 
-      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System diagram showing multi-channel design converging on a unified design system">
-        <!-- Faint grid -->
-        <defs>
-          <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-            <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(20,18,16,.06)" stroke-width="1"/>
-          </pattern>
-          <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#1a4ed8" stop-opacity=".95"/>
-            <stop offset="100%" stop-color="#1640b8" stop-opacity="1"/>
-          </radialGradient>
-          <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#fff"/>
-            <stop offset="100%" stop-color="#fafaf8"/>
-          </linearGradient>
-        </defs>
-        <rect width="480" height="480" fill="url(#grid)" opacity=".5"/>
+      <img src="assets/profile/mohit-hero.jpg" alt="Mohit Ahirwar — Design Strategist" class="hv-photo">
 
-        <!-- Connecting lines (drawn on load) -->
-        <g stroke="#c7d4f8" stroke-width="1.2" fill="none">
-          <line class="hv-line" x1="240" y1="240" x2="118" y2="118"/>
-          <line class="hv-line l2" x1="240" y1="240" x2="362" y2="118"/>
-          <line class="hv-line l3" x1="240" y1="240" x2="118" y2="362"/>
-          <line class="hv-line l4" x1="240" y1="240" x2="362" y2="362"/>
-        </g>
-
-        <!-- Decorative orbit ring -->
-        <circle cx="240" cy="240" r="140" fill="none" stroke="#e4e2dc" stroke-width="1" stroke-dasharray="2 4" opacity=".7"/>
-        <circle cx="240" cy="240" r="180" fill="none" stroke="#e4e2dc" stroke-width="1" stroke-dasharray="1 6" opacity=".5"/>
-
-        <!-- TOP-LEFT: Mobile App -->
-        <g class="hv-pulse">
-          <rect x="78" y="68" width="80" height="100" rx="6" fill="url(#cardGrad)" stroke="#d0cec7" stroke-width="1"/>
-          <rect x="86" y="76" width="64" height="6" rx="2" fill="#1a4ed8" opacity=".4"/>
-          <rect x="86" y="88" width="44" height="4" rx="1" fill="#9b9890"/>
-          <rect x="86" y="98" width="56" height="20" rx="2" fill="#eef2fd" stroke="#c7d4f8" stroke-width=".5"/>
-          <rect x="86" y="124" width="64" height="4" rx="1" fill="#e4e2dc"/>
-          <rect x="86" y="132" width="48" height="4" rx="1" fill="#e4e2dc"/>
-          <rect x="86" y="148" width="64" height="14" rx="2" fill="#1a4ed8"/>
-          <text x="118" y="180" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#6b6860" text-transform="uppercase">YONO APP</text>
-        </g>
-
-        <!-- TOP-RIGHT: Web Portal -->
-        <g class="hv-pulse hv-pulse2">
-          <rect x="312" y="76" width="100" height="76" rx="4" fill="url(#cardGrad)" stroke="#d0cec7" stroke-width="1"/>
-          <rect x="312" y="76" width="100" height="12" rx="4" fill="#f3f2ef"/>
-          <circle cx="320" cy="82" r="2" fill="#d0cec7"/>
-          <circle cx="328" cy="82" r="2" fill="#d0cec7"/>
-          <circle cx="336" cy="82" r="2" fill="#d0cec7"/>
-          <rect x="320" y="96" width="36" height="48" rx="2" fill="#eef2fd"/>
-          <rect x="364" y="96" width="40" height="22" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <rect x="364" y="124" width="40" height="20" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <text x="362" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#6b6860" text-transform="uppercase">WEB PORTAL</text>
-        </g>
-
-        <!-- BOTTOM-LEFT: Branch Portal (desktop) -->
-        <g class="hv-pulse hv-pulse3">
-          <rect x="68" y="320" width="100" height="62" rx="4" fill="url(#cardGrad)" stroke="#d0cec7" stroke-width="1"/>
-          <rect x="68" y="320" width="100" height="10" rx="4" fill="#f3f2ef"/>
-          <rect x="74" y="338" width="20" height="38" rx="2" fill="#f5efe4"/>
-          <rect x="100" y="338" width="62" height="14" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <rect x="100" y="358" width="62" height="18" rx="2" fill="#eef2fd"/>
-          <text x="118" y="396" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#6b6860" text-transform="uppercase">BRANCH</text>
-        </g>
-
-        <!-- BOTTOM-RIGHT: Field Tablet -->
-        <g class="hv-pulse hv-pulse4">
-          <rect x="316" y="316" width="92" height="68" rx="6" fill="url(#cardGrad)" stroke="#d0cec7" stroke-width="1"/>
-          <rect x="324" y="324" width="76" height="10" rx="2" fill="#1a4ed8" opacity=".5"/>
-          <rect x="324" y="340" width="36" height="36" rx="2" fill="#ecf0eb"/>
-          <rect x="366" y="340" width="34" height="16" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <rect x="366" y="360" width="34" height="16" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <text x="362" y="398" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#6b6860" text-transform="uppercase">TABLET</text>
-        </g>
-
-        <!-- CENTER: Design System Hub -->
-        <g>
-          <circle cx="240" cy="240" r="58" fill="#fff" stroke="#1a4ed8" stroke-width="1.5"/>
-          <circle cx="240" cy="240" r="48" fill="url(#centerGrad)"/>
-          <text x="240" y="232" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#fff">design</text>
-          <text x="240" y="252" text-anchor="middle" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#fff">system</text>
-          <text x="240" y="272" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.5" fill="#cdd9f8">ONE SOURCE</text>
-        </g>
-
-        <!-- Floating decorative orbs -->
-        <circle class="hv-orb" cx="430" cy="240" r="3" fill="#1a4ed8" opacity=".4"/>
-        <circle class="hv-orb o2" cx="50" cy="240" r="3" fill="#8a7558" opacity=".4"/>
-        <circle class="hv-orb o3" cx="240" cy="48" r="3" fill="#5a7763" opacity=".4"/>
-      </svg>
+      <div class="hv-caption">
+        <span class="hv-name">Mohit Ahirwar</span>
+        <span class="hv-role">Design Strategist · Digital Transformation</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1108,147 +1048,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
       </div>
     </a>
 
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     5. PROCESS — 10-step Garage methodology
-     ═══════════════════════════════════════════════ -->
-<section class="process-wrap" id="process" aria-labelledby="process-heading">
-  <div class="process-inner">
-    <div class="proc-head reveal">
-      <div class="sec-tag">Process &amp; Methodology</div>
-      <h2 id="process-heading">The 10-step <em>Garage</em><br>methodology, in practice.</h2>
-      <p>Every YONO 2.0 journey moves through this structured pipeline — coordinating across <strong>11 internal SBI stakeholder teams</strong> while maintaining design coherence. It's how 110+ journeys stay consistent at this scale.</p>
-    </div>
-
-    <!-- Visual flow diagram -->
-    <div class="proc-flow reveal d1">
-      <svg class="proc-flow-svg" viewBox="0 0 1200 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#8a7558" stop-opacity=".25"/>
-            <stop offset="50%" stop-color="#1a4ed8" stop-opacity=".5"/>
-            <stop offset="100%" stop-color="#5a7763" stop-opacity=".25"/>
-          </linearGradient>
-        </defs>
-        <!-- Connecting wave -->
-        <path d="M40 80 Q 200 30, 360 80 T 680 80 T 1000 80 T 1160 80" fill="none" stroke="url(#flowGrad)" stroke-width="2.5"/>
-        <!-- Step nodes -->
-        <g font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1" fill="#5e4f3a">
-          <circle cx="60" cy="80" r="14" fill="#fff" stroke="#8a7558" stroke-width="1.5"/>
-          <text x="60" y="83" text-anchor="middle">01</text>
-          <text x="60" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">DISCOVER</text>
-
-          <circle cx="180" cy="80" r="14" fill="#fff" stroke="#8a7558" stroke-width="1.5"/>
-          <text x="180" y="83" text-anchor="middle">02</text>
-          <text x="180" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">RESEARCH</text>
-
-          <circle cx="300" cy="80" r="14" fill="#fff" stroke="#8a7558" stroke-width="1.5"/>
-          <text x="300" y="83" text-anchor="middle">03</text>
-          <text x="300" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">SYNTHESIZE</text>
-
-          <circle cx="420" cy="80" r="14" fill="#fff" stroke="#8a7558" stroke-width="1.5"/>
-          <text x="420" y="83" text-anchor="middle">04</text>
-          <text x="420" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">DEFINE</text>
-
-          <circle cx="540" cy="80" r="14" fill="#eef2fd" stroke="#1a4ed8" stroke-width="1.5"/>
-          <text x="540" y="83" text-anchor="middle" fill="#1a4ed8">05</text>
-          <text x="540" y="115" text-anchor="middle" fill="#1a4ed8" font-size="8">IDEATE</text>
-
-          <circle cx="660" cy="80" r="14" fill="#eef2fd" stroke="#1a4ed8" stroke-width="1.5"/>
-          <text x="660" y="83" text-anchor="middle" fill="#1a4ed8">06</text>
-          <text x="660" y="115" text-anchor="middle" fill="#1a4ed8" font-size="8">PROTOTYPE</text>
-
-          <circle cx="780" cy="80" r="14" fill="#fff" stroke="#5a7763" stroke-width="1.5"/>
-          <text x="780" y="83" text-anchor="middle" fill="#3e5645">07</text>
-          <text x="780" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">TEST</text>
-
-          <circle cx="900" cy="80" r="14" fill="#fff" stroke="#5a7763" stroke-width="1.5"/>
-          <text x="900" y="83" text-anchor="middle" fill="#3e5645">08</text>
-          <text x="900" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">REFINE</text>
-
-          <circle cx="1020" cy="80" r="14" fill="#fff" stroke="#5a7763" stroke-width="1.5"/>
-          <text x="1020" y="83" text-anchor="middle" fill="#3e5645">09</text>
-          <text x="1020" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">HANDOFF</text>
-
-          <circle cx="1140" cy="80" r="14" fill="#fff" stroke="#5a7763" stroke-width="1.5"/>
-          <text x="1140" y="83" text-anchor="middle" fill="#3e5645">10</text>
-          <text x="1140" y="115" text-anchor="middle" fill="#2e2c28" font-size="8">AUDIT</text>
-
-          <!-- Phase labels -->
-          <text x="60" y="46" text-anchor="middle" fill="#9b9890" font-size="8" letter-spacing="2">UNDERSTAND</text>
-          <text x="540" y="46" text-anchor="middle" fill="#1a4ed8" font-size="8" letter-spacing="2">CREATE</text>
-          <text x="1020" y="46" text-anchor="middle" fill="#5a7763" font-size="8" letter-spacing="2">DELIVER</text>
-
-          <!-- Phase brackets -->
-          <line x1="40" y1="32" x2="80" y2="32" stroke="#d6cec1" stroke-width="1"/>
-          <line x1="520" y1="32" x2="680" y2="32" stroke="#c7d4f8" stroke-width="1"/>
-          <line x1="760" y1="32" x2="1160" y2="32" stroke="#d6dcd2" stroke-width="1"/>
-        </g>
-      </svg>
-    </div>
-
-    <!-- Step grid -->
-    <div class="proc-grid reveal d2">
-      <div class="proc-step">
-        <div class="proc-step-num">01 · Discover</div>
-        <h4>Stakeholder mapping</h4>
-        <p>Surface who owns what across SBI's 11 internal teams.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">02 · Research</div>
-        <h4>User &amp; market</h4>
-        <p>Customer interviews + competitive benchmarking.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">03 · Synthesize</div>
-        <h4>Pattern extraction</h4>
-        <p>Cluster insights into actionable opportunity areas.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">04 · Define</div>
-        <h4>Problem framing</h4>
-        <p>Lock the brief with stakeholders before designing.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">05 · Ideate</div>
-        <h4>Concept generation</h4>
-        <p>Multi-channel concept exploration with the team.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">06 · Prototype</div>
-        <h4>High-fidelity</h4>
-        <p>Detailed flows in Figma — design system aligned.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">07 · Test</div>
-        <h4>Usability validation</h4>
-        <p>Internal walkthroughs + user testing rounds.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">08 · Refine</div>
-        <h4>Iteration</h4>
-        <p>Cycle through revisions with stakeholder sign-off.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">09 · Handoff</div>
-        <h4>Engineering spec</h4>
-        <p>Detailed dev documentation + edge case mapping.</p>
-      </div>
-      <div class="proc-step">
-        <div class="proc-step-num">10 · Audit</div>
-        <h4>Consistency check</h4>
-        <p>Cross-journey audit — pattern adoption verified.</p>
-      </div>
-    </div>
-
-    <div class="proc-meta reveal d3">
-      <div class="proc-meta-item"><span class="num">8–10</span> month iteration cycles</div>
-      <div class="proc-meta-item"><span class="num">11</span> SBI stakeholder teams</div>
-      <div class="proc-meta-item"><span class="num">42</span> Phase-2 journeys audited solo</div>
-      <div class="proc-meta-item"><span class="num">110+</span> journeys following adopted patterns</div>
-    </div>
   </div>
 </section>
 
@@ -1601,13 +1400,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
       <p class="intro reveal d2">Notes on product design, enterprise UX, systems thinking, and working inside complexity.</p>
     </div>
   </div>
-  <div class="writing-empty reveal d3">
-    <div class="we-icon" aria-hidden="true">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+  <a href="article-beyond-the-prompt.html" class="writing-card reveal d3">
+    <div class="wc-meta">
+      <span class="wc-cat">Featured · Strategic Design</span>
+      <span class="wc-date">May 2026 · 8 min read</span>
     </div>
-    <p class="we-title">Articles <em>coming soon</em></p>
-    <p class="we-desc">Writing on product design, BFSI UX, enterprise systems, design at scale, and the discipline of working inside multi-stakeholder complexity.</p>
-    <p class="we-note">First article in progress</p>
+    <div class="wc-content">
+      <h3 class="wc-title">Beyond the <em>Prompt.</em></h3>
+      <p class="wc-subtitle">What this week's <em>$5.5B AI consulting bet</em> quietly admits — and why it's a design problem, not an engineering one.</p>
+      <p class="wc-excerpt">OpenAI raised $4 billion. Anthropic announced a $1.5 billion joint venture. Both have the same goal: embed humans inside client companies to help them actually use AI. <strong>That is not a story about AI labs entering consulting. It is a story about an interface that has failed.</strong></p>
+      <span class="wc-cta">Read full article →</span>
+    </div>
+  </a>
+  <div class="writing-more">
+    <a href="articles.html" class="wm-link">View all writing →</a>
   </div>
 </section>
 
@@ -1644,7 +1450,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
     <nav class="foot-nav" aria-label="Footer navigation">
       <a href="#work">Work</a>
       <span class="foot-sep" aria-hidden="true">·</span>
-      <a href="#process">Process</a>
+      <a href="articles.html">Writing</a>
       <span class="foot-sep" aria-hidden="true">·</span>
       <a href="#about">About</a>
       <span class="foot-sep" aria-hidden="true">·</span>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Mohit Ahirwar</title>
+<meta name="description" content="Notes on design strategy, AI interfaces, and the work of digital transformation. By Mohit Ahirwar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahirwarmohit.github.io/articles.html">
+<meta property="og:title" content="Writing — Mohit Ahirwar">
+<meta property="og:description" content="Notes on design strategy, AI interfaces, and the work of digital transformation.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#fff;--paper:#fafaf8;--bone:#f3f2ef;--rule:#e4e2dc;--rule2:#d0cec7;
+  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
+  --blue:#1a4ed8;--blue-d:#1640b8;--blue-l:#6092f8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;
+  --sand:#f5efe4;--sand-l:#fbf6ec;--sand-bd:#e6dcc7;--sand-ink:#8a7558;--sand-ink-d:#5e4f3a;
+  --sage:#ecf0eb;--sage-l:#f5f7f4;--sage-bd:#d6dcd2;--sage-ink:#5a7763;--sage-ink-d:#3e5645;
+  --r:3px;--ease:cubic-bezier(0.16,1,0.3,1);--max:1200px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;cursor:none;animation:pageFadeIn .5s var(--ease) both;overflow-x:hidden}
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
+::selection{background:var(--blue);color:#fff}
+#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease);will-change:transform;mix-blend-mode:multiply}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue)}
+@media(hover:none){#cur{display:none}body{cursor:auto}}
+@media(prefers-reduced-motion:reduce){#cur{display:none}body{cursor:auto}*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--blue),var(--blue-l));z-index:200;width:0%;transition:width .08s linear}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--rule);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;animation:navIn .6s var(--ease) .1s both}
+@keyframes navIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-mark{width:28px;height:28px;border:1px solid var(--ink);border-radius:var(--r);display:flex;align-items:center;justify-content:center;background:#fff;position:relative;transition:transform .3s var(--ease)}
+.nav-mark::after{content:'';position:absolute;inset:3px;border:1px solid var(--blue);border-radius:1px;opacity:0;transition:opacity .3s}
+.nav-id:hover .nav-mark{transform:rotate(-8deg)}
+.nav-id:hover .nav-mark::after{opacity:1}
+.nav-mark span{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:var(--ink);font-style:italic;line-height:1}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .25s var(--ease);transform-origin:left}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-ctas{display:flex;gap:10px;align-items:center}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:8px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2)}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+.nbtn.s{background:var(--blue);color:#fff;border:1px solid var(--blue)}
+.nbtn.s:hover{background:var(--blue-d)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all}
+.mobile-menu a{font-size:18px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block}
+.mobile-menu a:last-of-type{border-bottom:none}
+.mm-foot{margin-top:32px;display:flex;gap:10px}
+
+.shell{max-width:var(--max);margin:0 auto;padding:0 48px}
+.hero{padding:120px 0 56px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,.06) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 25%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 25%,transparent 100%)}
+.hero > *{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:32px;flex-wrap:wrap;animation:fadeUp .6s var(--ease) .15s both}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--blue)}
+.eb-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:500}
+.eb-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.eb-sep{color:var(--rule2);padding:0 4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:.96;letter-spacing:-3px;color:var(--ink);margin-bottom:32px;max-width:1100px}
+.h-line{display:block;overflow:hidden}
+.h-line span{display:block;animation:lineUp .9s var(--ease) both}
+.h-line:nth-child(1) span{animation-delay:.25s}
+.h-line:nth-child(2) span{animation-delay:.4s}
+.h-line em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
+@keyframes lineUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+
+.hero-intro{font-family:'Fraunces',serif;font-size:clamp(18px,2.2vw,24px);font-weight:300;color:var(--ink-2);line-height:1.5;letter-spacing:-.3px;max-width:780px;margin-bottom:32px;animation:fadeUp .8s var(--ease) .55s both}
+.hero-intro em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+.hero-intro strong{color:var(--ink);font-weight:500}
+
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;animation:fadeUp .8s var(--ease) .75s both}
+.hm-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:8px 14px;border-radius:2px;font-weight:500}
+.hm-pill em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400;text-transform:none;letter-spacing:0}
+
+.articles-list{padding:80px 0 96px;display:flex;flex-direction:column;gap:24px}
+.article-card{display:grid;grid-template-columns:200px 1fr;gap:48px;padding:32px;background:#fff;border:1px solid var(--rule);border-radius:var(--r);text-decoration:none;color:inherit;transition:border-color .25s,transform .25s var(--ease),box-shadow .25s;position:relative;overflow:hidden}
+.article-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 12px 36px rgba(26,78,216,.08)}
+.article-card.feat{grid-template-columns:240px 1fr;background:linear-gradient(135deg,#fff 0%,var(--paper) 100%)}
+.article-card.feat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue)}
+.ac-meta{padding-top:4px;display:flex;flex-direction:column;gap:14px}
+.ac-cat{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;display:flex;align-items:center;gap:10px}
+.ac-cat::before{content:'';width:14px;height:1px;background:var(--blue)}
+.ac-cat.feat-tag{color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);padding:5px 10px;border-radius:2px;width:fit-content}
+.ac-cat.feat-tag::before{display:none}
+.ac-date{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);font-weight:400}
+.ac-readtime{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);font-weight:400;display:flex;align-items:center;gap:6px}
+.ac-readtime::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--rule2)}
+.ac-content{display:flex;flex-direction:column;gap:14px}
+.ac-title{font-family:'Fraunces',serif;font-size:clamp(28px,3.4vw,42px);font-weight:300;line-height:1.05;letter-spacing:-.6px;color:var(--ink);margin-bottom:4px}
+.ac-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+.ac-subtitle{font-family:'Fraunces',serif;font-size:17px;font-weight:300;color:var(--ink-2);line-height:1.45;letter-spacing:-.2px;max-width:660px}
+.ac-subtitle em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+.ac-excerpt{font-size:14.5px;color:var(--ink-2);line-height:1.78;max-width:660px;margin-top:6px}
+.ac-excerpt strong{color:var(--ink);font-weight:500}
+.ac-cta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-top:18px;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}
+.article-card:hover .ac-cta{gap:14px}
+
+.coming-block{background:var(--sand-l);border:1px dashed var(--sand-bd);padding:32px;border-radius:var(--r);margin-top:24px;text-align:center}
+.cb-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sand-ink-d);font-weight:500;margin-bottom:10px}
+.cb-text{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-1);font-style:italic;line-height:1.4;letter-spacing:-.2px}
+.cb-text em{color:var(--blue);font-family:'Instrument Serif',serif}
+
+.cta{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);position:relative;overflow:hidden;margin-top:0}
+.cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%)}
+.cta::after{content:'';position:absolute;top:-30%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
+.cta-in{max-width:var(--max);margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;z-index:1}
+.cta-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:18px;display:flex;align-items:center;gap:14px;font-weight:500}
+.cta-tag::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.5)}
+.cta h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-.6px}
+.cta h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:#cdd9f8;font-weight:400}
+.cta p{font-size:14px;color:rgba(255,255,255,.78);max-width:560px;line-height:1.78}
+.cta p strong{color:#fff;font-weight:500}
+.cta-acts{display:flex;flex-direction:column;gap:10px;flex-shrink:0;min-width:240px}
+.cta-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:13px 22px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:none;white-space:nowrap}
+.cta-btn.p{background:#fff;color:var(--blue);border:1px solid #fff}
+.cta-btn.p:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.cta-btn.o{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.22)}
+.cta-btn.o:hover{border-color:rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.05)}
+
+footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-left{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);display:flex;align-items:center;gap:10px}
+.foot-left em{font-style:italic;color:var(--ink);font-family:'Instrument Serif',serif}
+.foot-left .copy{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;padding-left:14px;border-left:1px solid var(--rule);margin-left:6px}
+.foot-links{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.foot-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;padding:4px 8px}
+.foot-links a:hover{color:var(--blue)}
+.foot-sep{color:var(--rule2);padding:0 2px}
+
+.reveal{opacity:0;transform:translateY(28px);filter:blur(2px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0)}
+
+#btt{position:fixed;bottom:32px;right:32px;width:46px;height:46px;background:#fff;border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .15s,background .15s,box-shadow .2s;box-shadow:0 4px 22px rgba(0,0,0,.08);color:var(--ink-2)}
+#btt.vis{opacity:1;transform:translateY(0)}
+#btt:hover{border-color:var(--blue);background:var(--blue-bg);color:var(--blue)}
+
+@media(max-width:1000px){nav{padding:0 20px}.nav-links,.nav-ctas{display:none}.hamburger{display:flex}.mobile-menu{display:flex}.shell{padding:0 20px}.hero{padding:96px 0 48px}.article-card,.article-card.feat{grid-template-columns:1fr;gap:18px;padding:24px}.cta-in{grid-template-columns:1fr;padding:56px 20px}.cta-acts{min-width:0}footer{padding:24px 20px}#btt{bottom:20px;right:20px}}
+</style>
+</head>
+<body>
+<div id="cur" aria-hidden="true"></div>
+<div id="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Home — Mohit Ahirwar">
+    <div class="nav-mark" aria-hidden="true"><span>M</span></div>
+    <span class="nav-name">Ahirwar</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="articles.html" class="active">Writing</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Get in touch</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#work">Work</a>
+  <a href="articles.html">Writing</a>
+  <a href="index.html#about">About</a>
+  <a href="cv.html">CV</a>
+  <div class="mm-foot">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o" style="font-size:10px;">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s" style="font-size:10px;">Email</a>
+  </div>
+</div>
+
+<main>
+<div class="shell">
+
+<header class="hero">
+  <div class="eyebrow">
+    <span class="eb-tag">Writing</span>
+    <span class="eb-sep">·</span>
+    <span class="eb-meta">Updated May 2026</span>
+  </div>
+  <h1>
+    <span class="h-line"><span>Notes on design strategy</span></span>
+    <span class="h-line"><span>and the <em>AI interface.</em></span></span>
+  </h1>
+  <p class="hero-intro">Working notes from the inside of a McKinsey-led digital transformation — on <em>where AI capability outruns the design vocabulary that should govern it</em>, what consulting firms are quietly admitting about adoption, and the strategic moves designers can make right now.</p>
+  <div class="hero-meta">
+    <span class="hm-pill">1 article published</span>
+    <span class="hm-pill">More <em>in development</em></span>
+    <span class="hm-pill">RSS coming soon</span>
+  </div>
+</header>
+
+<section class="articles-list" aria-label="Articles">
+
+  <a href="article-beyond-the-prompt.html" class="article-card feat reveal">
+    <div class="ac-meta">
+      <span class="ac-cat feat-tag">Featured · Strategic Design</span>
+      <span class="ac-date">May 2026</span>
+      <span class="ac-readtime">8 min read</span>
+    </div>
+    <div class="ac-content">
+      <h2 class="ac-title">Beyond the <em>Prompt.</em></h2>
+      <p class="ac-subtitle">What this week's <em>$5.5B AI consulting bet</em> quietly admits — and why it's a design problem, not an engineering one.</p>
+      <p class="ac-excerpt">OpenAI raised $4 billion for The Development Company. Anthropic announced a $1.5 billion joint venture. Both ventures share a single objective: <strong>embed engineers and consultants directly inside client companies to help them actually use AI.</strong> The substance beneath the press releases is uncomfortable. The most capable AI labs on the planet have looked at their own technology and concluded it cannot be deployed at scale without putting humans in the room.</p>
+      <span class="ac-cta">Read full article →</span>
+    </div>
+  </a>
+
+  <div class="coming-block reveal">
+    <div class="cb-tag">In development</div>
+    <p class="cb-text">More essays on <em>strategic design</em>, AI interfaces,<br>and the work of digital transformation.</p>
+  </div>
+
+</section>
+
+</div>
+</main>
+
+<div class="cta">
+  <div class="cta-in reveal">
+    <div>
+      <div class="cta-tag">Writing about the work I want to do</div>
+      <h2>If this is the conversation<br>you want to <em>have.</em></h2>
+      <p>Targeting <strong>design-led digital transformation roles</strong> at <strong>Accenture Song</strong>, <strong>Deloitte Digital</strong>, and <strong>Publicis Sapient</strong>. Also exploring UX strategy and digital transformation consultant roles in <strong>Dubai</strong>. Get in touch.</p>
+    </div>
+    <div class="cta-acts">
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="cta-btn p">Connect on LinkedIn</a>
+      <a href="mailto:mohitahirwar7@gmail.com" class="cta-btn o">mohitahirwar7@gmail.com</a>
+      <a href="cv.html" class="cta-btn o">View Full CV →</a>
+      <a href="index.html" class="cta-btn o">← Other Work</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-left">Writing — <em>Mohit Ahirwar</em><span class="copy">© 2026 · All rights reserved</span></div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <span class="foot-sep">·</span>
+    <a href="cv.html">CV</a>
+    <span class="foot-sep">·</span>
+    <a href="yono-case-study.html">YONO 2.0</a>
+    <span class="foot-sep">·</span>
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <span class="foot-sep">·</span>
+    <a href="mailto:mohitahirwar7@gmail.com">Email</a>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,9 7,4 12,9"/></svg>
+</button>
+
+<script>
+(function(){
+  const cur=document.getElementById('cur');
+  if(!cur||!window.matchMedia('(hover:hover)').matches||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  let cx=window.innerWidth/2,cy=window.innerHeight/2,tx=cx,ty=cy;
+  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover-state'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover-state'));
+  });
+})();
+const prog=document.getElementById('prog');
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  prog.style.width=pct+'%';prog.setAttribute('aria-valuenow',Math.round(pct));
+  btt.classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  const open=hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open',open);
+  hamburger.setAttribute('aria-expanded',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  hamburger.classList.remove('open');mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');document.body.style.overflow='';
+}));
+document.querySelectorAll('a[href]').forEach(a=>{
+  const href=a.getAttribute('href');
+  if(href&&!href.startsWith('#')&&!href.startsWith('http')&&!href.startsWith('mailto')&&!href.startsWith('tel')&&href.endsWith('.html')){
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.body.style.transition='opacity .22s ease, transform .22s ease';
+      document.body.style.opacity='0';document.body.style.transform='translateY(-6px)';
+      setTimeout(()=>window.location.href=href,230);
+    });
+  }
+});
+</script>
+</body>
+</html>

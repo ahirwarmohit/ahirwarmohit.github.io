@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Prompt — Mohit Ahirwar</title>
+<meta name="description" content="What this week's $5.5B AI consulting bet quietly admits — and why it's a design problem, not an engineering one. By Mohit Ahirwar.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ahirwarmohit.github.io/article-beyond-the-prompt.html">
+<meta property="og:title" content="Beyond the Prompt — Mohit Ahirwar">
+<meta property="og:description" content="The most capable AI labs on the planet have looked at their own technology and concluded it cannot be deployed at scale without putting humans in the room. That is not a story about AI labs entering consulting. It is a story about an interface that has failed.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" href="assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#fff;--paper:#fafaf8;--bone:#f3f2ef;--rule:#e4e2dc;--rule2:#d0cec7;
+  --ink-3:#9b9890;--ink-2:#6b6860;--ink-1:#2e2c28;--ink:#141210;
+  --blue:#1a4ed8;--blue-d:#1640b8;--blue-l:#6092f8;--blue-bg:#eef2fd;--blue-bd:#c7d4f8;
+  --sand:#f5efe4;--sand-l:#fbf6ec;--sand-bd:#e6dcc7;--sand-ink:#8a7558;--sand-ink-d:#5e4f3a;
+  --sage:#ecf0eb;--sage-l:#f5f7f4;--sage-bd:#d6dcd2;--sage-ink:#5a7763;--sage-ink-d:#3e5645;
+  --r:3px;--ease:cubic-bezier(0.16,1,0.3,1);--max:1200px;--reading:680px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;cursor:none;animation:pageFadeIn .5s var(--ease) both;overflow-x:hidden}
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
+::selection{background:var(--blue);color:#fff}
+#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease);will-change:transform;mix-blend-mode:multiply}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue)}
+@media(hover:none){#cur{display:none}body{cursor:auto}}
+@media(prefers-reduced-motion:reduce){#cur{display:none}body{cursor:auto}*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--blue),var(--blue-l));z-index:200;width:0%;transition:width .08s linear}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--rule);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;animation:navIn .6s var(--ease) .1s both}
+@keyframes navIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-mark{width:28px;height:28px;border:1px solid var(--ink);border-radius:var(--r);display:flex;align-items:center;justify-content:center;background:#fff;position:relative;transition:transform .3s var(--ease)}
+.nav-mark::after{content:'';position:absolute;inset:3px;border:1px solid var(--blue);border-radius:1px;opacity:0;transition:opacity .3s}
+.nav-id:hover .nav-mark{transform:rotate(-8deg)}
+.nav-id:hover .nav-mark::after{opacity:1}
+.nav-mark span{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:var(--ink);font-style:italic;line-height:1}
+.nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .25s var(--ease);transform-origin:left}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-ctas{display:flex;gap:10px;align-items:center}
+.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:8px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2)}
+.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+.nbtn.s{background:var(--blue);color:#fff;border:1px solid var(--blue)}
+.nbtn.s:hover{background:var(--blue-d)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent}
+.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all}
+.mobile-menu a{font-size:18px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block}
+.mobile-menu a:last-of-type{border-bottom:none}
+.mm-foot{margin-top:32px;display:flex;gap:10px}
+
+/* ARTICLE LAYOUT */
+main{padding-top:0}
+.article-shell{max-width:var(--max);margin:0 auto;padding:0 48px}
+
+/* Article header */
+.article-header{padding:120px 0 56px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.article-header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,.06) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 25%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 25%,transparent 100%)}
+.article-header > *{position:relative;z-index:1}
+.back-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;transition:color .15s;font-weight:500}
+.back-link:hover{color:var(--blue)}
+.article-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap;animation:fadeUp .6s var(--ease) .15s both}
+.article-eyebrow::before{content:'';width:28px;height:1px;background:var(--blue)}
+.eyebrow-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:500}
+.eyebrow-sep{color:var(--rule2);padding:0 4px}
+.eyebrow-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.article-h1{font-family:'Fraunces',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:.96;letter-spacing:-3px;color:var(--ink);margin-bottom:24px;max-width:1100px}
+.h-line{display:block;overflow:hidden}
+.h-line span{display:block;animation:lineUp .9s var(--ease) both}
+.h-line:nth-child(1) span{animation-delay:.25s}
+.h-line:nth-child(2) span{animation-delay:.4s}
+.h-line em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
+@keyframes lineUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+
+.article-subtitle{font-family:'Fraunces',serif;font-size:clamp(20px,2.4vw,28px);font-weight:300;color:var(--ink-2);line-height:1.4;letter-spacing:-.4px;max-width:780px;margin-bottom:40px;animation:fadeUp .8s var(--ease) .55s both}
+.article-subtitle em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+
+.article-meta{display:grid;grid-template-columns:repeat(4,auto);gap:0;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;animation:fadeUp .8s var(--ease) .75s both;width:fit-content;max-width:100%}
+.meta-cell{padding:12px 18px;border-right:1px solid var(--rule);transition:background .2s}
+.meta-cell:last-child{border-right:none}
+.meta-cell:hover{background:#fff}
+.meta-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:4px}
+.meta-value{font-size:13px;font-weight:500;color:var(--ink-1);line-height:1.3;display:block}
+.meta-value em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+
+/* Article body */
+.article-body{max-width:var(--reading);margin:0 auto;padding:80px 0 96px}
+.article-body p{font-family:'IBM Plex Sans',sans-serif;font-size:17px;line-height:1.78;color:var(--ink-1);margin-bottom:24px;font-weight:400;letter-spacing:-.1px}
+.article-body p strong{color:var(--ink);font-weight:500}
+.article-body p em{font-style:italic;color:var(--ink-1);font-family:'IBM Plex Sans',sans-serif;font-weight:400}
+.article-body p .accent{font-family:'Fraunces',serif;font-style:italic;color:var(--blue);font-weight:400}
+.article-body .lead{font-family:'Fraunces',serif;font-size:22px;line-height:1.55;color:var(--ink);font-weight:300;letter-spacing:-.3px;margin-bottom:32px}
+.article-body .lead em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+.article-body h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,36px);font-weight:300;line-height:1.15;color:var(--ink);margin:64px 0 24px;letter-spacing:-.5px}
+.article-body h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+.article-body h2::before{content:'';display:block;width:36px;height:1px;background:var(--blue);margin-bottom:18px}
+.article-body sup{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);font-weight:500;padding:0 1px;vertical-align:super}
+.article-body sup a{color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+.article-body sup a:hover{border-bottom-color:var(--blue)}
+
+/* Pull quote — large editorial */
+.pull-quote{font-family:'Fraunces',serif;font-size:clamp(24px,3.2vw,38px);font-weight:300;line-height:1.3;letter-spacing:-.5px;color:var(--ink);padding:48px 0 48px 32px;margin:48px 0;border-left:3px solid var(--blue);position:relative}
+.pull-quote::before{content:'"';position:absolute;top:14px;left:14px;font-family:'Instrument Serif',serif;font-size:88px;color:var(--blue);line-height:.6;font-style:italic;opacity:.18}
+.pull-quote em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+
+/* Data callout — for hero statistics */
+.data-callout{background:var(--sand);border:1px solid var(--sand-bd);border-radius:var(--r);padding:32px 36px;margin:48px 0;position:relative;overflow:hidden}
+.data-callout::before{content:'';position:absolute;top:-30%;right:-8%;width:280px;height:280px;background:radial-gradient(circle,rgba(138,117,88,.1) 0%,transparent 60%);pointer-events:none}
+.dc-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sand-ink-d);font-weight:500;margin-bottom:24px;display:flex;align-items:center;gap:12px;position:relative}
+.dc-label::before{content:'';width:18px;height:1px;background:var(--sand-ink-d)}
+.dc-stat{margin-bottom:24px;position:relative}
+.dc-stat:last-child{margin-bottom:0}
+.dc-num{font-family:'Fraunces',serif;font-size:clamp(40px,5.5vw,64px);font-weight:300;color:var(--ink);line-height:1;letter-spacing:-2px;margin-bottom:8px;display:block}
+.dc-num sup{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--sand-ink-d);font-weight:500;letter-spacing:.5px;vertical-align:top;margin-left:2px}
+.dc-num em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--sand-ink-d);font-weight:400}
+.dc-claim{font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:var(--ink-1);line-height:1.6;margin-bottom:6px;font-weight:500}
+.dc-source{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);font-weight:400;text-transform:none}
+
+/* Inline diagram — visual interventions inside article body */
+.inline-diagram{margin:56px 0;padding:36px;background:#fff;border:1px solid var(--rule);border-radius:var(--r);max-width:780px;margin-left:auto;margin-right:auto}
+.id-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.id-label::before{content:'';width:18px;height:1px;background:var(--rule2)}
+.id-svg{width:100%;height:auto;display:block;overflow:visible}
+.id-caption{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.5px;color:var(--ink-3);line-height:1.6;margin-top:18px;font-weight:400;padding-top:14px;border-top:1px dashed var(--rule)}
+
+/* Article footer — references and author */
+.article-footer{max-width:var(--reading);margin:0 auto;padding:48px 0 96px;border-top:1px solid var(--rule)}
+.article-footer-section{margin-bottom:64px}
+.article-footer-section:last-child{margin-bottom:0}
+.afs-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.afs-label::before{content:'';width:18px;height:1px;background:var(--blue)}
+.references{list-style:none;counter-reset:ref}
+.references li{counter-increment:ref;padding:14px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:32px 1fr;gap:14px;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.references li::before{content:counter(ref,decimal-leading-zero);font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);font-weight:500;letter-spacing:1px}
+.references li strong{color:var(--ink);font-weight:500;display:inline}
+.references li a{color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+.references li a:hover{border-bottom-color:var(--blue)}
+
+.author-block{display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;background:var(--paper);border:1px solid var(--rule);padding:24px;border-radius:var(--r)}
+.author-photo{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--sand-l),var(--bone));border:1px solid var(--rule);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.author-photo img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.author-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-.2px}
+.author-bio{font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.author-bio strong{color:var(--ink);font-weight:500}
+.author-bio em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
+.author-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.author-link{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:#fff;border:1px solid var(--rule);padding:4px 10px;border-radius:2px;text-decoration:none;transition:all .15s}
+.author-link:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+
+/* Article navigation — prev/next */
+.article-nav{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:48px;padding-top:32px;border-top:1px solid var(--rule)}
+.article-nav a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-2);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-weight:500;padding:10px 14px;border:1px solid var(--rule);border-radius:var(--r);transition:all .15s}
+.article-nav a:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);position:relative;overflow:hidden;margin-top:0}
+.cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%)}
+.cta::after{content:'';position:absolute;top:-30%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
+.cta-in{max-width:var(--max);margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;z-index:1}
+.cta-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:18px;display:flex;align-items:center;gap:14px;font-weight:500}
+.cta-tag::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.5)}
+.cta h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-.6px}
+.cta h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:#cdd9f8;font-weight:400}
+.cta p{font-size:14px;color:rgba(255,255,255,.78);max-width:560px;line-height:1.78}
+.cta p strong{color:#fff;font-weight:500}
+.cta-acts{display:flex;flex-direction:column;gap:10px;flex-shrink:0;min-width:240px}
+.cta-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:13px 22px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:none;white-space:nowrap}
+.cta-btn.p{background:#fff;color:var(--blue);border:1px solid #fff}
+.cta-btn.p:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.cta-btn.o{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.22)}
+.cta-btn.o:hover{border-color:rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.05)}
+
+footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-left{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);display:flex;align-items:center;gap:10px}
+.foot-left em{font-style:italic;color:var(--ink);font-family:'Instrument Serif',serif}
+.foot-left .copy{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;padding-left:14px;border-left:1px solid var(--rule);margin-left:6px}
+.foot-links{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.foot-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;padding:4px 8px}
+.foot-links a:hover{color:var(--blue)}
+.foot-sep{color:var(--rule2);padding:0 2px}
+
+.reveal{opacity:0;transform:translateY(28px);filter:blur(2px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0)}
+
+#btt{position:fixed;bottom:32px;right:32px;width:46px;height:46px;background:#fff;border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .15s,background .15s,box-shadow .2s;box-shadow:0 4px 22px rgba(0,0,0,.08);color:var(--ink-2)}
+#btt.vis{opacity:1;transform:translateY(0)}
+#btt:hover{border-color:var(--blue);background:var(--blue-bg);color:var(--blue)}
+
+@media(max-width:1000px){nav{padding:0 20px}.nav-links,.nav-ctas{display:none}.hamburger{display:flex}.mobile-menu{display:flex}.article-shell{padding:0 20px}.article-header{padding:96px 0 48px}.article-body{padding:56px 0 64px}.article-meta{grid-template-columns:repeat(2,1fr);width:100%}.meta-cell{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}.meta-cell:nth-child(2n){border-right:none}.meta-cell:nth-last-child(-n+2){border-bottom:none}.cta-in{grid-template-columns:1fr;padding:56px 20px}.cta-acts{min-width:0}footer{padding:24px 20px}#btt{bottom:20px;right:20px}.author-block{grid-template-columns:1fr;gap:14px}.author-photo{width:64px;height:64px}}
+@media(max-width:600px){.article-meta{grid-template-columns:1fr}.meta-cell{border-right:none}.pull-quote{padding:36px 0 36px 22px}.inline-diagram{padding:20px;margin:36px 0}}
+</style>
+</head>
+<body>
+<div id="cur" aria-hidden="true"></div>
+<div id="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-id" aria-label="Home — Mohit Ahirwar">
+    <div class="nav-mark" aria-hidden="true"><span>M</span></div>
+    <span class="nav-name">Ahirwar</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="articles.html" class="active">Writing</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s">Get in touch</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#work">Work</a>
+  <a href="articles.html">Writing</a>
+  <a href="index.html#about">About</a>
+  <a href="cv.html">CV</a>
+  <div class="mm-foot">
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o" style="font-size:10px;">LinkedIn</a>
+    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s" style="font-size:10px;">Email</a>
+  </div>
+</div>
+
+<main>
+<div class="article-shell">
+
+<header class="article-header">
+  <a href="articles.html" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="6,3 2,8 6,13"/><line x1="2" y1="8" x2="14" y2="8"/></svg>
+    Back to Writing
+  </a>
+  <div class="article-eyebrow">
+    <span class="eyebrow-tag">Strategic Design · AI</span>
+    <span class="eyebrow-sep">·</span>
+    <span class="eyebrow-meta">Mohit Ahirwar · May 2026</span>
+  </div>
+  <h1 class="article-h1">
+    <span class="h-line"><span>Beyond the</span></span>
+    <span class="h-line"><span><em>Prompt.</em></span></span>
+  </h1>
+  <p class="article-subtitle">What this week's <em>$5.5B AI consulting bet</em> quietly admits — and why it's a design problem, not an engineering one.</p>
+  <div class="article-meta" role="list" aria-label="Article metadata">
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Author</span>
+      <span class="meta-value">Mohit Ahirwar</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Published</span>
+      <span class="meta-value">May 2026</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Read Time</span>
+      <span class="meta-value">8 min</span>
+    </div>
+    <div class="meta-cell" role="listitem">
+      <span class="meta-label">Category</span>
+      <span class="meta-value"><em>Strategy</em> · AI</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body">
+  <p class="lead reveal">Two of the most advanced AI laboratories in the world have, in the same week, made the same operational admission.</p>
+
+  <p class="reveal">OpenAI raised $4 billion for a new venture called The Development Company. Anthropic announced a $1.5 billion joint venture with Blackstone, Hellman &amp; Friedman, and Goldman Sachs.<sup><a href="#ref1">1</a></sup> Both ventures share a single objective: <strong>embed engineers and consultants directly inside client companies to help them actually use AI.</strong></p>
+
+  <p class="reveal">The substance beneath the press releases is uncomfortable for the field. The most capable AI labs on the planet have looked at their own technology and concluded that it cannot be deployed at scale without putting humans in the room.</p>
+
+  <div class="pull-quote reveal">
+    That is not a story about AI labs entering consulting.<br>It is a story about an <em>interface that has failed.</em>
+  </div>
+
+  <p class="reveal">What follows is what I think is actually happening — and why this moment matters for strategic designers, transformation consultants, and the executives funding the next wave of AI investment.</p>
+
+  <h2 class="reveal">What they built, and why they had to</h2>
+
+  <p class="reveal">Both ventures are explicit about the model. They are copying Palantir's <em>forward-deployed engineer</em> approach<sup><a href="#ref2">2</a></sup> — sending people into client companies to sit with staff, map workflows, identify where AI fits and where it does not, design oversight and trust mechanisms, and ultimately rebuild how work happens.</p>
+
+  <p class="reveal">The reason this approach is necessary sits in plain sight in the failure data.</p>
+
+  <div class="data-callout reveal">
+    <div class="dc-label">The failure data behind the $5.5B bet</div>
+    <div class="dc-stat">
+      <span class="dc-num">88<sup>%</sup></span>
+      <p class="dc-claim">of enterprise AI agent pilots never reach production.</p>
+      <p class="dc-source">Anaconda × Forrester research, replicated by a16z and the MIT Sloan CIO panel<sup><a href="#ref3">3</a></sup></p>
+    </div>
+    <div class="dc-stat">
+      <span class="dc-num">97<sup>%</sup> <em>vs.</em> 29<sup>%</sup></span>
+      <p class="dc-claim">of executives report personal AI productivity benefit. Only 29% report meaningful organizational ROI.</p>
+      <p class="dc-source">Writer's 2026 Enterprise AI Adoption Survey · n=1,200 executives + 1,200 employees<sup><a href="#ref4">4</a></sup></p>
+    </div>
+  </div>
+
+  <p class="reveal">Most pilots die before they ship. Of those that reach production, a meaningful share generate negative ROI. The failure mode is consistent across surveys, and it is almost never about model capability.</p>
+
+  <p class="reveal">The 97/29 split is the more revealing number. Individual productivity wins are everywhere; organizational transformation is rare. <strong>The gap between personal AI productivity and organizational AI value is the entire enterprise AI problem.</strong></p>
+
+  <p class="reveal">That gap is exactly what the OpenAI and Anthropic ventures are trying to close. Not by building better models. By putting humans in the room to bridge what the models alone cannot.</p>
+
+  <div class="inline-diagram reveal">
+    <div class="id-label">Figure 01 — The implementation gap</div>
+    <svg class="id-svg" viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" aria-label="Bar chart showing 97 percent personal AI benefit against 29 percent organizational ROI">
+      <defs>
+        <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1a4ed8"/>
+          <stop offset="100%" stop-color="#1640b8"/>
+        </linearGradient>
+        <linearGradient id="bar2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#8a7558"/>
+          <stop offset="100%" stop-color="#5e4f3a"/>
+        </linearGradient>
+      </defs>
+      <line x1="40" y1="220" x2="680" y2="220" stroke="#d0cec7" stroke-width="1"/>
+      <line x1="40" y1="40" x2="680" y2="40" stroke="#e4e2dc" stroke-width="1" stroke-dasharray="2 4"/>
+      <text x="38" y="44" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9b9890">100%</text>
+      <text x="38" y="224" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9b9890">0%</text>
+      <rect x="160" y="46" width="120" height="174" rx="2" fill="url(#bar1)"/>
+      <text x="220" y="36" text-anchor="middle" font-family="Fraunces, serif" font-size="32" font-weight="300" fill="#141210" letter-spacing="-1">97<tspan font-family="IBM Plex Mono, monospace" font-size="14" fill="#1a4ed8" baseline-shift="super">%</tspan></text>
+      <text x="220" y="244" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="#2e2c28" font-weight="500">PERSONAL BENEFIT</text>
+      <text x="220" y="262" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#6b6860">Individuals using AI</text>
+      <rect x="440" y="168" width="120" height="52" rx="2" fill="url(#bar2)"/>
+      <text x="500" y="158" text-anchor="middle" font-family="Fraunces, serif" font-size="32" font-weight="300" fill="#141210" letter-spacing="-1">29<tspan font-family="IBM Plex Mono, monospace" font-size="14" fill="#5e4f3a" baseline-shift="super">%</tspan></text>
+      <text x="500" y="244" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="#2e2c28" font-weight="500">ORGANIZATIONAL ROI</text>
+      <text x="500" y="262" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#6b6860">Companies deploying AI</text>
+      <line x1="280" y1="100" x2="440" y2="170" stroke="#1a4ed8" stroke-width="1.2" stroke-dasharray="3 3" opacity=".5"/>
+      <rect x="306" y="118" width="108" height="32" rx="2" fill="#fff" stroke="#1a4ed8" stroke-width="1"/>
+      <text x="360" y="132" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#1a4ed8" font-weight="500">68-POINT GAP</text>
+      <text x="360" y="144" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="10" fill="#6b6860">the consulting brief</text>
+    </svg>
+    <div class="id-caption">The 97/29 split as visualised: vast personal benefit alongside negligible organizational return. The gap between them is the entire AI implementation problem — and the brief that the new consulting ventures are being paid to address.</div>
+  </div>
+
+  <h2 class="reveal">The shape of the work</h2>
+
+  <p class="reveal">Look at what the forward-deployed engineer actually does day to day. They sit with staff. They observe workflows. They identify where AI fits and where it does not. They design oversight, trust, and escalation patterns. They rebuild the interface between humans and AI on a per-organization basis.</p>
+
+  <p class="reveal"><strong>This is service design. Workflow design. Change design. Interaction design.</strong></p>
+
+  <p class="reveal">It is being done — at scale, with billions in capital — by engineers, because the design profession has not claimed this work as its own. Yet.</p>
+
+  <p class="reveal">A February 2026 <em>Harvard Business Review</em> article articulated the underlying point precisely: AI initiatives stall because employees develop industry-shaped anxiety about their relevance, identity, and job security.<sup><a href="#ref5">5</a></sup> That produces surface-level use without real commitment. The failure is psychological and contextual, not technical. Treating AI rollout as a technology project rather than an organizational redesign produces exactly the failure rates above.</p>
+
+  <p class="reveal">This explains the broader pattern. <strong>For every dollar enterprises spend on software, they spend approximately six on services.</strong> That ratio exists because translating capability into actual organizational change is the hard part. AI is not different. It is the same problem at a larger scale.</p>
+
+  <p class="reveal">The forward-deployed engineer model exists because the design discipline that should be doing this work has not made the case for itself.</p>
+
+  <h2 class="reveal">The interface — and why this consulting wave is transitional</h2>
+
+  <p class="reveal">The reason these consultant armies exist at all is that the current AI interface requires translation.</p>
+
+  <p class="reveal">Every interaction with AI today begins with the user encoding their intent into structured language. Prompt engineering emerged as a profession because that translation is hard. Most people are not fluent in it. <strong>The forward-deployed engineer is, in part, a translation specialist embedded in an organization that cannot translate for itself.</strong></p>
+
+  <p class="reveal">This is solvable. It is being solved.</p>
+
+  <p class="reveal">Look at where multimodal AI is heading. Google's Project Astra processes unified streams of video, audio, and text with sub-300ms latency. Google DeepMind has explicitly framed this as <em>"a departure from the token-in, token-out architecture"</em> of early language models.<sup><a href="#ref6">6</a></sup> The system can see what you are looking at, hear the conversation in the room, remember context from days ago, and act on it. Apple's spatial computing direction, Meta's Ray-Ban glasses, the wave of agentic interfaces — these are all early experiments in AI that does not wait for a prompt because it understands context.</p>
+
+  <p class="reveal">The interaction paradigm is shifting from <em>requesting</em> AI to <em>being assisted by</em> AI. That is not a feature change. It is a category change in what an interface even is.</p>
+
+  <p class="reveal">Engineers will build the underlying capability. Consultants will sell the integration. <strong>But the interaction language itself — what trust looks like, what control looks like, what legibility looks like, what happens when ambient AI makes mistakes — has to be designed. And it does not yet exist.</strong></p>
+
+  <h2 class="reveal">The GUI moment, again</h2>
+
+  <p class="reveal">The shift from command-line interfaces to graphical interfaces in the late 1970s was not a technical breakthrough. The compute existed. What did not exist was a conceptual model for how a non-specialist should interact with a computer.</p>
+
+  <div class="inline-diagram reveal">
+    <div class="id-label">Figure 02 — Two interface moments, one structural pattern</div>
+    <svg class="id-svg" viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" aria-label="Side-by-side comparison of the GUI moment and the AI moment showing structural parallel">
+      <text x="20" y="36" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#9b9890" font-weight="500">GUI ERA · 1970s–80s</text>
+      <line x1="20" y1="48" x2="700" y2="48" stroke="#1a4ed8" stroke-width="1"/>
+      <g transform="translate(20, 64)">
+        <rect x="0" y="0" width="148" height="64" rx="3" fill="#fff" stroke="#d0cec7"/>
+        <text x="74" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#6b6860">CAPABILITY</text>
+        <text x="74" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#141210">Compute exists</text>
+        <text x="74" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#9b9890">DEC, IBM, Xerox</text>
+      </g>
+      <line x1="172" y1="96" x2="196" y2="96" stroke="#1a4ed8" stroke-width="1"/>
+      <polyline points="190,92 196,96 190,100" fill="none" stroke="#1a4ed8" stroke-width="1"/>
+      <g transform="translate(200, 64)">
+        <rect x="0" y="0" width="148" height="64" rx="3" fill="#fff" stroke="#d0cec7"/>
+        <text x="74" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#6b6860">FRICTION</text>
+        <text x="74" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#141210">CLI required</text>
+        <text x="74" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#9b9890">Specialists only</text>
+      </g>
+      <line x1="352" y1="96" x2="376" y2="96" stroke="#1a4ed8" stroke-width="1"/>
+      <polyline points="370,92 376,96 370,100" fill="none" stroke="#1a4ed8" stroke-width="1"/>
+      <g transform="translate(380, 64)">
+        <rect x="0" y="0" width="148" height="64" rx="3" fill="#eef2fd" stroke="#1a4ed8"/>
+        <text x="74" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#1a4ed8" font-weight="500">DESIGN</text>
+        <text x="74" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#1a4ed8">PARC inventions</text>
+        <text x="74" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#1640b8">Mouse · Window · Icon</text>
+      </g>
+      <line x1="532" y1="96" x2="556" y2="96" stroke="#1a4ed8" stroke-width="1"/>
+      <polyline points="550,92 556,96 550,100" fill="none" stroke="#1a4ed8" stroke-width="1"/>
+      <g transform="translate(560, 64)">
+        <rect x="0" y="0" width="140" height="64" rx="3" fill="#fff" stroke="#d0cec7"/>
+        <text x="70" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#6b6860">OUTCOME</text>
+        <text x="70" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#141210">2B users</text>
+        <text x="70" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#9b9890">Personal computing</text>
+      </g>
+
+      <text x="20" y="200" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#5e4f3a" font-weight="500">AI ERA · 2020s</text>
+      <line x1="20" y1="212" x2="700" y2="212" stroke="#8a7558" stroke-width="1"/>
+      <g transform="translate(20, 228)">
+        <rect x="0" y="0" width="148" height="64" rx="3" fill="#fff" stroke="#d0cec7"/>
+        <text x="74" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#6b6860">CAPABILITY</text>
+        <text x="74" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#141210">Models exist</text>
+        <text x="74" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#9b9890">OpenAI, Anthropic</text>
+      </g>
+      <line x1="172" y1="260" x2="196" y2="260" stroke="#8a7558" stroke-width="1"/>
+      <polyline points="190,256 196,260 190,264" fill="none" stroke="#8a7558" stroke-width="1"/>
+      <g transform="translate(200, 228)">
+        <rect x="0" y="0" width="148" height="64" rx="3" fill="#fff" stroke="#d0cec7"/>
+        <text x="74" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#6b6860">FRICTION</text>
+        <text x="74" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#141210">Prompts required</text>
+        <text x="74" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#9b9890">Translation needed</text>
+      </g>
+      <line x1="352" y1="260" x2="376" y2="260" stroke="#8a7558" stroke-width="1"/>
+      <polyline points="370,256 376,260 370,264" fill="none" stroke="#8a7558" stroke-width="1"/>
+      <g transform="translate(380, 228)">
+        <rect x="0" y="0" width="148" height="64" rx="3" fill="#fbf6ec" stroke="#8a7558" stroke-dasharray="4 3"/>
+        <text x="74" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#5e4f3a" font-weight="500">DESIGN</text>
+        <text x="74" y="44" text-anchor="middle" font-family="Fraunces, serif" font-size="22" font-style="italic" fill="#5e4f3a" font-weight="400">?</text>
+      </g>
+      <line x1="532" y1="260" x2="556" y2="260" stroke="#8a7558" stroke-width="1"/>
+      <polyline points="550,256 556,260 550,264" fill="none" stroke="#8a7558" stroke-width="1"/>
+      <g transform="translate(560, 228)">
+        <rect x="0" y="0" width="140" height="64" rx="3" fill="#fbf6ec" stroke="#8a7558" stroke-dasharray="4 3"/>
+        <text x="70" y="22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.5" fill="#5e4f3a" font-weight="500">OUTCOME</text>
+        <text x="70" y="44" text-anchor="middle" font-family="Fraunces, serif" font-size="22" font-style="italic" fill="#5e4f3a" font-weight="400">?</text>
+      </g>
+      <text x="360" y="172" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#9b9890">structural parallel</text>
+    </svg>
+    <div class="id-caption">The same structural moment, fifty years apart. The capability exists. The friction is real. The design vocabulary that bridges them remains unbuilt.</div>
+  </div>
+
+  <p class="reveal">Engelbart, Kay, the Xerox PARC team — they invented a vocabulary. The mouse. The window. The icon. The desktop metaphor.<sup><a href="#ref7">7</a></sup> None of it was inevitable. All of it had to be designed, defended against engineers who thought it was unnecessary, and pushed through against organizations that did not see why it mattered. That work unlocked computing for two billion people who would never have used a command line.</p>
+
+  <p class="reveal">The post-prompt AI interaction paradigm is structurally the same moment. The capability is here. The conceptual model for how humans actually work alongside intelligent systems is not. <strong>Whoever defines that model will shape the next two decades of work.</strong></p>
+
+  <p class="reveal">The people who defined the GUI were not the engineers who could have. They were the designers, cognitive scientists, and HCI researchers who insisted that interaction design was a legitimate discipline. The post-prompt interaction language will be defined the same way. By whoever takes it seriously enough to do the work.</p>
+
+  <h2 class="reveal">What this means</h2>
+
+  <p class="reveal"><strong>For strategic designers:</strong> the most leveraged work over the next five years sits at the intersection of AI capability and organizational interface. Not building the next AI product UI. Designing the interaction grammar that lets organizations actually use AI without breaking themselves. The 88% pilot failure rate is your brief.</p>
+
+  <p class="reveal"><strong>For transformation consultants</strong> at BCG, McKinsey, Bain, Accenture, and the firms now building AI practices: the pattern is the same. Your clients' adoption failures are not engineering problems. They are interface and organizational design problems. Teams that bring design leadership to the table — not as visual support for the deck, but as a primary discipline — will deliver outcomes the others cannot.</p>
+
+  <p class="reveal"><strong>For CXOs making AI investment decisions:</strong> stop measuring AI ROI by deployment count. Start measuring it by quality of integration into actual work. The gap between 97% personal benefit and 29% organizational ROI does not close with more licenses. It closes when someone designs how the work actually changes.</p>
+
+  <p class="reveal">For everyone: <strong>the AI implementation gap is one of the most consequential design problems of the next decade.</strong> It is also one of the most open. The current consulting wave is solving the immediate problem at considerable expense. The interaction paradigm that will make that consulting wave obsolete has barely started being designed.</p>
+
+  <p class="reveal">That work has to start somewhere. I am writing this because I would like to find the people who want to start it.</p>
+</article>
+
+<footer class="article-footer">
+  <div class="article-footer-section reveal">
+    <div class="afs-label">References</div>
+    <ol class="references">
+      <li id="ref1"><span><strong>OpenAI</strong> announcement of The Development Company ($4B); <strong>Anthropic</strong> joint venture announcement with Blackstone, Hellman &amp; Friedman, and Goldman Sachs ($1.5B). May 2026.</span></li>
+      <li id="ref2"><span><strong>Palantir</strong> forward-deployed engineer model — operational documentation and case studies on the role's structure and deployment pattern.</span></li>
+      <li id="ref3"><span><strong>Anaconda × Forrester</strong> research on enterprise AI agent failure rates; replicated by <strong>a16z</strong> portfolio analysis and <strong>MIT Sloan CIO panel</strong> survey results.</span></li>
+      <li id="ref4"><span><strong>Writer 2026 Enterprise AI Adoption Survey</strong> — n=1,200 executives + 1,200 employees; reports the 97% personal benefit vs 29% organizational ROI split.</span></li>
+      <li id="ref5"><span><strong>Harvard Business Review</strong>, February 2026: on industry-shaped employee anxiety as the dominant cause of AI initiative stall, and the failure of treating AI rollout as technology projects rather than organizational redesigns.</span></li>
+      <li id="ref6"><span><strong>Google DeepMind</strong>, Project Astra technical communications — including the explicit framing of multimodal architecture as "a departure from the token-in, token-out architecture" of early language models.</span></li>
+      <li id="ref7"><span><strong>Xerox PARC</strong> historical record — Engelbart's NLS demonstrations, Alan Kay's Dynabook concept, and the Smalltalk team's interaction model work that produced the GUI vocabulary now in universal use.</span></li>
+    </ol>
+  </div>
+
+  <div class="article-footer-section reveal">
+    <div class="afs-label">About the author</div>
+    <div class="author-block">
+      <div class="author-photo">
+        <img src="assets/profile/mohit-portrait.jpg" alt="Mohit Ahirwar">
+      </div>
+      <div>
+        <div class="author-name">Mohit Ahirwar</div>
+        <p class="author-bio"><strong>Design strategist at TCS Interactive</strong>, working on the McKinsey-led digital transformation of <em>SBI YONO 2.0</em>. The insurance vertical he leads spans 40+ products across mobile, web, branch, and field-tablet channels. He came into design from IT engineering and writes about the intersection of AI systems, organisational change, and the design discipline.</p>
+        <div class="author-links">
+          <a href="index.html" class="author-link">Portfolio</a>
+          <a href="cv.html" class="author-link">CV</a>
+          <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="author-link">LinkedIn</a>
+          <a href="mailto:mohitahirwar7@gmail.com" class="author-link">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-nav reveal">
+    <a href="articles.html">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="6,3 2,8 6,13"/></svg>
+      Back to Writing
+    </a>
+    <a href="articles.html">
+      More writing →
+    </a>
+  </div>
+</footer>
+
+</div>
+</main>
+
+<div class="cta">
+  <div class="cta-in reveal">
+    <div>
+      <div class="cta-tag">Want to do this work together</div>
+      <h2>Looking for the people<br>who want to <em>start.</em></h2>
+      <p>Targeting <strong>design-led digital transformation roles</strong> at <strong>Accenture Song</strong>, <strong>Deloitte Digital</strong>, and <strong>Publicis Sapient</strong>. Also exploring UX strategy and digital transformation consultant roles in <strong>Dubai</strong>. Get in touch.</p>
+    </div>
+    <div class="cta-acts">
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="cta-btn p">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Connect on LinkedIn
+      </a>
+      <a href="mailto:mohitahirwar7@gmail.com" class="cta-btn o">mohitahirwar7@gmail.com</a>
+      <a href="cv.html" class="cta-btn o">View Full CV →</a>
+      <a href="index.html" class="cta-btn o">← Other Work</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-left">Beyond the Prompt — <em>May 2026</em><span class="copy">© 2026 · All rights reserved</span></div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <span class="foot-sep">·</span>
+    <a href="articles.html">Writing</a>
+    <span class="foot-sep">·</span>
+    <a href="cv.html">CV</a>
+    <span class="foot-sep">·</span>
+    <a href="yono-case-study.html">YONO 2.0</a>
+    <span class="foot-sep">·</span>
+    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <span class="foot-sep">·</span>
+    <a href="mailto:mohitahirwar7@gmail.com">Email</a>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Back to top">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,9 7,4 12,9"/></svg>
+</button>
+
+<script>
+(function(){
+  const cur=document.getElementById('cur');
+  if(!cur||!window.matchMedia('(hover:hover)').matches||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  let cx=window.innerWidth/2,cy=window.innerHeight/2,tx=cx,ty=cy;
+  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hover-state'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hover-state'));
+  });
+})();
+const prog=document.getElementById('prog');
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+  prog.style.width=pct+'%';prog.setAttribute('aria-valuenow',Math.round(pct));
+  btt.classList.toggle('vis',d.scrollTop>500);
+},{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  const open=hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open',open);
+  hamburger.setAttribute('aria-expanded',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  hamburger.classList.remove('open');mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');document.body.style.overflow='';
+}));
+document.querySelectorAll('a[href]').forEach(a=>{
+  const href=a.getAttribute('href');
+  if(href&&!href.startsWith('#')&&!href.startsWith('http')&&!href.startsWith('mailto')&&!href.startsWith('tel')&&href.endsWith('.html')){
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.body.style.transition='opacity .22s ease, transform .22s ease';
+      document.body.style.opacity='0';document.body.style.transform='translateY(-6px)';
+      setTimeout(()=>window.location.href=href,230);
+    });
+  }
+});
+</script>
+</body>
+</html>
