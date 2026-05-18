@@ -155,6 +155,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .leverage-diagram{margin:32px 0;padding:32px;background:#fff;border:1px solid var(--rule);border-radius:var(--r);max-width:880px}
 .leverage-diagram svg{width:100%;height:auto;overflow:visible}
 .lev-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px;font-weight:500}
+/* Work showcase — live screen captures */
+.shot-intro{font-size:14.5px;color:var(--ink-2);line-height:1.78;margin:0 0 32px;max-width:720px}
+.shot-intro strong{color:var(--ink);font-weight:500}
+.shots{display:flex;flex-direction:column;gap:48px;margin:8px 0 32px}
+.shot{background:#fff;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;transition:box-shadow .3s var(--ease),border-color .2s}
+.shot:hover{border-color:var(--rule2);box-shadow:0 12px 40px rgba(0,0,0,.06)}
+.shot-frame{position:relative;background:var(--paper);overflow:hidden}
+.shot-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:28px;background:linear-gradient(to bottom,#f3f2ef,var(--paper));border-bottom:1px solid var(--rule);display:flex;align-items:center;z-index:1}
+.shot-frame::after{content:'';position:absolute;top:9px;left:14px;width:10px;height:10px;background:#e4e2dc;border-radius:50%;box-shadow:18px 0 0 #e4e2dc,36px 0 0 #e4e2dc;z-index:2}
+.shot-frame img{display:block;width:100%;height:auto;margin-top:28px;object-fit:cover;object-position:top}
+.shot-meta{padding:24px 28px;border-top:1px solid var(--rule);background:#fff}
+.shot-meta-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.shot-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;color:var(--blue);font-weight:500}
+.shot-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:3px 9px;background:var(--paper);border:1px solid var(--rule);border-radius:2px}
+.shot-tag.live{color:var(--blue);background:var(--blue-bg);border-color:var(--blue-bd)}
+.shot-title{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--ink);line-height:1.32;margin-bottom:8px;letter-spacing:-.2px}
+.shot-title em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
+.shot-desc{font-size:13.5px;color:var(--ink-2);line-height:1.72;margin:0;max-width:780px}
+.shot-desc strong{color:var(--ink);font-weight:500}
+.shot-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.shot-note{margin-top:24px;padding:16px 20px;background:var(--sand-l);border:1px solid var(--sand-bd);border-radius:var(--r);max-width:720px}
+.shot-note-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--sand-ink-d);font-weight:500;margin-bottom:6px}
+.shot-note p{font-size:13px;color:var(--ink-1);line-height:1.72;margin:0}
+.shot-note p strong{color:var(--sand-ink-d);font-weight:500}
+/* Inline evidence frame within decisions */
+.dec-evidence{margin-top:20px;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;max-width:520px}
+.dec-evidence-frame{position:relative;background:#fff;padding:6px}
+.dec-evidence-frame img{display:block;width:100%;height:auto;border-radius:2px}
+.dec-evidence-cap{padding:10px 14px;border-top:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.2px;color:var(--ink-3);text-transform:uppercase;font-weight:500;background:#fff}
+@media(max-width:780px){
+  .shot-row{grid-template-columns:1fr}
+}
 .ai-box{background:var(--sage-l);border:1px solid var(--sage-bd);padding:24px 28px;border-radius:var(--r);margin:28px 0;max-width:720px}
 .ai-box-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sage-ink-d);font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .ai-box-tag::before{content:'';width:14px;height:1px;background:var(--sage-ink-d)}
@@ -261,6 +293,7 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
     <li><a href="#diagnosis">Diagnosis</a></li>
     <li><a href="#approach">Approach</a></li>
     <li><a href="#calls">Strategic Calls</a></li>
+    <li><a href="#work">The Work</a></li>
     <li><a href="#outcomes">Outcomes</a></li>
     <li><a href="#proves">What This Proves</a></li>
   </ul>
@@ -278,6 +311,7 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
   <a href="#diagnosis">Diagnosis</a>
   <a href="#approach">Approach</a>
   <a href="#calls">Strategic Calls</a>
+  <a href="#work">The Work</a>
   <a href="#outcomes">Outcomes</a>
   <a href="#audit">Audit Initiative</a>
   <a href="#proves">What This Proves</a>
@@ -596,6 +630,12 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
               <span class="out-label">Outcome</span>
               <p>Approved and built as specified. The browsing-panel model increased cross-category product exposure organically, replacing the forced-category-selection model. Behavioural consistency with existing YONO web patterns reduced both user cognitive load and development risk simultaneously.</p>
             </div>
+            <div class="dec-evidence" aria-label="Live navigation evidence">
+              <div class="dec-evidence-frame">
+                <img src="assets/yono/nav-dropdown.webp" alt="The shipped insurance dropdown — Life Insurance and General Insurance side-by-side with Quick Links, exposing the full insurance portfolio without forcing a binary toggle." loading="lazy" />
+              </div>
+              <div class="dec-evidence-cap">Shipped · YONO 2.0 Web · Insurance dropdown — see full screen in §06 The Work</div>
+            </div>
           </div>
         </div>
       </div>
@@ -631,9 +671,115 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
   </div>
 </section>
 
-<section class="section" id="outcomes" aria-labelledby="outcomes-h2">
+<section class="section" id="work" aria-labelledby="work-h2">
   <div class="section-aside reveal">
     <span class="section-num">06</span>
+    <span class="section-title-aside">The Work</span>
+  </div>
+  <div class="section-content">
+    <h2 class="reveal" id="work-h2">The strategic calls,<br><em>rendered in production.</em></h2>
+    <p class="reveal shot-intro">A selection of live screens from the YONO 2.0 web platform — the same product surface 500M+ account holders interact with today. These directly demonstrate the design decisions documented in the strategic calls above. <strong>App captures will be added shortly.</strong></p>
+
+    <div class="shots">
+
+      <!-- 01 — Insurance landing -->
+      <article class="shot reveal" aria-label="Insurance landing page">
+        <div class="shot-frame">
+          <img src="assets/yono/insurance-landing.webp" alt="YONO 2.0 General Insurance landing page showing Group Sampoorna Arogya with the persistent banner, GI/LI navigation, product browsing panel, and plan benefits surfacing simultaneously." loading="lazy" />
+        </div>
+        <div class="shot-meta">
+          <div class="shot-meta-row">
+            <span class="shot-num">01 / 05</span>
+            <span class="shot-tag live">Live · YONO Web</span>
+            <span class="shot-tag">Insurance Landing</span>
+            <span class="shot-tag">Maps to Strategic Call 02</span>
+          </div>
+          <h3 class="shot-title">The browsing-panel architecture — <em>consolidated without silos.</em></h3>
+          <p class="shot-desc">The persistent top fold carries banners, quick actions, and the GI/LI selector. The content panel below updates contextually with the selection — product category tabs, plan cards, plan benefits, brochure, policy wordings, and the primary CTA — all without changing page. This is the page that refused to digitise the bank's organisational silos as a binary toggle. <strong>Three separate pages collapsed into one navigable surface.</strong></p>
+        </div>
+      </article>
+
+      <!-- 02 — Insurance manage -->
+      <article class="shot reveal" aria-label="Policy management page">
+        <div class="shot-frame">
+          <img src="assets/yono/insurance-manage.webp" alt="YONO 2.0 policy management view for a Group Personal Accident Insurance policy showing policy details, personal details, nominee details, and a single Manage Policy CTA in the top-right corner." loading="lazy" />
+        </div>
+        <div class="shot-meta">
+          <div class="shot-meta-row">
+            <span class="shot-num">02 / 05</span>
+            <span class="shot-tag live">Live · YONO Web</span>
+            <span class="shot-tag">Policy Management</span>
+            <span class="shot-tag">Maps to Strategic Call 03</span>
+          </div>
+          <h3 class="shot-title">Viewing and acting, <em>cleanly separated.</em></h3>
+          <p class="shot-desc">A single sticky <em>Manage Policy</em> action anchors the page; the surface itself is dedicated to policy, personal, and nominee information. Seven possible policy actions sit one tap behind a structured drawer rather than competing for attention at the top of the page. <strong>This pattern is now the mandatory reference standard for every manage flow in the insurance vertical.</strong></p>
+        </div>
+      </article>
+
+      <!-- 03 — Insurance dropdown -->
+      <article class="shot reveal" aria-label="Insurance dropdown navigation">
+        <div class="shot-frame">
+          <img src="assets/yono/nav-dropdown.webp" alt="YONO 2.0 main navigation showing the Insurance dropdown menu with Life Insurance, General Insurance, and Quick Links columns each containing direct product entry points." loading="lazy" />
+        </div>
+        <div class="shot-meta">
+          <div class="shot-meta-row">
+            <span class="shot-num">03 / 05</span>
+            <span class="shot-tag live">Live · YONO Web</span>
+            <span class="shot-tag">Global Navigation</span>
+            <span class="shot-tag">Information Architecture</span>
+          </div>
+          <h3 class="shot-title">The insurance entry surface — <em>three categories, one mental model.</em></h3>
+          <p class="shot-desc">Life Insurance, General Insurance, and Quick Links sit side-by-side in the global nav — exposing the full product portfolio without forcing a category choice on the user before they have context. The structure mirrors the landing page architecture, so users learn the IA once and apply it everywhere.</p>
+        </div>
+      </article>
+
+      <!-- 04 — Web landing & relationship overview -->
+      <article class="shot reveal" aria-label="YONO web main landing page">
+        <div class="shot-frame">
+          <img src="assets/yono/web-landing.webp" alt="YONO 2.0 web main landing page showing the welcome strip, Relationship Overview cards for accounts, deposits and loans, plus a right-hand product navigation rail covering Investments, Loans, Deposits, Insurance, Cards, and Services." loading="lazy" />
+        </div>
+        <div class="shot-meta">
+          <div class="shot-meta-row">
+            <span class="shot-num">04 / 05</span>
+            <span class="shot-tag live">Live · YONO Web</span>
+            <span class="shot-tag">Main Landing</span>
+            <span class="shot-tag">Cross-vertical Precedent</span>
+          </div>
+          <h3 class="shot-title">The Relationship Overview — <em>the precedent that won the argument.</em></h3>
+          <p class="shot-desc">When stakeholders pushed back on the insurance browsing-panel pattern as too complex, this page was the evidence: the YONO web Relationship Overview already used an identical contextual-update model across transaction accounts, deposits, and loans. <strong>Not a new behaviour — a familiar pattern applied to a new context.</strong> The right rail extends the same logic across the entire product portfolio.</p>
+        </div>
+      </article>
+
+      <!-- 05 — Profile management -->
+      <article class="shot reveal" aria-label="Profile management page">
+        <div class="shot-frame">
+          <img src="assets/yono/profile-management.webp" alt="YONO 2.0 profile management view showing personal details, KYC status, profile completion progress, communication and permanent addresses, and a clean left-rail navigation across all profile sub-flows." loading="lazy" />
+        </div>
+        <div class="shot-meta">
+          <div class="shot-meta-row">
+            <span class="shot-num">05 / 05</span>
+            <span class="shot-tag live">Live · YONO Web</span>
+            <span class="shot-tag">Profile &amp; KYC</span>
+            <span class="shot-tag">Pattern Consistency</span>
+          </div>
+          <h3 class="shot-title">The same skeleton, <em>everywhere on the platform.</em></h3>
+          <p class="shot-desc">Left-rail navigation, breadcrumb anchored to the home, contextual right-side content panel, sticky primary action at the bottom. The same skeleton governs insurance, accounts, investments, and profile management — the consequence of pattern leverage executed at programme scale. <strong>Once a user learns one surface, they have learned all of them.</strong></p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="shot-note reveal">
+      <div class="shot-note-tag">A note on these captures</div>
+      <p>YONO 2.0 launched publicly on <strong>15 December 2025</strong>. These screens are taken from the live production web platform. Mobile app captures will be added to this case study as I work them up — the strategic calls documented above govern every channel of the product, not just the web surface.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="outcomes" aria-labelledby="outcomes-h2">
+  <div class="section-aside reveal">
+    <span class="section-num">07</span>
     <span class="section-title-aside">Outcomes</span>
   </div>
   <div class="section-content">
@@ -706,7 +852,7 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
 <div class="page-body">
 <section class="section no-border" id="audit" aria-labelledby="audit-h2">
   <div class="section-aside reveal">
-    <span class="section-num">07</span>
+    <span class="section-num">08</span>
     <span class="section-title-aside">The Audit Initiative</span>
   </div>
   <div class="section-content">
@@ -727,7 +873,7 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
 
 <section class="section" id="current" aria-labelledby="current-h2">
   <div class="section-aside reveal">
-    <span class="section-num">08</span>
+    <span class="section-num">09</span>
     <span class="section-title-aside">Ongoing Scope</span>
   </div>
   <div class="section-content">
@@ -775,7 +921,7 @@ footer{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;paddi
 
 <section class="section no-border" id="proves" aria-labelledby="proves-h2">
   <div class="section-aside reveal">
-    <span class="section-num">09</span>
+    <span class="section-num">10</span>
     <span class="section-title-aside">What This Proves</span>
   </div>
   <div class="section-content">
