@@ -1,1671 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohit Ahirwar — Design Strategist & Digital Transformation</title>
-<meta name="description" content="Mohit Ahirwar — Design strategist & AI-augmented thinker. M.Des IIT Delhi. Three years inside a McKinsey-led digital transformation of SBI YONO 2.0. Leading the insurance vertical at TCS Interactive.">
+<title>Mohit Ahirwar — Design Strategist</title>
+<meta name="description" content="Design strategist at TCS Interactive. Insurance vertical lead on SBI YONO 2.0, across app, web, branch and field tablet. M.Des, IIT Delhi.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ahirwarmohit.github.io/">
-<meta property="og:title" content="Mohit Ahirwar — Design Strategist & Digital Transformation">
-<meta property="og:description" content="Design-led digital transformation. M.Des IIT Delhi. Three years inside a McKinsey-led transformation of SBI YONO 2.0 at TCS Interactive.">
+<meta property="og:title" content="Mohit Ahirwar — Design Strategist">
+<meta property="og:description" content="Six journeys, designed properly, now govern forty. Insurance vertical lead on SBI YONO 2.0.">
 <meta property="og:image" content="https://ahirwarmohit.github.io/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="alternate icon" href="assets/favicon.ico">
+<link rel="alternate icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 
 <style>
-/* ═══════════════════════════════════════════════════════════════
-   DESIGN TOKENS
-   ═══════════════════════════════════════════════════════════════ */
-:root{
-  /* Neutrals */
-  --white:#ffffff;
-  --paper:#fafaf8;
-  --bone:#f3f2ef;
-  --rule:#e4e2dc;
-  --rule2:#d0cec7;
-  --ink-3:#9b9890;
-  --ink-2:#6b6860;
-  --ink-1:#2e2c28;
-  --ink:#141210;
+/* ── HOMEPAGE ONLY ─────────────────────────────────────────── */
+.block{padding:clamp(64px,9vw,110px) 0;border-bottom:1px solid var(--rule)}
+.block:last-of-type{border-bottom:none}
 
-  /* Brand blue */
-  --blue:#1a4ed8;
-  --blue-d:#1640b8;
-  --blue-l:#6092f8;
-  --blue-bg:#eef2fd;
-  --blue-bd:#c7d4f8;
+/* Hero */
+.hero{padding:clamp(56px,8vw,96px) 0 clamp(48px,7vw,80px)}
+.hero__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(34px,5.4vw,64px);line-height:1.04;letter-spacing:-1px;
+  color:var(--ink);margin:18px 0 0;text-wrap:balance;
+}
+.hero h1 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+.hero__sub{font-size:16px;color:var(--ink-2);max-width:40ch;margin-top:22px;line-height:1.7}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:30px}
+.chip{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;
+  color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);
+  padding:6px 11px;border-radius:2px;
+}
+.chip--hi{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue)}
 
-  /* Sand (warm) */
-  --sand:#f5efe4;
-  --sand-l:#fbf6ec;
-  --sand-bd:#e6dcc7;
-  --sand-ink:#8a7558;
-  --sand-ink-d:#5e4f3a;
+/* Signature: pattern leverage diagram */
+.sig{
+  background:var(--sand-l);border:1px solid var(--sand-bd);
+  border-radius:var(--r);padding:26px 24px;
+}
+.sig__cap{display:flex;justify-content:space-between;margin-bottom:18px}
+.sig__cap span{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sand-ink)}
+.sig__cap span:last-child{color:var(--blue)}
+.sig__note{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.4px;
+  color:var(--sand-ink);margin-top:16px;padding-top:12px;
+  border-top:1px dashed var(--sand-bd);line-height:1.6;
+}
+.anchor-node{fill:var(--blue)}
+.link-line{stroke:var(--blue);stroke-width:1;opacity:0;animation:draw 7s infinite}
+.dot{fill:#ded2bb;animation:fill 7s infinite}
+@keyframes draw{0%,6%{opacity:0}14%,74%{opacity:.3}88%,100%{opacity:0}}
+@keyframes fill{0%,18%{fill:#ded2bb}30%,74%{fill:var(--blue)}88%,100%{fill:#ded2bb}}
 
-  /* Sage (cool, organic) */
-  --sage:#ecf0eb;
-  --sage-l:#f5f7f4;
-  --sage-bd:#d6dcd2;
-  --sage-ink:#5a7763;
-  --sage-ink-d:#3e5645;
+/* Section head */
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:38px;flex-wrap:wrap}
+.head h2{
+  font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.4vw,42px);
+  letter-spacing:-.5px;line-height:1.08;color:var(--ink);margin:0;
+}
+.head h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
 
-  --r:3px;
-  --ease:cubic-bezier(0.16, 1, 0.3, 1);
-  --ease2:cubic-bezier(0.65, 0, 0.35, 1);
-  --max:1200px;
+/* Work cards */
+.card{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;
+  text-decoration:none;background:var(--white);
+  transition:border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.card + .card{margin-top:16px}
+.card:hover{border-color:var(--blue-bd);transform:translateY(-2px);box-shadow:0 14px 40px rgba(20,18,16,.07)}
+.card__media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--bone)}
+.card__media video,.card__media img{width:100%;height:100%;object-fit:cover}
+.card__ph{
+  position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--sand-l),var(--bone));
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:var(--ink-3);text-transform:uppercase;
+}
+.card__body{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:center}
+.card__body h3{
+  font-family:'Fraunces',serif;font-weight:400;font-size:clamp(20px,2.4vw,28px);
+  letter-spacing:-.3px;line-height:1.15;color:var(--ink);margin:10px 0 0;
+}
+.card__body p{font-size:14.5px;color:var(--ink-2);margin-top:12px;line-height:1.7}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:24px}
+.tags span{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;
+  color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);
+  padding:5px 9px;border-radius:2px;
+}
+.tags span:first-child{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue)}
+.card__go{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--blue);margin-top:22px;
+  display:flex;align-items:center;gap:8px;
+}
+.card:hover .card__go .arr{transform:translateX(4px)}
+.card__go .arr{transition:transform .2s var(--ease)}
+
+/* Off the clock */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--white)}
+.tile__m{
+  aspect-ratio:4/3;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--sage-l),var(--bone));display:grid;place-items:center;
+}
+.tile__m video,.tile__m img{width:100%;height:100%;object-fit:cover}
+.tile__ph{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--ink-3);text-transform:uppercase}
+.tile__c{padding:16px 18px}
+.tile__c b{display:block;font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.tile__c span{font-size:13px;color:var(--ink-2);line-height:1.6}
+
+/* About */
+.about{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(28px,5vw,64px);align-items:start}
+.about__photo{
+  border:1px solid var(--rule);border-radius:var(--r);aspect-ratio:4/5;overflow:hidden;
+  background:linear-gradient(135deg,var(--sand-l),var(--bone));display:grid;place-items:center;
+}
+.about__photo img{width:100%;height:100%;object-fit:cover}
+.about__ph{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--ink-3);text-transform:uppercase}
+.about p{font-size:15.5px;color:var(--ink-2);line-height:1.75;margin-top:16px;max-width:58ch}
+.now{list-style:none;margin-top:32px;border-top:1px solid var(--rule)}
+.now li{
+  display:flex;gap:24px;padding:13px 0;border-bottom:1px solid var(--rule);
+  font-size:14px;color:var(--ink-1);
+}
+.now li b{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--ink-3);min-width:88px;font-weight:500;padding-top:3px;
 }
 
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;cursor:none;animation:pageFadeIn .5s var(--ease) both;overflow-x:hidden}
-@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
-img,svg{max-width:100%;display:block}
-::selection{background:var(--blue);color:#fff}
-
-/* ═══════════════════════════════════════════════════════════════
-   CUSTOM CURSOR
-   ═══════════════════════════════════════════════════════════════ */
-#cur{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease),background .2s,border .2s,opacity .2s;will-change:transform;mix-blend-mode:multiply}
-#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue)}
-#cur.link-state{width:20px;height:20px}
-#cur.dark-state{mix-blend-mode:screen;background:var(--blue-l)}
-@media(hover:none){#cur{display:none}body{cursor:auto}}
-@media(prefers-reduced-motion:reduce){#cur{display:none}body{cursor:auto}*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
-
-/* ═══════════════════════════════════════════════════════════════
-   PROGRESS BAR
-   ═══════════════════════════════════════════════════════════════ */
-#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--blue),var(--blue-l));z-index:200;width:0%;transition:width .08s linear}
-
-/* ═══════════════════════════════════════════════════════════════
-   NAV
-   ═══════════════════════════════════════════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--rule);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;animation:navIn .6s var(--ease) .1s both}
-@keyframes navIn{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.nav-id{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-mark{width:28px;height:28px;border:1px solid var(--ink);border-radius:var(--r);display:flex;align-items:center;justify-content:center;background:var(--white);position:relative;transition:transform .3s var(--ease)}
-.nav-mark::after{content:'';position:absolute;inset:3px;border:1px solid var(--blue);border-radius:1px;opacity:0;transition:opacity .3s}
-.nav-id:hover .nav-mark{transform:rotate(-8deg)}
-.nav-id:hover .nav-mark::after{opacity:1}
-.nav-mark span{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:var(--ink);font-style:italic;line-height:1}
-.nav-name{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-1);font-weight:500}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--ink-2);text-decoration:none;transition:color .15s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .25s var(--ease);transform-origin:left}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-.nav-links a:hover,.nav-links a.active{color:var(--blue)}
-.nav-ctas{display:flex;gap:10px;align-items:center}
-.nbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;padding:8px 14px;border-radius:var(--r);text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
-.nbtn.o{border:1px solid var(--rule2);color:var(--ink-2)}
-.nbtn.o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
-.nbtn.s{background:var(--blue);color:#fff;border:1px solid var(--blue)}
-.nbtn.s:hover{background:var(--blue-d)}
-
-/* Hamburger */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--rule);border-radius:var(--r);background:transparent;transition:border-color .15s}
-.hamburger:hover{border-color:var(--blue)}
-.hamburger span{width:18px;height:1.5px;background:var(--ink-2);display:block;transition:transform .25s ease,opacity .25s}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-
-.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:99;padding:32px 24px;flex-direction:column;gap:4px;overflow-y:auto;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
-.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:all}
-.mobile-menu a{font-size:20px;font-family:'Fraunces',serif;font-weight:300;color:var(--ink-1);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:block;transition:color .15s}
-.mobile-menu a:hover{color:var(--blue)}
-.mobile-menu a:last-of-type{border-bottom:none}
-.mm-foot{margin-top:32px;display:flex;gap:10px}
-
-/* ═══════════════════════════════════════════════════════════════
-   HERO — split layout with system diagram
-   ═══════════════════════════════════════════════════════════════ */
-.hero{min-height:100vh;display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center;padding:120px 48px 80px;max-width:var(--max);margin:0 auto;position:relative;border-bottom:1px solid var(--rule)}
-
-/* Atmospheric background */
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,.09) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,#000 25%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,#000 25%,transparent 100%);will-change:transform}
-.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 90% 20%,rgba(26,78,216,.08) 0%,transparent 65%),radial-gradient(ellipse 45% 40% at 5% 80%,rgba(138,117,88,.07) 0%,transparent 60%);pointer-events:none}
-
-.hero-text{position:relative;z-index:2}
-
-.h-pre{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:32px;display:flex;align-items:center;gap:14px;animation:fadeUp .6s var(--ease) .2s both}
-.h-pre::before{content:'';width:28px;height:1px;background:var(--blue)}
-.h-pre .available{display:inline-flex;align-items:center;gap:6px;color:var(--sage-ink-d);margin-left:auto;padding-left:14px;border-left:1px solid var(--rule)}
-.h-pre .dot-live{width:6px;height:6px;border-radius:50%;background:#3e8e54;box-shadow:0 0 0 0 rgba(62,142,84,.5);animation:liveDot 2s ease-in-out infinite}
-@keyframes liveDot{0%,100%{box-shadow:0 0 0 0 rgba(62,142,84,.5)}50%{box-shadow:0 0 0 8px rgba(62,142,84,0)}}
-
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(48px,7.5vw,108px);font-weight:300;line-height:.94;letter-spacing:-3px;color:var(--ink);margin-bottom:0}
-.h-line{display:block;overflow:hidden}
-.h-line span{display:block;animation:lineUp .9s var(--ease) both}
-.h-line:nth-child(1) span{animation-delay:.3s}
-.h-line:nth-child(2) span{animation-delay:.45s}
-.h-line:nth-child(3) span{animation-delay:.6s}
-.h-line em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
-.h-line.indent{padding-left:clamp(24px,4vw,56px)}
-@keyframes lineUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
-
-.h-sub{font-size:clamp(14px,1.4vw,16px);color:var(--ink-2);font-weight:300;max-width:560px;line-height:1.78;margin-top:36px;margin-bottom:36px;animation:fadeUp .8s var(--ease) .65s both}
-.h-sub strong{color:var(--ink);font-weight:500}
-.h-sub .accent{font-family:'Fraunces',serif;font-style:italic;color:var(--blue);font-weight:400}
-
-.h-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;animation:fadeUp .7s var(--ease) .8s both}
-.h-stat{padding:14px 16px;border-right:1px solid var(--rule);position:relative}
-.h-stat:last-child{border-right:none}
-.stat-val{font-family:'Fraunces',serif;font-size:24px;font-weight:300;color:var(--ink);display:block;letter-spacing:-1px;line-height:1.1;margin-bottom:3px}
-.stat-label{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);display:block}
-
-.h-ctas{display:flex;gap:10px;align-items:center;margin-top:28px;animation:fadeUp .7s var(--ease) .9s both}
-
-.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:13px 22px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;cursor:none}
-.btn.pri{background:var(--blue);color:#fff}
-.btn.pri::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);transform:translateX(-100%);transition:transform .55s}
-.btn.pri:hover::before{transform:translateX(100%)}
-.btn.pri:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 10px 26px rgba(26,78,216,.3)}
-.btn.sec{background:transparent;border:1px solid var(--rule2);color:var(--ink-2)}
-.btn.sec:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* HERO VISUAL — system diagram */
-.hero-visual{position:relative;z-index:1;animation:fadeUp 1s var(--ease) .7s both;will-change:transform}
-/* Hero visual — editorial portrait, restrained composition */
-.hero-visual{display:flex;justify-content:flex-end;align-items:flex-start}
-.hv-frame{width:100%;max-width:340px;margin:8px 0 0 auto;position:relative}
-.hv-photo-wrap{position:relative;aspect-ratio:4/5;width:100%;border-radius:3px;overflow:hidden;background:var(--bone)}
-.hv-photo{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;filter:contrast(1.03) brightness(1.01)}
-.hv-frame::before{content:'';position:absolute;top:14px;right:-14px;bottom:-14px;left:14px;background:var(--sand-l);border:1px solid var(--sand-bd);border-radius:3px;z-index:-1;pointer-events:none}
-.hv-meta{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:8px;animation:fadeUp .8s var(--ease) 1s both}
-.hv-meta-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);letter-spacing:-.3px;line-height:1.2}
-.hv-meta-role{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);font-weight:500;line-height:1.5}
-.hv-meta-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-2);font-weight:500;line-height:1.7}
-.hv-meta-facts span{position:relative;padding-right:10px;margin-right:2px}
-.hv-meta-facts span:not(:last-child)::after{content:'·';color:var(--rule2);margin-left:4px}
-.hv-meta-facts em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px}
-.hv-pulse{transform-origin:center;animation:nodePulse 2.6s ease-in-out infinite}
-.hv-pulse2{animation-delay:.4s}
-.hv-pulse3{animation-delay:.8s}
-.hv-pulse4{animation-delay:1.2s}
-@keyframes nodePulse{0%,100%{opacity:1}50%{opacity:.55}}
-.hv-line{stroke-dasharray:200;stroke-dashoffset:200;animation:drawLine 1.4s var(--ease) forwards}
-.hv-line.l2{animation-delay:.2s}
-.hv-line.l3{animation-delay:.4s}
-.hv-line.l4{animation-delay:.6s}
-@keyframes drawLine{to{stroke-dashoffset:0}}
-.hv-orb{transform-box:fill-box;transform-origin:center;animation:orbDrift 8s ease-in-out infinite}
-.hv-orb.o2{animation-delay:-2s;animation-duration:9s}
-.hv-orb.o3{animation-delay:-4s;animation-duration:10s}
-@keyframes orbDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-6px)}}
-
-/* Floating annotation chips */
-
-/* ═══════════════════════════════════════════════════════════════
-   TRUSTED BY STRIP
-   ═══════════════════════════════════════════════════════════════ */
-.trust{background:var(--white);border-bottom:1px solid var(--rule);padding:32px 0;overflow:hidden}
-.trust-inner{max-width:var(--max);margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:40px}
-.trust-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.trust-label::before{content:'';width:18px;height:1px;background:var(--rule2)}
-.trust-marquee{flex:1;overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);position:relative}
-.trust-track{display:flex;gap:48px;animation:trustScroll 38s linear infinite;width:max-content}
-.trust-track:hover{animation-play-state:paused}
-@keyframes trustScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.trust-item{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--ink-2);letter-spacing:-.3px;white-space:nowrap;display:inline-flex;align-items:center;gap:14px;transition:color .2s}
-.trust-item:hover{color:var(--ink)}
-.trust-item .sep{width:4px;height:4px;background:var(--rule2);border-radius:50%;display:inline-block}
-.trust-item .mono{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
-.trust-item.partner em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue)}
-
-/* ═══════════════════════════════════════════════════════════════
-   IMPACT BAND (sand)
-   ═══════════════════════════════════════════════════════════════ */
-.impact{background:var(--sand);border-bottom:1px solid var(--sand-bd);position:relative;overflow:hidden}
-.impact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--sand-bd) 30%,var(--sand-bd) 70%,transparent)}
-.impact::after{content:'';position:absolute;top:-40%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(138,117,88,.12) 0%,transparent 60%);pointer-events:none}
-.impact-inner{max-width:var(--max);margin:0 auto;padding:80px 48px;position:relative;z-index:1}
-.impact-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:24px}
-.impact-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--sand-ink-d);display:flex;align-items:center;gap:14px;font-weight:500;margin-bottom:12px}
-.impact-tag::before{content:'';width:20px;height:1px;background:var(--sand-ink-d)}
-.impact-head h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,44px);font-weight:300;line-height:1.05;color:var(--ink);letter-spacing:-.5px}
-.impact-head h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--sand-ink-d);font-weight:400}
-.impact-head .ihead-aside{font-size:13px;color:var(--ink-2);max-width:380px;line-height:1.7}
-.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--sand-bd);border:1px solid var(--sand-bd);border-radius:var(--r);overflow:hidden}
-.imp-cell{background:var(--sand-l);padding:30px 26px 26px;position:relative;transition:background .25s,transform .25s var(--ease)}
-.imp-cell:hover{background:var(--white);transform:translateY(-2px)}
-.imp-num{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,68px);font-weight:300;color:var(--ink);line-height:1;letter-spacing:-2px;display:block;margin-bottom:6px}
-.imp-num em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
-.imp-suf{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--sand-ink-d);font-weight:500;letter-spacing:.5px;vertical-align:top;margin-left:2px}
-.imp-cell h3{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;color:var(--ink-1);margin-bottom:6px;letter-spacing:-.1px}
-.imp-cell p{font-size:11.5px;color:var(--ink-2);line-height:1.6}
-.imp-cell .imp-icon{position:absolute;top:18px;right:18px;width:28px;height:28px;border:1px solid var(--sand-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--sand-ink-d);transition:transform .3s var(--ease),background .2s,border-color .2s}
-.imp-cell:hover .imp-icon{transform:rotate(-12deg) scale(1.1);background:var(--sand);border-color:var(--sand-ink)}
-
-/* ═══════════════════════════════════════════════════════════════
-   SECTION WRAPPER
-   ═══════════════════════════════════════════════════════════════ */
-.wrap{max-width:var(--max);margin:0 auto;padding:96px 48px;position:relative;border-bottom:1px solid var(--rule)}
-.wrap:last-of-type{border-bottom:none}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;gap:48px;flex-wrap:wrap}
-.sec-head-left{flex:1;min-width:260px}
-.sec-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:18px;display:flex;align-items:center;gap:14px;font-weight:500}
-.sec-tag::before{content:'';width:20px;height:1px;background:var(--blue)}
-.sec-num{position:absolute;top:64px;right:48px;font-family:'Fraunces',serif;font-size:clamp(80px,10vw,160px);font-weight:300;color:var(--bone);line-height:1;letter-spacing:-5px;pointer-events:none;user-select:none;transition:color .3s,transform .8s var(--ease);will-change:transform}
-.wrap:hover .sec-num{color:var(--rule)}
-.wrap h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,52px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:16px;letter-spacing:-.7px}
-.wrap h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
-.wrap .intro{font-size:15px;color:var(--ink-2);max-width:520px;line-height:1.78}
-.wrap .intro strong{color:var(--ink);font-weight:500}
-
-/* ═══════════════════════════════════════════════════════════════
-   WORK GRID — refined cards with SVG visuals
-   ═══════════════════════════════════════════════════════════════ */
-.work-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
-
-.work-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--r);padding:0;text-decoration:none;display:grid;grid-template-columns:1fr 320px;align-items:stretch;position:relative;overflow:hidden;transition:border-color .25s,transform .25s var(--ease),box-shadow .25s var(--ease);min-height:300px}
-.work-card:hover{border-color:var(--rule2);transform:translateY(-3px);box-shadow:0 18px 50px rgba(0,0,0,.08)}
-.work-card.locked{cursor:default}
-.work-card.locked:hover{transform:none;box-shadow:none;border-color:var(--rule)}
-
-.wc-content{padding:38px 36px;display:flex;flex-direction:column;justify-content:space-between;position:relative;min-width:0}
-.wc-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.wc-tag .pill{background:var(--blue-bg);border:1px solid var(--blue-bd);padding:2px 8px;border-radius:2px}
-.wc-tag .pill.feat{background:var(--ink);border-color:var(--ink);color:#fff}
-.wc-tag .pill.soon{background:var(--bone);border-color:var(--rule2);color:var(--ink-3)}
-.wc-tag .pill.sand{background:var(--sand);border-color:var(--sand-bd);color:var(--sand-ink-d)}
-.wc-tag .pill.sage{background:var(--sage);border-color:var(--sage-bd);color:var(--sage-ink-d)}
-.wc-co{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);margin-bottom:10px}
-.wc-title{font-family:'Fraunces',serif;font-size:clamp(24px,2.6vw,34px);font-weight:300;color:var(--ink);line-height:1.12;margin-bottom:16px;letter-spacing:-.5px}
-.wc-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
-.wc-desc{font-size:14px;color:var(--ink-2);line-height:1.72;margin-bottom:22px}
-.wc-meta{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
-.wc-chip{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:3px 9px;border-radius:2px;transition:border-color .15s,color .15s}
-.work-card:hover .wc-chip{border-color:var(--rule2)}
-
-/* Mini-stats ribbon inside cards */
-.wc-stats{display:flex;gap:0;border-top:1px solid var(--rule);margin:0 -36px -38px;background:var(--paper)}
-.wc-stat{flex:1;padding:12px 16px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:1px}
-.wc-stat:last-child{border-right:none}
-.wc-stat-num{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);line-height:1;letter-spacing:-.3px}
-.wc-stat-num em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400}
-.wc-stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
-
-.wc-arrow{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-top:auto;align-self:flex-start;transition:gap .25s var(--ease);padding-top:18px}
-.work-card:hover .wc-arrow{gap:14px}
-.wc-lock{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-top:auto;align-self:flex-start;padding-top:18px}
-
-/* Card visual panel */
-.wc-visual{background:var(--paper);border-left:1px solid var(--rule);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:24px;min-height:280px}
-.wc-visual.v-blue{background:linear-gradient(135deg,#f0f4fd 0%,#e3eafa 100%)}
-.wc-visual.v-sand{background:linear-gradient(135deg,var(--sand-l) 0%,var(--sand) 100%)}
-.wc-visual.v-sage{background:linear-gradient(135deg,var(--sage-l) 0%,var(--sage) 100%)}
-.wc-visual svg{width:100%;height:100%;max-height:240px;overflow:visible}
-.wc-visual::after{content:'';position:absolute;top:12px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;content:attr(data-label)}
-
-/* Hover: subtle visual scale */
-.work-card:hover .wc-visual svg{transform:scale(1.04);transition:transform .6s var(--ease)}
-.wc-visual svg{transition:transform .6s var(--ease)}
-
-/* Featured row layout — full width visual on right */
-.work-card.feat{grid-template-columns:1fr 380px}
-.work-card.feat .wc-visual{min-height:340px}
-
-/* ═══════════════════════════════════════════════════════════════
-   PROCESS — 10-step Garage methodology (sand bg)
-   ═══════════════════════════════════════════════════════════════ */
-.process-wrap{background:var(--sand);border-bottom:1px solid var(--sand-bd);position:relative;overflow:hidden}
-.process-wrap::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--sand-bd) 1px,transparent 1px),linear-gradient(90deg,var(--sand-bd) 1px,transparent 1px);background-size:48px 48px;opacity:.4;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 30%,transparent 100%)}
-.process-inner{max-width:var(--max);margin:0 auto;padding:96px 48px;position:relative;z-index:1}
-.proc-head{margin-bottom:64px;max-width:680px}
-.proc-head .sec-tag{color:var(--sand-ink-d)}
-.proc-head .sec-tag::before{background:var(--sand-ink-d)}
-.proc-head h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.8vw,46px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:16px;letter-spacing:-.6px}
-.proc-head h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--sand-ink-d);font-weight:400}
-.proc-head p{font-size:14px;color:var(--ink-2);line-height:1.78;max-width:560px}
-.proc-head p strong{color:var(--ink);font-weight:500}
-
-.proc-flow{position:relative;padding:0;margin-top:8px}
-.proc-flow-svg{width:100%;height:auto;display:block}
-
-.proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--sand-bd);border:1px solid var(--sand-bd);border-radius:var(--r);overflow:hidden;margin-top:40px}
-.proc-step{background:var(--sand-l);padding:22px 18px;position:relative;transition:background .2s,transform .25s var(--ease);min-height:120px}
-.proc-step:hover{background:var(--white);transform:translateY(-2px);z-index:2}
-.proc-step-num{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--sand-ink-d);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.proc-step-num::before{content:'';width:16px;height:1px;background:var(--sand-ink)}
-.proc-step h4{font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:6px;letter-spacing:-.2px}
-.proc-step p{font-size:11.5px;color:var(--ink-2);line-height:1.55}
-
-.proc-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;padding-top:24px;border-top:1px dashed var(--sand-bd)}
-.proc-meta-item{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);background:var(--white);border:1px solid var(--sand-bd);padding:6px 12px;border-radius:2px;display:inline-flex;align-items:center;gap:8px}
-.proc-meta-item .num{color:var(--sand-ink-d);font-weight:500}
-
-/* ═══════════════════════════════════════════════════════════════
-   TIMELINE — career trajectory
-   ═══════════════════════════════════════════════════════════════ */
-.timeline-wrap{background:var(--white);border-bottom:1px solid var(--rule);position:relative}
-.timeline-inner{max-width:var(--max);margin:0 auto;padding:96px 48px;position:relative}
-.tl-head{margin-bottom:64px;max-width:680px}
-.tl-track{position:relative;padding:80px 0 100px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:var(--rule2) transparent;margin:0 -48px;padding-left:48px;padding-right:48px}
-.tl-track::-webkit-scrollbar{height:6px}
-.tl-track::-webkit-scrollbar-track{background:transparent}
-.tl-track::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:3px}
-.tl-rail{position:absolute;top:50%;left:48px;right:48px;height:1px;background:var(--rule2);transform:translateY(-50%)}
-.tl-rail::before,.tl-rail::after{content:'';position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--blue);transform:translateY(-50%);box-shadow:0 0 0 4px rgba(26,78,216,.12)}
-.tl-rail::before{left:-4px}
-.tl-rail::after{right:-4px;background:var(--ink-3);box-shadow:0 0 0 4px rgba(155,152,144,.12)}
-.tl-items{display:flex;gap:0;min-width:max-content;position:relative;z-index:1;padding:0 12px}
-.tl-item{flex:0 0 220px;padding:0 16px;position:relative;display:flex;flex-direction:column;align-items:center;gap:0}
-.tl-item .tl-year{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--blue);font-weight:500;margin-bottom:10px;background:var(--white);padding:4px 10px;border:1px solid var(--blue-bd);border-radius:2px}
-.tl-item .tl-node{width:14px;height:14px;border-radius:50%;background:var(--white);border:2px solid var(--blue);position:relative;z-index:2;margin-bottom:14px;transition:transform .25s var(--ease),background .2s}
-.tl-item:hover .tl-node{transform:scale(1.4);background:var(--blue)}
-.tl-item .tl-node.mile{background:var(--blue);box-shadow:0 0 0 4px rgba(26,78,216,.18)}
-.tl-item .tl-card{background:var(--paper);border:1px solid var(--rule);padding:14px 16px;border-radius:var(--r);width:100%;text-align:center;transition:border-color .2s,background .2s}
-.tl-item:hover .tl-card{border-color:var(--blue);background:var(--blue-bg)}
-.tl-item .tl-org{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:var(--ink);line-height:1.2;letter-spacing:-.2px;margin-bottom:4px}
-.tl-item .tl-role{font-size:11px;color:var(--ink-2);line-height:1.4}
-.tl-item .tl-role em{font-style:italic;color:var(--blue)}
-/* Alternate above/below the rail */
-.tl-item:nth-child(odd){flex-direction:column}
-.tl-item:nth-child(even){flex-direction:column-reverse}
-.tl-item:nth-child(even) .tl-year{margin-bottom:0;margin-top:10px}
-.tl-item:nth-child(even) .tl-node{margin-bottom:0;margin-top:14px}
-.tl-hint{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-top:18px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
-.tl-hint::before,.tl-hint::after{content:'';width:24px;height:1px;background:var(--rule2)}
-
-/* ═══════════════════════════════════════════════════════════════
-   AI PRACTICE (sage bg)
-   ═══════════════════════════════════════════════════════════════ */
-.ai-wrap{background:var(--sage);border-bottom:1px solid var(--sage-bd);position:relative;overflow:hidden}
-.ai-wrap::before{content:'';position:absolute;top:-15%;left:-10%;width:580px;height:580px;background:radial-gradient(circle,rgba(90,119,99,.1) 0%,transparent 60%);pointer-events:none}
-.ai-inner{max-width:var(--max);margin:0 auto;padding:96px 48px;position:relative;z-index:1}
-.ai-head{margin-bottom:48px;max-width:780px}
-.ai-head .sec-tag{color:var(--sage-ink-d)}
-.ai-head .sec-tag::before{background:var(--sage-ink-d)}
-.ai-head h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,52px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:18px;letter-spacing:-.6px}
-.ai-head h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--sage-ink-d);font-weight:400}
-.ai-head p{font-size:15px;color:var(--ink-1);line-height:1.78;max-width:680px}
-.ai-head p strong{color:var(--ink);font-weight:500}
-
-.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sage-bd);border:1px solid var(--sage-bd);border-radius:var(--r);overflow:hidden;margin-top:40px}
-.ai-card{background:var(--sage-l);padding:28px 26px;position:relative;transition:background .2s,transform .25s var(--ease);min-height:200px;display:flex;flex-direction:column}
-.ai-card:hover{background:var(--white);transform:translateY(-2px);z-index:2}
-.ai-icon{width:36px;height:36px;border:1px solid var(--sage-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--sage-ink-d);margin-bottom:18px;background:var(--white);transition:transform .35s var(--ease),background .2s,border-color .2s}
-.ai-card:hover .ai-icon{transform:rotate(-12deg);background:var(--sage);border-color:var(--sage-ink)}
-.ai-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sage-ink-d);font-weight:500;margin-bottom:8px}
-.ai-card h3{font-family:'Fraunces',serif;font-size:19px;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.2;letter-spacing:-.2px}
-.ai-card p{font-size:13px;color:var(--ink-2);line-height:1.7;margin:0}
-
-.ai-tools{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sage-bd);border:1px solid var(--sage-bd);border-radius:var(--r);overflow:hidden}
-.ai-tools-col{background:var(--sage-l);padding:22px 26px}
-.ai-col-head{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage-ink-d);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.ai-col-head::before{content:'';width:14px;height:1px;background:var(--sage-ink-d)}
-.ai-tool-row{display:flex;flex-wrap:wrap;gap:6px}
-.ai-tool{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.5px;color:var(--ink-2);background:var(--white);border:1px solid var(--sage-bd);padding:5px 11px;border-radius:2px;transition:border-color .15s,color .15s,background .15s}
-.ai-tool.hi{color:var(--sage-ink-d);background:var(--sage);border-color:var(--sage-ink)}
-.ai-tool:hover{border-color:var(--sage-ink);color:var(--sage-ink-d)}
-
-/* ═══════════════════════════════════════════════════════════════
-   ABOUT
-   ═══════════════════════════════════════════════════════════════ */
-.about-grid{display:grid;grid-template-columns:1fr 360px;gap:72px;align-items:start}
-.about-text p{font-size:15px;color:var(--ink-2);line-height:1.85;margin-bottom:20px;max-width:580px}
-.about-text p strong{color:var(--ink);font-weight:500}
-.about-text p .accent{font-family:'Fraunces',serif;font-style:italic;color:var(--blue);font-weight:400}
-
-.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:32px;max-width:580px}
-.af-cell{background:var(--white);padding:14px 18px;transition:background .2s}
-.af-cell:hover{background:var(--paper)}
-.af-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:5px}
-.af-val{font-size:13px;font-weight:500;color:var(--ink-1);line-height:1.4}
-.af-val em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
-
-/* Skills cluster */
-.skills-cluster{margin-top:36px;max-width:580px}
-.skills-head{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.skills-head::before{content:'';width:18px;height:1px;background:var(--rule2)}
-.skill-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
-.skill{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:5px 10px;border-radius:2px;transition:all .18s}
-.skill.hi{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue)}
-.skill:hover{border-color:var(--ink-2);color:var(--ink-1)}
-
-.about-photo{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--sand-l),var(--bone));border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-bottom:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;position:relative}
-.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.photo-placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;z-index:1}
-.photo-mono{font-family:'Fraunces',serif;font-size:120px;font-weight:300;color:var(--ink);font-style:italic;line-height:.8;letter-spacing:-6px}
-.photo-mono em{color:var(--blue);font-family:'Instrument Serif',serif}
-.photo-caption{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-3);text-align:center;max-width:200px;line-height:1.5}
-.about-photo::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(20,18,16,.06) 1px,transparent 1px);background-size:14px 14px;pointer-events:none}
-.about-cv-link{display:flex;align-items:center;justify-content:space-between;background:var(--paper);border:1px solid var(--rule);padding:14px 18px;border-radius:var(--r);text-decoration:none;transition:all .2s;margin-bottom:8px}
-.about-cv-link:hover{border-color:var(--blue);background:var(--blue-bg)}
-.about-cv-link span{font-size:13px;font-weight:500;color:var(--ink-1)}
-.about-cv-link .arr{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue);transition:transform .2s var(--ease)}
-.about-cv-link:hover .arr{transform:translateX(4px)}
-
-/* ═══════════════════════════════════════════════════════════════
-   RECOGNITION
-   ═══════════════════════════════════════════════════════════════ */
-.recog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:40px}
-.rg-cell{background:var(--paper);padding:24px 22px;position:relative;transition:background .25s,transform .25s var(--ease);min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
-.rg-cell:hover{background:var(--white);transform:translateY(-2px);z-index:2}
-.rg-cell.tall{grid-row:span 2;background:linear-gradient(160deg,var(--sand-l) 0%,var(--paper) 100%)}
-.rg-cell.tall:hover{background:linear-gradient(160deg,var(--sand) 0%,var(--white) 100%)}
-.rg-cell.feat-blue{background:linear-gradient(160deg,var(--blue-bg) 0%,var(--paper) 100%)}
-.rg-cell.feat-blue:hover{background:linear-gradient(160deg,var(--blue-bg) 0%,var(--white) 100%)}
-.rg-icon{width:44px;height:44px;border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-1);background:var(--white);margin-bottom:18px;transition:transform .35s var(--ease),background .2s,border-color .2s}
-.rg-cell:hover .rg-icon{transform:rotate(-12deg);background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
-.rg-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;font-weight:500}
-.rg-cell h4{font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--ink);line-height:1.25;margin-bottom:8px;letter-spacing:-.2px}
-.rg-cell h4 em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif}
-.rg-cell p{font-size:12px;color:var(--ink-2);line-height:1.6}
-.rg-cell.tall h4{font-size:20px}
-.rg-cell.tall p{font-size:13px}
-
-/* ═══════════════════════════════════════════════════════════════
-   WRITING
-   ═══════════════════════════════════════════════════════════════ */
-.writing-card{display:grid;grid-template-columns:240px 1fr;gap:48px;padding:32px;background:linear-gradient(135deg,#fff 0%,var(--paper) 100%);border:1px solid var(--rule);border-radius:var(--r);text-decoration:none;color:inherit;transition:border-color .25s,transform .25s var(--ease),box-shadow .25s;position:relative;overflow:hidden;margin-top:40px}
-.writing-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue)}
-.writing-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 12px 36px rgba(26,78,216,.08)}
-.wc-meta{padding-top:4px;display:flex;flex-direction:column;gap:12px}
-.wc-cat{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bd);padding:5px 10px;border-radius:2px;width:fit-content;font-weight:500}
-.wc-date{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--ink-3);font-weight:400}
-.wc-content{display:flex;flex-direction:column;gap:14px}
-.wc-title{font-family:'Fraunces',serif;font-size:clamp(28px,3.4vw,42px);font-weight:300;line-height:1.05;letter-spacing:-.6px;color:var(--ink);margin-bottom:4px}
-.wc-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
-.wc-subtitle{font-family:'Fraunces',serif;font-size:17px;font-weight:300;color:var(--ink-2);line-height:1.45;letter-spacing:-.2px;max-width:660px}
-.wc-subtitle em{font-style:italic;color:var(--blue);font-family:'Instrument Serif',serif;font-weight:400}
-.wc-excerpt{font-size:14.5px;color:var(--ink-2);line-height:1.78;max-width:660px;margin-top:6px}
-.wc-excerpt strong{color:var(--ink);font-weight:500}
-.wc-cta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-top:18px;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}
-.writing-card:hover .wc-cta{gap:14px}
-.writing-more{margin-top:24px;text-align:right}
-.wm-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-2);text-decoration:none;font-weight:500;padding:10px 16px;border:1px solid var(--rule2);border-radius:var(--r);display:inline-block;transition:all .15s}
-.wm-link:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
-@media(max-width:800px){.writing-card{grid-template-columns:1fr;gap:18px;padding:24px}}
-
-/* ═══════════════════════════════════════════════════════════════
-   CTA STRIP — branded blue
-   ═══════════════════════════════════════════════════════════════ */
-.cta-strip{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);position:relative;overflow:hidden}
-.cta-strip::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%)}
-.cta-strip::after{content:'';position:absolute;top:-30%;right:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
-.cta-inner{max-width:var(--max);margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;z-index:1}
-.cta-inner h2{font-family:'Fraunces',serif;font-size:clamp(32px,4.5vw,56px);font-weight:300;color:#fff;line-height:1.05;margin-bottom:18px;letter-spacing:-.7px}
-.cta-inner h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:#cdd9f8;font-weight:400}
-.cta-inner .cta-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:18px;display:flex;align-items:center;gap:14px;font-weight:500}
-.cta-inner .cta-tag::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.5)}
-.cta-inner p{font-size:14px;color:rgba(255,255,255,.78);max-width:560px;line-height:1.78}
-.cta-inner p strong{color:#fff;font-weight:500}
-.cta-btns{display:flex;flex-direction:column;gap:10px;flex-shrink:0;min-width:240px}
-.cbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:14px 22px;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;cursor:none}
-.cbtn.p{background:#fff;color:var(--blue);border:1px solid #fff}
-.cbtn.p:hover{background:rgba(255,255,255,.92);transform:translateY(-1px);box-shadow:0 10px 30px rgba(0,0,0,.18)}
-.cbtn.o{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.22)}
-.cbtn.o:hover{border-color:rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.05)}
-
-/* ═══════════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════════ */
-.foot{border-top:1px solid var(--rule);max-width:var(--max);margin:0 auto;padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.foot-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);display:flex;align-items:center;gap:10px}
-.foot-name em{font-style:italic;color:var(--ink);font-family:'Instrument Serif',serif}
-.foot-name .copy{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-3);text-transform:uppercase;padding-left:14px;border-left:1px solid var(--rule);margin-left:6px}
-.foot-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.foot-nav a{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .15s;padding:4px 8px}
-.foot-nav a:hover{color:var(--blue)}
-.foot-sep{color:var(--rule2);padding:0 2px}
-
-/* ═══════════════════════════════════════════════════════════════
-   SCROLL REVEAL
-   ═══════════════════════════════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(28px);filter:blur(2px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
-.reveal.in{opacity:1;transform:translateY(0);filter:blur(0)}
-.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}
-
-/* ═══════════════════════════════════════════════════════════════
-   BACK TO TOP
-   ═══════════════════════════════════════════════════════════════ */
-#back-top{position:fixed;bottom:32px;right:32px;width:46px;height:46px;background:var(--white);border:1px solid var(--rule2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .15s,background .15s,box-shadow .2s;box-shadow:0 4px 22px rgba(0,0,0,.08)}
-#back-top.show{opacity:1;transform:translateY(0)}
-#back-top:hover{border-color:var(--blue);background:var(--blue-bg);box-shadow:0 6px 22px rgba(26,78,216,.18)}
-
-/* ═══════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════ */
-@media(max-width:1100px){
-  .hero{grid-template-columns:1fr;gap:48px;padding:120px 48px 64px}
-  .hv-frame{max-width:300px;margin:0 auto}
-  .hero-visual{margin-bottom:0;justify-content:center}
-  .work-card,.work-card.feat{grid-template-columns:1fr}
-  .wc-visual{border-left:none;border-top:1px solid var(--rule);min-height:220px}
-  .proc-grid{grid-template-columns:repeat(3,1fr)}
-  .ai-grid{grid-template-columns:repeat(2,1fr)}
-  .recog-grid{grid-template-columns:repeat(3,1fr)}
-  .impact-grid{grid-template-columns:repeat(2,1fr)}
+/* Contact */
+.contact{background:var(--sage-l);border-top:1px solid var(--sage-bd);border-bottom:none}
+.contact h2{
+  font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4.4vw,52px);
+  letter-spacing:-.8px;line-height:1.06;color:var(--ink);margin:14px 0 0;max-width:20ch;
 }
-@media(max-width:1000px){
-  nav{padding:0 20px}
-  .nav-links,.nav-ctas{display:none}
-  .hamburger{display:flex}
-  .mobile-menu{display:flex}
-  .hero{padding:96px 20px 48px}
-  .wrap{padding:64px 20px}
-  .impact-inner,.process-inner,.timeline-inner,.ai-inner{padding:64px 20px}
-  .about-grid{grid-template-columns:1fr;gap:48px}
-  .about-photo{aspect-ratio:4/3;max-width:380px}
-  .recog-grid{grid-template-columns:repeat(2,1fr)}
-  .rg-cell.tall{grid-row:span 1}
-  .cta-inner{grid-template-columns:1fr;padding:56px 20px}
-  .cta-btns{min-width:0}
-  .foot{padding:24px 20px}
-  .h-stats{grid-template-columns:repeat(2,1fr)}
-  .h-stat:nth-child(2){border-right:none}
-  .h-stat:nth-child(1),.h-stat:nth-child(2){border-bottom:1px solid var(--rule)}
-  .sec-num{display:none}
-  #back-top{bottom:20px;right:20px}
-  .ai-tools{grid-template-columns:1fr}
-  .trust-inner{padding:0 20px;gap:20px}
-  .trust-label{font-size:8px}
-  .tl-track{margin:0 -20px;padding-left:20px;padding-right:20px}
-  .tl-rail{left:20px;right:20px}
-}
-@media(max-width:700px){
-  .hv-frame::before{display:none}
-  .ai-grid{grid-template-columns:1fr}
-  .impact-grid{grid-template-columns:1fr}
-  .imp-cell{padding:24px 20px}
-  .recog-grid{grid-template-columns:1fr}
-  .proc-grid{grid-template-columns:repeat(2,1fr)}
-  .hero h1{letter-spacing:-2px}
-  .h-line.indent{padding-left:16px}
-  .wc-stats{flex-wrap:wrap}
-  .wc-stat{min-width:50%}
-  .wc-stat:nth-child(2){border-right:none}
-  .wc-stat:nth-child(1),.wc-stat:nth-child(2){border-bottom:1px solid var(--rule)}
-}
-@media(max-width:480px){
-  .cta-inner h2{font-size:clamp(26px,7vw,36px)}
-  .photo-mono{font-size:90px}
-  .tl-item{flex:0 0 180px}
+.contact h2 em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--blue);font-weight:400}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+
+@media(max-width:860px){
+  .hero__grid,.about,.card{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr}
+  .card__body{padding:24px}
 }
 </style>
 </head>
-<body>
+<body class="has-cursor">
 
-<!-- Custom cursor -->
+<a class="skip" href="#main">Skip to content</a>
 <div id="cur" aria-hidden="true"></div>
 
-<!-- Progress bar -->
-<div id="prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
-
-<!-- ═══════════════════════════════════════════════
-     NAV
-     ═══════════════════════════════════════════════ -->
-<nav aria-label="Main navigation">
-  <a href="index.html" class="nav-id" aria-label="Home — Mohit Ahirwar">
-    <div class="nav-mark" aria-hidden="true"><span>M</span></div>
-    <span class="nav-name">Ahirwar</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="articles.html">Writing</a></li>
-    <li><a href="#timeline">Trajectory</a></li>
-    <li><a href="#ai">AI Practice</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#recognition">Recognition</a></li>
-  </ul>
-  <div class="nav-ctas">
-    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o" aria-label="View LinkedIn profile">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      LinkedIn
+<nav class="nav">
+  <div class="nav__in">
+    <a class="nav__id" href="index.html">
+      <span class="nav__dot"></span>
+      <span class="nav__name">Mohit Ahirwar</span>
     </a>
-    <a href="cv.html" class="nbtn s">View CV</a>
+    <ul class="nav__links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="articles.html">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
-  <a href="#work">Work</a>
-  <a href="articles.html">Writing</a>
-  <a href="#timeline">Trajectory</a>
-  <a href="#ai">AI Practice</a>
-  <a href="#about">About</a>
-  <a href="#recognition">Recognition</a>
-  <a href="cv.html">CV</a>
-  <div class="mm-foot">
-    <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="nbtn o" style="font-size:10px;">LinkedIn</a>
-    <a href="mailto:mohitahirwar7@gmail.com" class="nbtn s" style="font-size:10px;">Email</a>
-  </div>
-</div>
+<main id="main">
 
-<main>
-
-<!-- ═══════════════════════════════════════════════
-     1. HERO
-     ═══════════════════════════════════════════════ -->
-<section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-text">
-    <p class="h-pre">
-      Design Strategist · Digital Transformation · Mumbai
-      <span class="available"><span class="dot-live"></span>Open to consulting roles</span>
-    </p>
-    <h1 id="hero-heading">
-      <span class="h-line"><span>Inside India's</span></span>
-      <span class="h-line indent"><span>largest banking</span></span>
-      <span class="h-line indent"><span><em>transformation.</em></span></span>
-    </h1>
-    <p class="h-sub">
-      <strong>Design strategist</strong> at TCS Interactive on the McKinsey-led transformation of <strong>SBI YONO 2.0</strong>. Leading the insurance vertical end-to-end across four channels — mobile, web, branch, and field tablets.<br><br>
-      <strong>M.Des, IIT Delhi</strong> · CEED Qualified · <span class="accent">Early ChatGPT adopter</span> since Dec 2022, AI-augmented across research, synthesis, and ideation.
-    </p>
-    <div class="h-stats" role="list">
-      <div class="h-stat" role="listitem">
-        <span class="stat-val" data-val="3.6" data-suf=" Yrs">3.6 Yrs</span>
-        <span class="stat-label">Full-time exp.</span>
-      </div>
-      <div class="h-stat" role="listitem">
-        <span class="stat-val" data-val="110" data-suf="+">110+</span>
-        <span class="stat-label">Journeys delivered</span>
-      </div>
-      <div class="h-stat" role="listitem">
-        <span class="stat-val" data-val="42" data-suf="">42</span>
-        <span class="stat-label">P2 audits, solo</span>
-      </div>
-      <div class="h-stat" role="listitem">
-        <span class="stat-val">YONO 2.0</span>
-        <span class="stat-label">Current project</span>
+<!-- HERO -->
+<header class="pb hero">
+  <div class="hero__grid">
+    <div class="reveal in">
+      <p class="s-num">Design strategist · Mumbai</p>
+      <h1>Six journeys, designed properly, now govern <em>forty</em>.</h1>
+      <p class="hero__sub">I lead design for the insurance vertical of SBI YONO 2.0 at TCS Interactive, across app, web, branch portal and field tablet.</p>
+      <div class="chips">
+        <span class="chip">M.Des, IIT Delhi</span>
+        <span class="chip">Enterprise BFSI</span>
+        <span class="chip chip--hi">Open to consulting roles</span>
       </div>
     </div>
-    <div class="h-ctas">
-      <a href="#work" class="btn pri magnetic">View Work ↓</a>
-      <a href="cv.html" class="btn sec">Full CV</a>
+
+    <div class="sig reveal in d2" aria-hidden="true">
+      <div class="sig__cap"><span>Anchor journeys</span><span>Portfolio</span></div>
+      <svg viewBox="0 0 320 190" role="img">
+        <circle class="anchor-node" cx="32" cy="95" r="6"></circle>
+        <g>
+          <line class="link-line" x1="38" y1="95" x2="118" y2="38"></line>
+          <line class="link-line" x1="38" y1="95" x2="118" y2="76" style="animation-delay:.15s"></line>
+          <line class="link-line" x1="38" y1="95" x2="118" y2="114" style="animation-delay:.30s"></line>
+          <line class="link-line" x1="38" y1="95" x2="118" y2="152" style="animation-delay:.45s"></line>
+        </g>
+        <g id="grid"></g>
+      </svg>
+      <p class="sig__note">One anchor journey, cleared once, governing forty products downstream.</p>
     </div>
   </div>
+</header>
 
-  <!-- Hero visual: editorial portrait + meta strip -->
-  <div class="hero-visual" aria-hidden="false">
-    <div class="hv-frame" id="heroVisual">
-      <div class="hv-photo-wrap">
-        <img src="assets/profile/mohit-hero.jpg" alt="Mohit Ahirwar — Design Strategist" class="hv-photo">
-      </div>
-      <div class="hv-meta">
-        <span class="hv-meta-name">Mohit Ahirwar</span>
-        <span class="hv-meta-role">Design Strategist · Digital Transformation</span>
-        <div class="hv-meta-facts">
-          <span>Mumbai</span>
-          <span>M.Des, IIT Delhi</span>
-          <span>TCS × SBI</span>
-          <span><em>Available 2026</em></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     2. TRUSTED BY
-     ═══════════════════════════════════════════════ -->
-<section class="trust" aria-label="Organizations and partners">
-  <div class="trust-inner">
-    <div class="trust-label">Worked with / Recognised by</div>
-    <div class="trust-marquee">
-      <div class="trust-track">
-        <!-- First copy -->
-        <span class="trust-item"><span class="mono">SBI</span><span class="sep"></span></span>
-        <span class="trust-item partner">McKinsey <em>&amp; Company</em><span class="sep"></span></span>
-        <span class="trust-item">IIT Delhi<span class="sep"></span></span>
-        <span class="trust-item"><span class="mono">TCS</span> Interactive<span class="sep"></span></span>
-        <span class="trust-item">Havells India<span class="sep"></span></span>
-        <span class="trust-item">Quality Council of India<span class="sep"></span></span>
-        <span class="trust-item">Indian Armed Forces<span class="sep"></span></span>
-        <span class="trust-item">President of India<span class="sep"></span></span>
-        <span class="trust-item">Govt. of India<span class="sep"></span></span>
-        <!-- Duplicate for seamless loop -->
-        <span class="trust-item"><span class="mono">SBI</span><span class="sep"></span></span>
-        <span class="trust-item partner">McKinsey <em>&amp; Company</em><span class="sep"></span></span>
-        <span class="trust-item">IIT Delhi<span class="sep"></span></span>
-        <span class="trust-item"><span class="mono">TCS</span> Interactive<span class="sep"></span></span>
-        <span class="trust-item">Havells India<span class="sep"></span></span>
-        <span class="trust-item">Quality Council of India<span class="sep"></span></span>
-        <span class="trust-item">Indian Armed Forces<span class="sep"></span></span>
-        <span class="trust-item">President of India<span class="sep"></span></span>
-        <span class="trust-item">Govt. of India<span class="sep"></span></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     3. IMPACT BAND
-     ═══════════════════════════════════════════════ -->
-<section class="impact" aria-labelledby="impact-heading">
-  <div class="impact-inner">
-    <div class="impact-head">
-      <div>
-        <div class="impact-tag reveal">Impact at scale</div>
-        <h2 id="impact-heading" class="reveal d1">Scale, <em>through pattern</em><br>not through hours.</h2>
-      </div>
-      <p class="ihead-aside reveal d2">SBI's insurance portfolio spans <strong>40+ products</strong> across General and Life Insurance. I led design for the anchor journeys — GPAI, GSA, and 5–6 others. The patterns I established became the reference standard adopted across the rest. The leverage is the story.</p>
-    </div>
-
-    <div class="impact-grid">
-      <div class="imp-cell reveal d1">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M8 2v12M3 3l10 10M13 3L3 13"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="40" data-suf="">40</em><span class="imp-suf">+</span></span>
-        <h3>Insurance products</h3>
-        <p>Pattern-governed across SBI's entire portfolio — General + Life Insurance.</p>
-      </div>
-      <div class="imp-cell reveal d2">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="5" height="5"/><rect x="9" y="2" width="5" height="5"/><rect x="2" y="9" width="5" height="5"/><rect x="9" y="9" width="5" height="5"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="600" data-suf="">600</em></span>
-        <h3>Screens iterated</h3>
-        <p>500–600 screens shaped, refined, and shipped over 8–10 month cycles.</p>
-      </div>
-      <div class="imp-cell reveal d3">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l2 2"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="42" data-suf="">42</em></span>
-        <h3>P2 audits, solo</h3>
-        <p>Audited all 42 Phase-2 journeys for consistency — institutional knowledge owner.</p>
-      </div>
-      <div class="imp-cell reveal d4">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="5" cy="6" r="2.5"/><circle cx="11" cy="6" r="2.5"/><path d="M2 14c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5M8 14c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="11" data-suf="">11</em></span>
-        <h3>Stakeholder teams</h3>
-        <p>Coordinating across 11 internal SBI teams — product, risk, ops, compliance.</p>
-      </div>
-      <div class="imp-cell reveal d1">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 14L8 2l6 12M5 11h6"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="35" data-suf="">35</em><span class="imp-suf">+</span></span>
-        <h3>Mentees placed</h3>
-        <p>Design mentees selected into IITs and NIDs — track record outside work.</p>
-      </div>
-      <div class="imp-cell reveal d2">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="6" r="3"/><path d="M5 12l-1 3 4-2 4 2-1-3"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="10" data-suf="">10</em><span class="imp-suf">+</span></span>
-        <h3>Performance awards</h3>
-        <p>Star Performer of the Year at TCS plus written client appreciations.</p>
-      </div>
-      <div class="imp-cell reveal d3">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4h12M2 8h12M2 12h12"/><circle cx="5" cy="4" r="1.2" fill="currentColor"/><circle cx="11" cy="8" r="1.2" fill="currentColor"/><circle cx="7" cy="12" r="1.2" fill="currentColor"/></svg>
-        </div>
-        <span class="imp-num"><em data-val="4" data-suf="">4</em><span class="imp-suf">+1</span></span>
-        <h3>Direct reports</h3>
-        <p>4 visual designers + 1 UX designer — IIT and NID backgrounds.</p>
-      </div>
-      <div class="imp-cell reveal d4">
-        <div class="imp-icon" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 13l5-9 5 9H3z"/><circle cx="8" cy="10" r="1.2" fill="currentColor"/></svg>
-        </div>
-        <span class="imp-num"><em>IIT</em></span>
-        <h3>M.Des, IIT Delhi</h3>
-        <p>CGPA 8.0 · CEED Qualified (no coaching) · Outstanding Performance Award.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     4. SELECTED WORK
-     ═══════════════════════════════════════════════ -->
-<section class="wrap" id="work" aria-labelledby="work-heading">
-  <div class="sec-num" aria-hidden="true">01</div>
-  <div class="sec-head">
-    <div class="sec-head-left">
-      <div class="sec-tag reveal">Selected Work</div>
-      <h2 id="work-heading" class="reveal d1">Case <em>studies</em></h2>
-      <p class="intro reveal d2">End-to-end documentation of significant design problems — the process, the decisions, and the downstream impact.</p>
-    </div>
+<!-- WORK -->
+<section id="work" class="pb block">
+  <div class="head reveal">
+    <h2>Selected <em>work</em></h2>
+    <span class="s-lbl">Three projects</span>
   </div>
 
-  <div class="work-grid">
-
-    <!-- ─── YONO 2.0 — FEATURED ─── -->
-    <a href="yono-case-study.html" class="work-card feat reveal">
-      <div class="wc-content">
-        <div>
-          <div class="wc-tag">
-            <span>2024–Present</span>
-            <span class="pill feat">Featured</span>
-            <span class="pill">TCS × SBI × McKinsey</span>
-          </div>
-          <div class="wc-co">State Bank of India · YONO 2.0</div>
-          <h3 class="wc-title">Insurance Vertical —<br><em>Multi-channel Systems Design</em></h3>
-          <p class="wc-desc">Redesigning the end-to-end insurance purchase and management experience across app, web, branch portal, and field tablets. General Insurance and Life Insurance, with GPAI as the anchor journey within General Insurance.</p>
-          <div class="wc-meta">
-            <span class="wc-chip">BFSI</span>
-            <span class="wc-chip">Systems Design</span>
-            <span class="wc-chip">Multi-channel</span>
-            <span class="wc-chip">Insurance</span>
-            <span class="wc-chip">Design System</span>
-          </div>
-        </div>
-        <div class="wc-arrow">Read Case Study <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></div>
-        <div class="wc-stats" aria-label="Project key numbers">
-          <div class="wc-stat"><span class="wc-stat-num"><em>110+</em></span><span class="wc-stat-lbl">Journeys</span></div>
-          <div class="wc-stat"><span class="wc-stat-num"><em>600</em></span><span class="wc-stat-lbl">Screens</span></div>
-          <div class="wc-stat"><span class="wc-stat-num"><em>11</em></span><span class="wc-stat-lbl">SBI teams</span></div>
-          <div class="wc-stat"><span class="wc-stat-num"><em>4</em></span><span class="wc-stat-lbl">Channels</span></div>
-        </div>
-      </div>
-      <div class="wc-visual v-blue" data-label="01">
-        <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Architecture diagram for YONO 2.0 -->
-          <defs>
-            <linearGradient id="ph1" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#fff"/>
-              <stop offset="100%" stop-color="#fafaf8"/>
-            </linearGradient>
-          </defs>
-          <!-- Phone -->
-          <rect x="38" y="36" width="68" height="120" rx="8" fill="url(#ph1)" stroke="#1a4ed8" stroke-width="1.2"/>
-          <rect x="44" y="44" width="56" height="6" rx="2" fill="#1a4ed8" opacity=".5"/>
-          <rect x="44" y="56" width="44" height="3" rx="1" fill="#9b9890"/>
-          <rect x="44" y="64" width="56" height="22" rx="2" fill="#eef2fd"/>
-          <rect x="44" y="92" width="56" height="3" rx="1" fill="#e4e2dc"/>
-          <rect x="44" y="98" width="40" height="3" rx="1" fill="#e4e2dc"/>
-          <rect x="44" y="112" width="56" height="14" rx="2" fill="#1a4ed8"/>
-          <rect x="44" y="132" width="56" height="3" rx="1" fill="#e4e2dc"/>
-          <rect x="44" y="138" width="44" height="3" rx="1" fill="#e4e2dc"/>
-          <text x="72" y="170" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#6b6860">APP</text>
-
-          <!-- Tablet -->
-          <rect x="120" y="58" width="92" height="76" rx="6" fill="url(#ph1)" stroke="#1a4ed8" stroke-width="1.2"/>
-          <rect x="128" y="66" width="36" height="60" rx="2" fill="#eef2fd"/>
-          <rect x="170" y="66" width="36" height="28" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <rect x="170" y="98" width="36" height="28" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <text x="166" y="148" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#6b6860">TABLET</text>
-
-          <!-- Desktop -->
-          <rect x="226" y="46" width="80" height="62" rx="4" fill="url(#ph1)" stroke="#1a4ed8" stroke-width="1.2"/>
-          <rect x="226" y="46" width="80" height="8" rx="4" fill="#f3f2ef"/>
-          <circle cx="232" cy="50" r="1.4" fill="#d0cec7"/>
-          <circle cx="237" cy="50" r="1.4" fill="#d0cec7"/>
-          <rect x="232" y="62" width="20" height="40" rx="2" fill="#f5efe4"/>
-          <rect x="256" y="62" width="46" height="18" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <rect x="256" y="84" width="46" height="18" rx="2" fill="#eef2fd"/>
-          <text x="266" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#6b6860">WEB</text>
-
-          <!-- Branch -->
-          <rect x="120" y="170" width="92" height="62" rx="4" fill="url(#ph1)" stroke="#1a4ed8" stroke-width="1.2"/>
-          <rect x="120" y="170" width="92" height="8" rx="4" fill="#f3f2ef"/>
-          <rect x="128" y="186" width="20" height="38" rx="2" fill="#f5efe4"/>
-          <rect x="154" y="186" width="50" height="14" rx="2" fill="#fafaf8" stroke="#e4e2dc" stroke-width=".5"/>
-          <rect x="154" y="206" width="50" height="18" rx="2" fill="#eef2fd"/>
-          <text x="166" y="246" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#6b6860">BRANCH</text>
-
-          <!-- Center connecting hub -->
-          <circle cx="160" cy="140" r="22" fill="#1a4ed8" opacity=".08"/>
-          <circle cx="160" cy="140" r="14" fill="#1a4ed8"/>
-          <text x="160" y="143" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#fff">DS</text>
-        </svg>
-      </div>
-    </a>
-
-    <!-- ─── GLOBAL ADAPTIVE DESIGN SYSTEM ─── -->
-    <a href="global-adaptive-design-system.html" class="work-card reveal d1">
-      <div class="wc-content">
-        <div>
-          <div class="wc-tag">
-            <span>2025–Present</span>
-            <span class="pill sand">Self-Initiated · WIP</span>
-          </div>
-          <div class="wc-co">Self-Initiated · Strategic Design</div>
-          <h3 class="wc-title">Global Adaptive<br><em>Design System</em></h3>
-          <p class="wc-desc">A design system built for the 70% of internet users most products quietly ignore — direction-agnostic layouts (LTR, RTL, vertical scripts) across three device constraint tiers.</p>
-          <div class="wc-meta">
-            <span class="wc-chip">Design Systems</span>
-            <span class="wc-chip">RTL · LTR · TTB</span>
-            <span class="wc-chip">Global UX</span>
-            <span class="wc-chip">Strategic</span>
-          </div>
-        </div>
-        <div class="wc-arrow">See the Project <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></div>
-      </div>
-      <div class="wc-visual v-sand" data-label="02">
-        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- LTR layout -->
-          <g transform="translate(20,20)">
-            <rect x="0" y="0" width="84" height="100" rx="4" fill="#fff" stroke="#e6dcc7"/>
-            <rect x="6" y="6" width="40" height="6" rx="1" fill="#8a7558"/>
-            <rect x="6" y="18" width="72" height="3" rx="1" fill="#d0cec7"/>
-            <rect x="6" y="24" width="64" height="3" rx="1" fill="#d0cec7"/>
-            <rect x="6" y="30" width="68" height="3" rx="1" fill="#d0cec7"/>
-            <rect x="6" y="42" width="36" height="22" rx="2" fill="#fbf6ec"/>
-            <rect x="46" y="42" width="32" height="22" rx="2" fill="#f5efe4"/>
-            <rect x="6" y="70" width="48" height="10" rx="2" fill="#1a4ed8"/>
-            <text x="42" y="116" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#5e4f3a">LTR</text>
-          </g>
-          <!-- RTL layout -->
-          <g transform="translate(118,20)">
-            <rect x="0" y="0" width="84" height="100" rx="4" fill="#fff" stroke="#e6dcc7"/>
-            <rect x="38" y="6" width="40" height="6" rx="1" fill="#8a7558"/>
-            <rect x="6" y="18" width="72" height="3" rx="1" fill="#d0cec7"/>
-            <rect x="14" y="24" width="64" height="3" rx="1" fill="#d0cec7"/>
-            <rect x="10" y="30" width="68" height="3" rx="1" fill="#d0cec7"/>
-            <rect x="46" y="42" width="32" height="22" rx="2" fill="#fbf6ec"/>
-            <rect x="6" y="42" width="36" height="22" rx="2" fill="#f5efe4"/>
-            <rect x="30" y="70" width="48" height="10" rx="2" fill="#1a4ed8"/>
-            <text x="42" y="116" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#5e4f3a">RTL</text>
-          </g>
-          <!-- Vertical layout -->
-          <g transform="translate(216,20)">
-            <rect x="0" y="0" width="84" height="100" rx="4" fill="#fff" stroke="#e6dcc7"/>
-            <rect x="6" y="6" width="6" height="40" rx="1" fill="#8a7558"/>
-            <rect x="16" y="6" width="3" height="72" rx="1" fill="#d0cec7"/>
-            <rect x="22" y="6" width="3" height="64" rx="1" fill="#d0cec7"/>
-            <rect x="28" y="6" width="3" height="68" rx="1" fill="#d0cec7"/>
-            <rect x="40" y="6" width="22" height="36" rx="2" fill="#fbf6ec"/>
-            <rect x="40" y="46" width="22" height="32" rx="2" fill="#f5efe4"/>
-            <rect x="68" y="6" width="10" height="48" rx="2" fill="#1a4ed8"/>
-            <text x="42" y="116" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#5e4f3a">TTB</text>
-          </g>
-          <!-- Bottom: 3 device tiers -->
-          <g transform="translate(20,150)">
-            <rect x="0" y="20" width="80" height="50" rx="3" fill="#fff" stroke="#e6dcc7"/>
-            <text x="40" y="86" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.2" fill="#8a7558">DESKTOP</text>
-            <rect x="110" y="28" width="56" height="42" rx="3" fill="#fff" stroke="#e6dcc7"/>
-            <text x="138" y="86" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.2" fill="#8a7558">TABLET</text>
-            <rect x="180" y="20" width="32" height="50" rx="4" fill="#fff" stroke="#e6dcc7"/>
-            <text x="196" y="86" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.2" fill="#8a7558">MOBILE</text>
-            <rect x="226" y="36" width="60" height="34" rx="3" fill="#fff" stroke="#e6dcc7"/>
-            <text x="256" y="86" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.2" fill="#8a7558">WATCH</text>
-          </g>
-        </svg>
-      </div>
-    </a>
-
-    <!-- ─── COZY NIGHTS ─── -->
-    <a href="mdes-thesis.html" class="work-card reveal d2">
-      <div class="wc-content">
-        <div>
-          <div class="wc-tag">
-            <span>2023</span>
-            <span class="pill sage">IIT Delhi · Havells India</span>
-          </div>
-          <div class="wc-co">M.Des Thesis · IIT Delhi × Havells India</div>
-          <h3 class="wc-title">Cozy Nights —<br><em>Sleep Systems Design</em></h3>
-          <p class="wc-desc">A systems design intervention for night-time thermal comfort — coupling AC and fan intelligently inside the Havells Sync app. 18% electricity savings at equivalent comfort.</p>
-          <div class="wc-meta">
-            <span class="wc-chip">Systems Design</span>
-            <span class="wc-chip">Smart Home</span>
-            <span class="wc-chip">IIT Delhi</span>
-            <span class="wc-chip">Interaction</span>
-          </div>
-        </div>
-        <div class="wc-arrow">Read Case Study <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></div>
-      </div>
-      <div class="wc-visual v-sage" data-label="03">
-        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Time axis -->
-          <line x1="20" y1="200" x2="300" y2="200" stroke="#d6dcd2" stroke-width="1"/>
-          <text x="20" y="218" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#5a7763">10PM</text>
-          <text x="156" y="218" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#5a7763">2AM</text>
-          <text x="288" y="218" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2" fill="#5a7763">6AM</text>
-
-          <!-- Y axis grid -->
-          <line x1="20" y1="60" x2="300" y2="60" stroke="#ecf0eb" stroke-width="1" stroke-dasharray="2 3"/>
-          <line x1="20" y1="100" x2="300" y2="100" stroke="#ecf0eb" stroke-width="1" stroke-dasharray="2 3"/>
-          <line x1="20" y1="140" x2="300" y2="140" stroke="#ecf0eb" stroke-width="1" stroke-dasharray="2 3"/>
-
-          <!-- "Before" curve — high consumption -->
-          <path d="M20 90 Q 60 85 100 92 T 180 95 T 260 88 T 300 90" fill="none" stroke="#d6dcd2" stroke-width="2" stroke-dasharray="3 3" opacity=".8"/>
-          <text x="298" y="80" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.2" fill="#9b9890">AC ONLY</text>
-
-          <!-- "After" curve — adaptive -->
-          <path d="M20 95 Q 70 100 110 130 T 200 145 T 280 125 T 300 110" fill="none" stroke="#5a7763" stroke-width="2"/>
-          <path d="M20 95 Q 70 100 110 130 T 200 145 T 280 125 T 300 110 L 300 200 L 20 200 Z" fill="#5a7763" opacity=".1"/>
-          <text x="298" y="160" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1.2" fill="#3e5645">AC + FAN</text>
-
-          <!-- Data points -->
-          <circle cx="80" cy="115" r="3" fill="#5a7763"/>
-          <circle cx="160" cy="142" r="3" fill="#5a7763"/>
-          <circle cx="240" cy="135" r="3" fill="#5a7763"/>
-
-          <!-- Title overlay -->
-          <text x="20" y="32" font-family="Fraunces, serif" font-size="14" font-style="italic" fill="#3e5645">Energy use across the night</text>
-          <text x="20" y="48" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#5a7763">−18% AT EQUIVALENT COMFORT</text>
-        </svg>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     6. TIMELINE / TRAJECTORY
-     ═══════════════════════════════════════════════ -->
-<section class="timeline-wrap" id="timeline" aria-labelledby="timeline-heading">
-  <div class="timeline-inner">
-    <div class="tl-head reveal">
-      <div class="sec-tag">Career Trajectory</div>
-      <h2 id="timeline-heading">Seven years from <em>B.Tech</em><br>to leading enterprise design.</h2>
-      <p class="intro" style="max-width:560px;">A non-linear path through industry, an IIT design master's, and back into enterprise — each stop adding a layer of how to work inside complexity.</p>
+  <a class="card reveal" href="yono-case-study.html">
+    <div class="card__media">
+      <div class="card__ph">yono-loop.mp4</div>
+      <video muted loop playsinline preload="none" poster="assets/work/yono-poster.jpg" data-src="assets/work/yono-loop.mp4"></video>
     </div>
-
-    <div class="tl-track reveal d1" aria-label="Career timeline, scrollable horizontally">
-      <div class="tl-rail" aria-hidden="true"></div>
-      <div class="tl-items">
-        <div class="tl-item">
-          <span class="tl-year">2015</span>
-          <div class="tl-node" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">B.Tech, IT</div>
-            <div class="tl-role">Guru Ghasidas Central University</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2019</span>
-          <div class="tl-node" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">Conexus Netcom</div>
-            <div class="tl-role"><em>Creative Designer</em> · UK &amp; UAE clients</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2021</span>
-          <div class="tl-node mile" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">CEED Qualified</div>
-            <div class="tl-role">No coaching · IIT Delhi admit</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2021–23</span>
-          <div class="tl-node mile" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">M.Des, IIT Delhi</div>
-            <div class="tl-role">Industrial Design · CGPA 8.0</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2022</span>
-          <div class="tl-node" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">QCI</div>
-            <div class="tl-role"><em>UX &amp; Info Design Intern</em></div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2023</span>
-          <div class="tl-node" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">Havells India</div>
-            <div class="tl-role"><em>Systems &amp; UX Research Intern</em></div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2024</span>
-          <div class="tl-node mile" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">TCS Interactive</div>
-            <div class="tl-role"><em>UX Designer</em> · SBI YONO 2.0</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2026</span>
-          <div class="tl-node mile" aria-hidden="true"></div>
-          <div class="tl-card">
-            <div class="tl-org">Today</div>
-            <div class="tl-role"><em>Leading insurance vertical</em></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="tl-hint">Drag to scroll the timeline →</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     7. AI IN PRACTICE
-     ═══════════════════════════════════════════════ -->
-<section class="ai-wrap" id="ai" aria-labelledby="ai-heading">
-  <div class="ai-inner">
-    <div class="ai-head reveal">
-      <div class="sec-tag">AI-Augmented Practice</div>
-      <h2 id="ai-heading">An <em>early adopter</em> since<br>December 2022.</h2>
-      <p>Among the first wave of ChatGPT power users in India. I use AI to <strong>compress research, synthesis, and ideation cycles</strong> while preserving rigour — directly impacting velocity on multi-month transformation engagements. The distinction that matters: <strong>prompt-level usage</strong> (structured multi-shot prompts with explicit format constraints) versus <strong>workflow-level design</strong> (persistent system prompts and cumulative project context that make AI sustainable across long, complex programmes without drift).</p>
-    </div>
-
-    <div class="ai-grid reveal d1">
-      <div class="ai-card">
-        <div class="ai-icon" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="14" y2="14"/></svg>
-        </div>
-        <div class="ai-tag">Research &amp; Synthesis</div>
-        <h3>Interview synthesis at speed and coverage</h3>
-        <p>Structured prompts to analyse transcripts, cluster themes, and generate insight hierarchies from raw user data. What used to take a full day of affinity mapping now takes an hour.</p>
-      </div>
-      <div class="ai-card">
-        <div class="ai-icon" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 1l1.5 4 4 .5-3 3 .8 4.5L8 11l-3.3 2 .8-4.5-3-3 4-.5z"/></svg>
-        </div>
-        <div class="ai-tag">Prompt Engineering</div>
-        <h3>Multi-shot prompts with format constraints</h3>
-        <p>I write prompts the way I write design specs — with explicit output format, examples, edge cases, and constraints. Consistent, repeatable quality across 110+ journey projects.</p>
-      </div>
-      <div class="ai-card">
-        <div class="ai-icon" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
-        </div>
-        <div class="ai-tag">Workflow Design</div>
-        <h3>System prompts that carry project memory</h3>
-        <p>Persistent system prompts that front-load design system vocabulary, component rules, and project constraints. Every AI call is informed by cumulative context — not a blank slate.</p>
-      </div>
-    </div>
-
-    <div class="ai-tools reveal d2">
-      <div class="ai-tools-col">
-        <span class="ai-col-head">Prompt-level usage</span>
-        <div class="ai-tool-row">
-          <span class="ai-tool hi">Claude</span>
-          <span class="ai-tool hi">ChatGPT</span>
-          <span class="ai-tool hi">Gamma.ai</span>
-          <span class="ai-tool">Adobe Firefly</span>
-          <span class="ai-tool">Kling.ai</span>
-          <span class="ai-tool">Suno.ai</span>
-          <span class="ai-tool">Multi-shot prompting</span>
-        </div>
-      </div>
-      <div class="ai-tools-col">
-        <span class="ai-col-head">System &amp; workflow-level usage</span>
-        <div class="ai-tool-row">
-          <span class="ai-tool hi">Cursor</span>
-          <span class="ai-tool hi">Claude Cowork</span>
-          <span class="ai-tool">System prompt architecture</span>
-          <span class="ai-tool">Token-efficient workflows</span>
-          <span class="ai-tool">Open-source models</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     8. ABOUT
-     ═══════════════════════════════════════════════ -->
-<section class="wrap" id="about" aria-labelledby="about-heading">
-  <div class="sec-num" aria-hidden="true">02</div>
-  <div class="sec-head">
-    <div class="sec-head-left">
-      <div class="sec-tag reveal">About</div>
-    </div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text">
-      <h2 id="about-heading" class="reveal">The designer<br><em>behind the work</em></h2>
-      <p class="reveal d1">I'm a <strong>design-trained business problem solver</strong> — pattern recognizer, systems thinker, operator inside complexity. My background spans a B.Tech in Information Technology and an M.Des from IIT Delhi, which means I move comfortably between engineering constraints, regulatory compliance, and business strategy. I'm also <span class="accent">AI-augmented by default</span> — early ChatGPT adopter since December 2022, using structured prompts and persistent context architecture to compress research and synthesis cycles without losing rigour.</p>
-      <p class="reveal d2">My natural fit is <strong>design-led digital transformation</strong> — the kind of work where the design problem is inseparable from the business and operational problem. My career has been spent inside that overlap: multi-channel journeys spanning apps, web portals, and physical bank branches simultaneously; insurance products requiring clearance from <strong>11 internal SBI stakeholder teams</strong>; pattern-libraries that govern 40+ products through systems leverage rather than per-product execution. I also contributed to a VR research project for the Indian Armed Forces under IIT Delhi — a proof-of-concept later presented to the President of India.</p>
-      <p class="reveal d3">Outside of product work, I mentor CEED aspirants — <strong>35+ mentees have been selected into IITs and NIDs</strong>.</p>
-
-      <div class="about-facts reveal d4">
-        <div class="af-cell"><span class="af-label">Current role</span><span class="af-val">UX Designer · TCS Interactive × SBI YONO 2.0</span></div>
-        <div class="af-cell"><span class="af-label">Education</span><span class="af-val"><em>M.Des</em> · IIT Delhi · CGPA 8.0</span></div>
-        <div class="af-cell"><span class="af-label">CEED</span><span class="af-val">Qualified — no coaching</span></div>
-        <div class="af-cell"><span class="af-label">Location</span><span class="af-val">Mumbai, India</span></div>
-        <div class="af-cell"><span class="af-label">Full-time experience</span><span class="af-val">3.6 Years</span></div>
-        <div class="af-cell"><span class="af-label">Internships</span><span class="af-val">8 Months</span></div>
-      </div>
-
-      <!-- Skills cluster -->
-      <div class="skills-cluster reveal d5">
-        <div class="skills-head">Core Practice</div>
-        <div class="skill-row">
-          <span class="skill hi">Systems Design</span>
-          <span class="skill hi">Multi-channel UX</span>
-          <span class="skill hi">Design Systems</span>
-          <span class="skill">Service Blueprinting</span>
-          <span class="skill">Information Architecture</span>
-          <span class="skill">Interaction Design</span>
-          <span class="skill">Prototyping</span>
-          <span class="skill">Visual Design</span>
-        </div>
-        <div class="skills-head" style="margin-top:8px;">Research &amp; Strategy</div>
-        <div class="skill-row">
-          <span class="skill hi">User Interviews</span>
-          <span class="skill hi">Usability Testing</span>
-          <span class="skill">Heuristic Evaluation</span>
-          <span class="skill">Journey Mapping</span>
-          <span class="skill">Personas</span>
-          <span class="skill">Competitive Benchmarking</span>
-          <span class="skill">Insight Synthesis</span>
-        </div>
-        <div class="skills-head" style="margin-top:8px;">Domains</div>
-        <div class="skill-row">
-          <span class="skill hi">BFSI · Banking</span>
-          <span class="skill hi">Insurance</span>
-          <span class="skill">FMEG · Smart Home</span>
-          <span class="skill">EdTech</span>
-          <span class="skill">SaaS</span>
-          <span class="skill">Public Digital Platforms</span>
-        </div>
-        <div class="skills-head" style="margin-top:8px;">Tools</div>
-        <div class="skill-row">
-          <span class="skill">Figma</span>
-          <span class="skill">Adobe XD</span>
-          <span class="skill">Illustrator</span>
-          <span class="skill">Photoshop</span>
-          <span class="skill">After Effects</span>
-          <span class="skill">Framer</span>
-          <span class="skill">Webflow</span>
-          <span class="skill">Notion</span>
-          <span class="skill">Miro</span>
-          <span class="skill">Jira · Confluence</span>
-          <span class="skill">HTML · CSS</span>
-        </div>
-      </div>
-
-      <div style="margin-top:32px;" class="reveal d6">
-        <a href="cv.html" class="btn sec" style="display:inline-flex;">Full CV &amp; Experience <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></a>
-      </div>
-    </div>
-
-    <div class="about-right reveal d2">
-      <div class="about-photo" role="img" aria-label="Mohit Ahirwar — monogram">
-        <div class="photo-placeholder-inner">
-          <div class="photo-mono" aria-hidden="true">M<em>·</em>A</div>
-          <span class="photo-caption">Mohit Ahirwar<br>Mumbai · India</span>
-        </div>
-      </div>
-      <a href="cv.html" class="about-cv-link">
-        <span>View full CV &amp; resume</span>
-        <span class="arr" aria-hidden="true">→</span>
-      </a>
-      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="about-cv-link">
-        <span>Connect on LinkedIn</span>
-        <span class="arr" aria-hidden="true">↗</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     9. RECOGNITION
-     ═══════════════════════════════════════════════ -->
-<section class="wrap" id="recognition" aria-labelledby="recognition-heading">
-  <div class="sec-num" aria-hidden="true">03</div>
-  <div class="sec-head">
-    <div class="sec-head-left">
-      <div class="sec-tag reveal">Recognition &amp; Activities</div>
-      <h2 id="recognition-heading" class="reveal d1">Beyond the <em>screen</em></h2>
-      <p class="intro reveal d2">Star Performer of the Year at TCS · IIT Delhi prospectus cover · VR research presented to the President of India · CEED Qualified · Government of India cultural envoy · 35+ design mentees into IITs and NIDs.</p>
-    </div>
-  </div>
-
-  <div class="recog-grid reveal d3">
-    <div class="rg-cell tall">
-      <div>
-        <div class="rg-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h12v3a6 6 0 01-12 0V4zM4 4h2v3a4 4 0 002 3.5M20 4h-2v3a4 4 0 01-2 3.5M9 14v3h6v-3M7 21h10"/></svg>
-        </div>
-        <div class="rg-tag">TCS Interactive · 2024</div>
-        <h4>Star Performer of <em>the Year</em></h4>
-      </div>
-      <p>Top-tier annual recognition at TCS — alongside 10+ performance awards and written client appreciations from SBI and McKinsey-led engagements.</p>
-    </div>
-
-    <div class="rg-cell feat-blue">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-6 9 6-9 6-9-6z"/><path d="M3 14l9 6 9-6M3 18l9 6 9-6"/></svg>
-      </div>
-      <div class="rg-tag">IIT Delhi · 2021</div>
-      <h4>CEED Qualified — <em>no coaching</em></h4>
-      <p>Admits at IIT Delhi, IIT Kanpur, IIT Hyderabad, IIITDM Jabalpur, SPA Bhopal.</p>
-    </div>
-
-    <div class="rg-cell">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19h16M5 19V8l7-4 7 4v11M9 19v-6h6v6"/></svg>
-      </div>
-      <div class="rg-tag">IIT Delhi · OCS</div>
-      <h4>Outstanding Performance Award</h4>
-      <p>Designed the official OCS logo — inaugurated by the Director, IIT Delhi.</p>
-    </div>
-
-    <div class="rg-cell">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
-      </div>
-      <div class="rg-tag">Govt. of India · 2019</div>
-      <h4>Ek Bharat Shreshtha Bharat</h4>
-      <p>Selected as cultural envoy from 7,000+ students. Ministry of Culture programme.</p>
-    </div>
-
-    <div class="rg-cell">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/><path d="M16 4l4 2-2 2M8 4L4 6l2 2"/></svg>
-      </div>
-      <div class="rg-tag">IMA Dehradun · IIT Delhi</div>
-      <h4>VR Research — <em>Armed Forces</em></h4>
-      <p>Proof of concept for medical training, presented to the President of India.</p>
-    </div>
-
-    <div class="rg-cell">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c4-8 14-8 18 0M5 12c3-5 11-5 14 0"/><circle cx="12" cy="12" r="2"/></svg>
-      </div>
-      <div class="rg-tag">IIT Delhi · 2022</div>
-      <h4>Prospectus Cover</h4>
-      <p>AI-enabled Smart Glass project featured on the IIT Delhi institutional prospectus cover.</p>
-    </div>
-
-    <div class="rg-cell">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v6M9 5h6M5 14a7 7 0 0114 0v8H5v-8z"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
-      </div>
-      <div class="rg-tag">Mentoring</div>
-      <h4>35+ mentees → <em>IITs &amp; NIDs</em></h4>
-      <p>CEED &amp; design entrance mentoring. Began after own M.Des admission.</p>
-    </div>
-
-    <div class="rg-cell">
-      <div class="rg-icon" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18l3-12 6 4 6-4 3 12M9 18v-3M15 18v-3"/></svg>
-      </div>
-      <div class="rg-tag">Vibhinn'23 · Indradhanu</div>
-      <h4>Design Head</h4>
-      <p>Led design for Vibhinn'23 — IIT Delhi's queer collective festival, 150+ executives.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     10. WRITING
-     ═══════════════════════════════════════════════ -->
-<section class="wrap" id="writing" aria-labelledby="writing-heading">
-  <div class="sec-num" aria-hidden="true">04</div>
-  <div class="sec-head">
-    <div class="sec-head-left">
-      <div class="sec-tag reveal">Writing</div>
-      <h2 id="writing-heading" class="reveal d1">Articles &amp; <em>Thinking</em></h2>
-      <p class="intro reveal d2">Notes on product design, enterprise UX, systems thinking, and working inside complexity.</p>
-    </div>
-  </div>
-  <a href="article-beyond-the-prompt.html" class="writing-card reveal d3">
-    <div class="wc-meta">
-      <span class="wc-cat">Featured · Strategic Design</span>
-      <span class="wc-date">May 2026 · 8 min read</span>
-    </div>
-    <div class="wc-content">
-      <h3 class="wc-title">Beyond the <em>Prompt.</em></h3>
-      <p class="wc-subtitle">What this week's <em>$5.5B AI consulting bet</em> quietly admits — and why it's a design problem, not an engineering one.</p>
-      <p class="wc-excerpt">OpenAI raised $4 billion. Anthropic announced a $1.5 billion joint venture. Both have the same goal: embed humans inside client companies to help them actually use AI. <strong>That is not a story about AI labs entering consulting. It is a story about an interface that has failed.</strong></p>
-      <span class="wc-cta">Read full article →</span>
+    <div class="card__body">
+      <p class="s-lbl">2024 — Present · State Bank of India</p>
+      <h3>YONO 2.0, insurance vertical</h3>
+      <p>India's largest bank needed insurance to move out of the branch. Rather than draw forty journeys, I designed the handful the rest of the portfolio could inherit.</p>
+      <div class="tags"><span>40+ products</span><span>4 channels</span><span>Design systems</span><span>BFSI</span></div>
+      <p class="card__go">Read the case study <span class="arr">→</span></p>
     </div>
   </a>
-  <div class="writing-more">
-    <a href="articles.html" class="wm-link">View all writing →</a>
+
+  <a class="card reveal" href="mdes-thesis.html">
+    <div class="card__media">
+      <div class="card__ph">cozy-loop.mp4</div>
+      <video muted loop playsinline preload="none" poster="assets/work/cozy-poster.jpg" data-src="assets/work/cozy-loop.mp4"></video>
+    </div>
+    <div class="card__body">
+      <p class="s-lbl">2023 · M.Des thesis with Havells India</p>
+      <h3>Cozy Nights</h3>
+      <p>Sleeping through an Indian summer is a control problem, not a comfort one. Coupling the air conditioner and the fan inside one app cut energy use 18% at equal comfort.</p>
+      <div class="tags"><span>18% energy saved</span><span>Systems design</span><span>Research</span></div>
+      <p class="card__go">Read the case study <span class="arr">→</span></p>
+    </div>
+  </a>
+
+  <a class="card reveal" href="global-adaptive-design-system.html">
+    <div class="card__media">
+      <div class="card__ph">gads-loop.mp4</div>
+      <video muted loop playsinline preload="none" poster="assets/work/gads-poster.jpg" data-src="assets/work/gads-loop.mp4"></video>
+    </div>
+    <div class="card__body">
+      <p class="s-lbl">2025 — Present · Self-initiated</p>
+      <h3>Global Adaptive Design System</h3>
+      <p>Most component libraries quietly assume left-to-right and a laptop. This one holds its shape in Arabic, Hebrew and vertical Japanese, across four device tiers.</p>
+      <div class="tags"><span>In progress</span><span>RTL · LTR · TTB</span><span>Design systems</span></div>
+      <p class="card__go">See the project <span class="arr">→</span></p>
+    </div>
+  </a>
+</section>
+
+<!-- OFF THE CLOCK -->
+<section class="pb block">
+  <div class="head reveal">
+    <h2>Off the <em>clock</em></h2>
+    <span class="s-lbl">Identity, teaching, craft</span>
+  </div>
+  <div class="strip">
+    <figure class="tile reveal d1">
+      <div class="tile__m">
+        <span class="tile__ph">ocs-logo-reveal.mp4</span>
+        <video muted loop playsinline preload="none" poster="assets/profile/mohit-hero.jpg" data-src="assets/work/ocs-logo-reveal.mp4"></video>
+      </div>
+      <figcaption class="tile__c"><b>OCS, IIT Delhi</b><span>The institute's Office of Career Services mark, inaugurated by the Director.</span></figcaption>
+    </figure>
+    <figure class="tile reveal d2">
+      <div class="tile__m"><span class="tile__ph">speaking.jpg</span></div>
+      <figcaption class="tile__c"><b>Teaching</b><span>CEED and design-entrance mentoring. 35 mentees into IITs and NIDs so far.</span></figcaption>
+    </figure>
+    <figure class="tile reveal d3">
+      <div class="tile__m"><span class="tile__ph">sketchbook.jpg</span></div>
+      <figcaption class="tile__c"><b>Sketchbook</b><span>Everything still starts on paper before it reaches Figma.</span></figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     11. CTA
-     ═══════════════════════════════════════════════ -->
-<div class="cta-strip">
-  <div class="cta-inner reveal">
-    <div>
-      <div class="cta-tag">Open to consulting roles</div>
-      <h2>Ready for the next<br><em>transformation programme.</em></h2>
-      <p>Targeting <strong>design-led digital transformation roles</strong> at <strong>Accenture Song</strong>, <strong>Deloitte Digital</strong>, and <strong>Publicis Sapient</strong>. Also exploring UX strategy and digital transformation consultant roles in <strong>Dubai</strong>. Based in Mumbai · open to hybrid &amp; relocation.</p>
+<!-- ABOUT -->
+<section id="about" class="pb block">
+  <div class="about">
+    <div class="about__photo reveal">
+      <img src="assets/profile/mohit-hero.jpg" alt="Mohit Ahirwar" loading="lazy">
     </div>
-    <div class="cta-btns">
-      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer" class="cbtn p">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        Connect on LinkedIn
-      </a>
-      <a href="mailto:mohitahirwar7@gmail.com" class="cbtn o">mohitahirwar7@gmail.com</a>
-      <a href="tel:+917007825909" class="cbtn o">+91 70078 25909</a>
-      <a href="cv.html" class="cbtn o">View Full CV →</a>
+    <div class="reveal d2">
+      <p class="s-num">About</p>
+      <p>I came to design through an information technology degree, which is probably why I am comfortable in the part of the job most designers avoid: regulatory review, stakeholder governance, and the question of what actually ships.</p>
+      <p>An M.Des from IIT Delhi in between. My leverage comes from finding the one pattern that solves thirty problems, rather than solving them one at a time.</p>
+      <ul class="now">
+        <li><b>Learning</b><span>Russian, day 275 on Duolingo. No plans to stop.</span></li>
+        <li><b>Writing</b><span>Occasional pieces on AI interaction as a design problem.</span></li>
+        <li><b>Next</b><span>Design-led transformation work. Open to relocation.</span></li>
+      </ul>
     </div>
   </div>
-</div>
+</section>
+
+<!-- CONTACT -->
+<section class="pb block contact">
+  <p class="s-num">Get in touch</p>
+  <h2>Happy to talk about <em>hard systems</em>.</h2>
+  <div class="acts">
+    <a class="btn btn--primary" href="mailto:mohitahirwar7@gmail.com">mohitahirwar7@gmail.com</a>
+    <a class="btn btn--ghost" href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a class="btn btn--ghost" href="cv.html">Full CV</a>
+  </div>
+</section>
 
 </main>
 
-<footer>
-  <div class="foot">
-    <div class="foot-name">
-      <em>Mohit</em> Ahirwar
-      <span class="copy">© 2026 · All rights reserved</span>
-    </div>
-    <nav class="foot-nav" aria-label="Footer navigation">
-      <a href="#work">Work</a>
-      <span class="foot-sep" aria-hidden="true">·</span>
-      <a href="articles.html">Writing</a>
-      <span class="foot-sep" aria-hidden="true">·</span>
-      <a href="#about">About</a>
-      <span class="foot-sep" aria-hidden="true">·</span>
-      <a href="cv.html">CV</a>
-      <span class="foot-sep" aria-hidden="true">·</span>
-      <a href="yono-case-study.html">YONO 2.0</a>
-      <span class="foot-sep" aria-hidden="true">·</span>
-      <a href="https://www.linkedin.com/in/mohit-ahirwar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <span class="foot-sep" aria-hidden="true">·</span>
+<footer class="foot">
+  <div class="foot__in">
+    <p class="foot__name">Mohit <em>Ahirwar</em><span class="foot__copy">© 2026</span></p>
+    <nav class="foot__nav">
+      <a href="#work">Work</a><span class="foot__sep">·</span>
+      <a href="articles.html">Writing</a><span class="foot__sep">·</span>
+      <a href="cv.html">CV</a><span class="foot__sep">·</span>
+      <a href="https://www.linkedin.com/in/mohit-ahirwar/">LinkedIn</a><span class="foot__sep">·</span>
       <a href="mailto:mohitahirwar7@gmail.com">Email</a>
     </nav>
   </div>
 </footer>
 
-<button id="back-top" aria-label="Back to top">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--ink-2)" stroke-width="1.5" aria-hidden="true"><line x1="8" y1="12" x2="8" y2="4"/><polyline points="4,8 8,4 12,8"/></svg>
-</button>
-
 <script>
-// ═══════════════════════════════════════════════
-// CUSTOM CURSOR
-// ═══════════════════════════════════════════════
 (function(){
-  const cur = document.getElementById('cur');
-  if (!cur || !window.matchMedia('(hover: hover)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  let cx = window.innerWidth/2, cy = window.innerHeight/2;
-  let tx = cx, ty = cy;
-  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, {passive:true});
-  (function loop(){
-    cx += (tx - cx) * 0.18;
-    cy += (ty - cy) * 0.18;
-    cur.style.transform = `translate(${cx}px, ${cy}px)`;
-    requestAnimationFrame(loop);
-  })();
-  document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('hover-state'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('hover-state'));
-  });
-  // Dark sections (CTA) — invert blend
-  document.querySelectorAll('.cta-strip').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('dark-state'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('dark-state'));
-  });
-})();
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ═══════════════════════════════════════════════
-// PROGRESS BAR
-// ═══════════════════════════════════════════════
-const prog = document.getElementById('prog');
-window.addEventListener('scroll', () => {
-  const d = document.documentElement;
-  const pct = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
-  prog.style.width = pct + '%';
-  prog.setAttribute('aria-valuenow', Math.round(pct));
-}, {passive:true});
-
-// ═══════════════════════════════════════════════
-// SCROLL REVEAL
-// ═══════════════════════════════════════════════
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-}, {threshold:.06});
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// ═══════════════════════════════════════════════
-// ACTIVE NAV
-// ═══════════════════════════════════════════════
-const secs = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-function updateActive() {
-  let cur = '';
-  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
-  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-}
-window.addEventListener('scroll', updateActive, {passive:true});
-
-// ═══════════════════════════════════════════════
-// ANIMATED COUNTERS
-// ═══════════════════════════════════════════════
-function counter(el, target, suffix) {
-  const dur = 1600, start = performance.now();
-  (function step(now) {
-    const p = Math.min((now - start) / dur, 1);
-    const ease = 1 - Math.pow(1 - p, 4);
-    const val = Number.isInteger(target) ? Math.round(target * ease) : (target * ease).toFixed(1);
-    el.textContent = val + suffix;
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = target + suffix;
-  })(start);
-}
-const cio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting && e.target.dataset.val) {
-      counter(e.target, parseFloat(e.target.dataset.val), e.target.dataset.suf || '');
-      cio.unobserve(e.target);
+  /* Pattern-leverage grid: 40 dots, one per product in the portfolio */
+  var g = document.getElementById('grid');
+  if(g){
+    var ns='http://www.w3.org/2000/svg';
+    for(var i=0;i<40;i++){
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',148+(i%8)*23);
+      c.setAttribute('cy',44+Math.floor(i/8)*25);
+      c.setAttribute('r',3.5);
+      c.setAttribute('class','dot');
+      c.style.animationDelay=(i*0.035)+'s';
+      g.appendChild(c);
     }
-  });
-}, {threshold:.5});
-document.querySelectorAll('[data-val]').forEach(el => cio.observe(el));
+  }
 
-// ═══════════════════════════════════════════════
-// PARALLAX (hero dot grid + visual + section numbers)
-// ═══════════════════════════════════════════════
-(function(){
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const hero = document.querySelector('.hero');
-  const heroVisual = document.getElementById('heroVisual');
-  const sectionNums = document.querySelectorAll('.sec-num');
-  let ticking = false;
+  /* Scroll reveal */
+  if(!reduce && 'IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target);} });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
 
-  function onScroll(){
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const sy = window.scrollY;
-      // Hero pseudo-element gets transformed via the hero element (hero::before doesn't transform directly, so we shift the hero text bg via the hero itself)
-      if (hero){
-        // Apply background offset via CSS variable for the dot grid
-        hero.style.setProperty('--py', (sy * 0.08) + 'px');
-        hero.style.backgroundPosition = `center ${sy * 0.08}px`;
-      }
-      if (heroVisual && sy < window.innerHeight){
-        heroVisual.style.transform = `translateY(${sy * -0.06}px)`;
-      }
-      sectionNums.forEach(el => {
-        const r = el.parentElement.getBoundingClientRect();
-        const center = window.innerHeight / 2 - (r.top + r.height / 2);
-        el.style.transform = `translateY(${center * 0.04}px)`;
+  /* Tile loops play only while visible */
+  if(!reduce && 'IntersectionObserver' in window){
+    var vids=[].slice.call(document.querySelectorAll('video[data-src]'));
+    var vo=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v=e.target;
+        if(e.isIntersecting){
+          if(!v.src && v.dataset.src) v.src=v.dataset.src;
+          var p=v.play(); if(p && p.catch) p.catch(function(){});
+        } else { v.pause(); }
       });
-      ticking = false;
-    });
+    },{threshold:.35});
+    vids.forEach(function(v){ vo.observe(v); });
   }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-})();
 
-// ═══════════════════════════════════════════════
-// MAGNETIC BUTTONS
-// ═══════════════════════════════════════════════
-document.querySelectorAll('.magnetic').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const dx = (e.clientX - (r.left + r.width/2)) * 0.28;
-    const dy = (e.clientY - (r.top + r.height/2)) * 0.28;
-    btn.style.transform = `translate(${dx}px,${dy}px)`;
-  });
-  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-});
-
-// ═══════════════════════════════════════════════
-// HAMBURGER
-// ═══════════════════════════════════════════════
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  const open = hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', open);
-  hamburger.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.setAttribute('aria-label', 'Open navigation menu');
-    document.body.style.overflow = '';
-  });
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { hamburger.click(); hamburger.focus(); }
-});
-
-// ═══════════════════════════════════════════════
-// PAGE TRANSITIONS
-// ═══════════════════════════════════════════════
-document.querySelectorAll('a[href]').forEach(a => {
-  const href = a.getAttribute('href');
-  if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel') && href.endsWith('.html')) {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      document.body.style.transition = 'opacity .22s ease, transform .22s ease';
-      document.body.style.opacity = '0';
-      document.body.style.transform = 'translateY(-6px)';
-      setTimeout(() => window.location.href = href, 230);
+  /* Custom cursor */
+  var cur=document.getElementById('cur');
+  if(cur && window.matchMedia('(hover: hover)').matches && !reduce){
+    var x=0,y=0,tx=0,ty=0;
+    document.addEventListener('mousemove',function(e){ x=e.clientX; y=e.clientY; });
+    (function loop(){
+      tx+=(x-tx)*0.22; ty+=(y-ty)*0.22;
+      cur.style.transform='translate('+tx+'px,'+ty+'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter',function(){ cur.classList.add('hover-state'); });
+      el.addEventListener('mouseleave',function(){ cur.classList.remove('hover-state'); });
     });
-  }
-});
-
-// ═══════════════════════════════════════════════
-// BACK TO TOP
-// ═══════════════════════════════════════════════
-const btt = document.getElementById('back-top');
-window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 600), {passive:true});
-btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
-
-// ═══════════════════════════════════════════════
-// TIMELINE: drag-to-scroll
-// ═══════════════════════════════════════════════
-(function(){
-  const tl = document.querySelector('.tl-track');
-  if (!tl) return;
-  let isDown = false, startX, scrollLeft;
-  tl.addEventListener('mousedown', e => {
-    isDown = true; tl.style.cursor = 'grabbing';
-    startX = e.pageX - tl.offsetLeft;
-    scrollLeft = tl.scrollLeft;
-  });
-  tl.addEventListener('mouseleave', () => { isDown = false; tl.style.cursor = ''; });
-  tl.addEventListener('mouseup', () => { isDown = false; tl.style.cursor = ''; });
-  tl.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - tl.offsetLeft;
-    tl.scrollLeft = scrollLeft - (x - startX) * 1.5;
-  });
+  } else if(cur){ cur.style.display='none'; document.body.classList.remove('has-cursor'); }
 })();
 </script>
 </body>
