@@ -1,0 +1,205 @@
+/* ═══════════════════════════════════════════════════════════════
+   MOHIT AHIRWAR — SHARED STYLESHEET
+   Everything in this file is used by more than one page.
+   Page-specific CSS stays inline in that page's <style> block.
+
+   Migration: in each .html file, delete the duplicated blocks
+   listed in README.md, then add above the inline <style>:
+   <link rel="stylesheet" href="assets/styles.css">
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── DESIGN TOKENS ─────────────────────────────────────────── */
+:root{
+  /* Neutrals */
+  --white:#ffffff;
+  --paper:#fafaf8;
+  --bone:#f3f2ef;
+  --rule:#e4e2dc;
+  --rule2:#d0cec7;
+  --ink-3:#9b9890;
+  --ink-2:#6b6860;
+  --ink-1:#2e2c28;
+  --ink:#141210;
+
+  /* Brand blue */
+  --blue:#1a4ed8;
+  --blue-d:#1640b8;
+  --blue-l:#6092f8;
+  --blue-bg:#eef2fd;
+  --blue-bd:#c7d4f8;
+
+  /* Sand (warm) */
+  --sand:#f5efe4;
+  --sand-l:#fbf6ec;
+  --sand-bd:#e6dcc7;
+  --sand-ink:#8a7558;
+  --sand-ink-d:#5e4f3a;
+
+  /* Sage (cool, organic) */
+  --sage:#ecf0eb;
+  --sage-l:#f5f7f4;
+  --sage-bd:#d6dcd2;
+  --sage-ink:#5a7763;
+  --sage-ink-d:#3e5645;
+
+  --r:3px;
+  --ease:cubic-bezier(0.16, 1, 0.3, 1);
+  --ease2:cubic-bezier(0.65, 0, 0.35, 1);
+  --max:1200px;
+  --pad:48px;
+}
+
+/* ── RESET + BASE ──────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:'IBM Plex Sans',sans-serif;
+  background:var(--white);color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  animation:pageFadeIn .5s var(--ease) both;
+}
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
+img,svg,video{max-width:100%;display:block}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:var(--r)}
+
+/* Skip link — keyboard users land here first */
+.skip{
+  position:absolute;left:-9999px;top:8px;z-index:10000;
+  background:var(--blue);color:#fff;padding:10px 16px;border-radius:var(--r);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+}
+.skip:focus{left:8px}
+
+/* ── SHARED PRIMITIVES ─────────────────────────────────────── */
+.pb{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+.mono{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+.mono--blue{color:var(--blue)}
+
+.s-num{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;
+  color:var(--blue);font-weight:500;display:flex;align-items:center;gap:10px;margin-bottom:8px;
+}
+.s-num::before{content:'';width:18px;height:1px;background:var(--blue)}
+
+.s-lbl{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:var(--ink-3);text-transform:uppercase;
+}
+
+/* ── BUTTONS ───────────────────────────────────────────────── */
+.btn{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:500;padding:13px 22px;border-radius:var(--r);
+  text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;white-space:nowrap;transition:all .2s var(--ease);border:1px solid transparent;
+}
+.btn--primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn--primary:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 10px 30px rgba(26,78,216,.18)}
+.btn--ghost{background:transparent;color:var(--ink-1);border-color:var(--rule2)}
+.btn--ghost:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+
+/* ── NAV ───────────────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:100;height:60px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+}
+.nav__in{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:100%;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav__id{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav__dot{width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0}
+.nav__name{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--ink-1);font-weight:500;
+}
+.nav__links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav__links a{
+  font-size:12px;font-weight:500;letter-spacing:.4px;color:var(--ink-2);
+  text-decoration:none;transition:color .15s;
+}
+.nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--blue)}
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+.foot{border-top:1px solid var(--rule);margin-top:0}
+.foot__in{
+  max-width:var(--max);margin:0 auto;padding:36px var(--pad);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+}
+.foot__name{
+  font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--ink-2);
+  display:flex;align-items:center;gap:10px;
+}
+.foot__name em{font-style:italic;color:var(--ink);font-family:'Instrument Serif',serif}
+.foot__copy{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  color:var(--ink-3);text-transform:uppercase;padding-left:14px;
+  border-left:1px solid var(--rule);margin-left:6px;
+}
+.foot__nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.foot__nav a{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--ink-3);text-decoration:none;
+  transition:color .15s;padding:4px 8px;
+}
+.foot__nav a:hover{color:var(--blue)}
+.foot__sep{color:var(--rule2);padding:0 2px}
+
+/* ── SCROLL REVEAL ─────────────────────────────────────────── */
+.reveal{
+  opacity:0;transform:translateY(28px);filter:blur(2px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease);
+}
+.reveal.in{opacity:1;transform:translateY(0);filter:blur(0)}
+.d1{transition-delay:.08s}
+.d2{transition-delay:.16s}
+.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}
+.d5{transition-delay:.40s}
+.d6{transition-delay:.48s}
+.d7{transition-delay:.56s}
+
+/* ── CUSTOM CURSOR ─────────────────────────────────────────── */
+#cur{
+  position:fixed;top:0;left:0;width:8px;height:8px;background:var(--blue);
+  border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  transition:width .22s var(--ease),height .22s var(--ease),background .2s,border .2s,opacity .2s;
+  will-change:transform;mix-blend-mode:multiply;
+}
+#cur.hover-state{width:36px;height:36px;background:transparent;border:1.5px solid var(--blue)}
+#cur.link-state{width:20px;height:20px}
+.has-cursor{cursor:none}
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media(max-width:860px){
+  :root{--pad:24px}
+  .nav__links{gap:16px}
+  .foot__in{flex-direction:column;align-items:flex-start}
+}
+
+/* Touch devices never get the custom cursor */
+@media(hover:none){
+  #cur{display:none}
+  .has-cursor{cursor:auto}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none;filter:none}
+  #cur{display:none}
+  .has-cursor{cursor:auto}
+}
+
+/* ── PRINT ─────────────────────────────────────────────────── */
+@media print{
+  .nav,#cur,.skip{display:none}
+  body{background:#fff;color:#000}
+  .reveal{opacity:1;transform:none;filter:none}
+}
