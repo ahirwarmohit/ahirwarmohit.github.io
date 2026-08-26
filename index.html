@@ -128,7 +128,7 @@
 .figs span{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-3);margin-top:7px;display:block}
 
 /* Secondary pair */
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.pair{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
 .mini{
   text-decoration:none;border:1px solid var(--rule);border-radius:var(--r);
   overflow:hidden;background:var(--white);display:flex;flex-direction:column;
@@ -145,8 +145,16 @@
 .tags span{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--ink-2);border:1px solid var(--rule);padding:4px 8px;border-radius:2px}
 .tags span:first-child{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue)}
 
+/* See-more link */
+.more-row{margin-top:22px;padding-top:20px;border-top:1px solid var(--rule);display:flex;justify-content:flex-end}
+.more{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .25s var(--ease)}
+.more::after{content:'\2192';transition:transform .25s var(--ease);display:inline-block}
+.more:hover{color:var(--blue)}
+.more:hover::after{transform:translateX(4px)}
+
 /* ── OFF THE CLOCK ────────────────────────────────────────── */
 .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.strip--2{grid-template-columns:repeat(2,1fr)}
 .tile{border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--white)}
 .tile__m{aspect-ratio:4/3;position:relative;overflow:hidden;background:linear-gradient(140deg,var(--sage-l),var(--bone));display:grid;place-items:center}
 .tile__m video{width:100%;height:100%;object-fit:cover;display:none}
@@ -265,13 +273,13 @@
 <section id="work" class="pb block">
   <div class="head reveal">
     <h2>Selected <em>work</em></h2>
-    <span class="s-lbl">Three projects</span>
+    <span class="s-lbl">Four case studies</span>
   </div>
 
   <a class="lead reveal" href="yono-case-study.html">
     <div class="lead__media">
       <span class="lead__badge"><i></i> Live in production</span>
-      <img src="assets/yono/crop-branch-portal.webp" alt="SBI YONO branch portal — staff-facing insurance servicing dashboard" loading="lazy">
+      <img src="assets/yono/crop-insurance-landing.webp" alt="SBI YONO insurance landing page" loading="lazy">
     </div>
     <div class="lead__body">
       <div>
@@ -300,7 +308,19 @@
         <div class="tags"><span>18% energy saved</span><span>Systems design</span><span>Research</span></div>
       </div>
     </a>
-    <a class="mini reveal d2" href="global-adaptive-design-system.html">
+    <a class="mini reveal d2" href="ocs-logo-case-study.html">
+      <div class="mini__media">
+        <span class="mini__ph">ocs-logo-reveal.mp4</span>
+        <video muted loop playsinline preload="none" data-src="assets/work/ocs-logo-reveal.mp4"></video>
+      </div>
+      <div class="mini__body">
+        <p class="s-lbl">2022 · IIT Delhi</p>
+        <h3>Office of Career Services</h3>
+        <p>The institute's placement office was using a mark borrowed from the IIT Delhi seal. I gave it an identity of its own — a starling rising off a sun — unveiled by the Director and adopted across the office.</p>
+        <div class="tags"><span>Adopted 2022</span><span>Brand identity</span><span>Guidelines</span></div>
+      </div>
+    </a>
+    <a class="mini reveal d3" href="global-adaptive-design-system.html">
       <div class="mini__media">
         <span class="mini__ph">gads-loop.mp4</span>
         <video muted loop playsinline preload="none" data-src="assets/work/gads-loop.mp4"></video>
@@ -313,27 +333,24 @@
       </div>
     </a>
   </div>
+
+  <div class="more-row reveal">
+    <a class="more" href="https://www.behance.net/mohitahirwar" target="_blank" rel="noopener noreferrer">See more projects on Behance</a>
+  </div>
 </section>
 
 <section class="block tint-bone">
   <div class="pb">
     <div class="head reveal">
       <h2>Off the <em>clock</em></h2>
-      <span class="s-lbl">Identity, teaching, craft</span>
+      <span class="s-lbl">Teaching and craft</span>
     </div>
-    <div class="strip">
+    <div class="strip strip--2">
       <figure class="tile reveal d1">
-        <div class="tile__m">
-          <span class="tile__ph">ocs-logo-reveal.mp4</span>
-          <video muted loop playsinline preload="none" data-src="assets/work/ocs-logo-reveal.mp4"></video>
-        </div>
-        <figcaption class="tile__c"><b>OCS, IIT Delhi</b><span>The institute's Office of Career Services mark, inaugurated by the Director.</span></figcaption>
-      </figure>
-      <figure class="tile reveal d2">
         <div class="tile__m"><span class="tile__ph">speaking.jpg</span></div>
         <figcaption class="tile__c"><b>Teaching</b><span>CEED and design-entrance mentoring. 35 mentees into IITs and NIDs so far.</span></figcaption>
       </figure>
-      <figure class="tile reveal d3">
+      <figure class="tile reveal d2">
         <div class="tile__m"><span class="tile__ph">sketchbook.jpg</span></div>
         <figcaption class="tile__c"><b>Sketchbook</b><span>Everything still starts on paper before it reaches Figma.</span></figcaption>
       </figure>
