@@ -86,6 +86,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .showcase{max-width:1200px;margin:0 auto;padding:56px 48px 68px;border-bottom:1px solid var(--rule);}
 .showcase-panel{background:var(--sand-l);border:1px solid var(--sand-bd);border-radius:var(--r);padding:clamp(28px,6vw,72px);display:flex;align-items:center;justify-content:center;}
 .showcase-panel img{width:100%;max-width:820px;height:auto;border-radius:2px;filter:drop-shadow(0 20px 42px rgba(102,0,7,.10));}
+.showcase-panel video{width:100%;max-width:900px;height:auto;border-radius:var(--r);display:block;background:var(--white);box-shadow:0 20px 42px rgba(102,0,7,.10);}
+.showcase-panel .reveal-fallback{display:none;}
+@media(prefers-reduced-motion:reduce){.showcase-panel video{display:none;}.showcase-panel .reveal-fallback{display:block;}}
 .showcase-cap{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-top:20px;}
 
 /* LAYOUT */
@@ -124,7 +127,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 
 /* SYMBOLS */
 .symbols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-top:28px;}
-.sym{background:var(--white);padding:26px 22px;transition:background .2s,transform .2s;}
+.sym{background:var(--white);padding:22px 22px 26px;transition:background .2s,transform .2s;}
+.sym-fig{aspect-ratio:3/2;border-radius:2px;overflow:hidden;margin-bottom:18px;background:var(--paper);}
+.sym-fig img{width:100%;height:100%;object-fit:cover;display:block;}
 .sym:hover{background:var(--paper);transform:translateY(-2px);}
 .sym-idx{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:1px;margin-bottom:12px;}
 .sym-name{font-family:'Fraunces',serif;font-size:19px;font-weight:400;color:var(--ink);margin-bottom:8px;}
@@ -297,9 +302,12 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
 <!-- SHOWCASE -->
 <div class="showcase reveal">
   <div class="showcase-panel">
-    <img src="assets/ocs/logo-primary.jpg" alt="The official Office of Career Services, IIT Delhi logo — a maroon 'C' holding a rising sun and a starling in flight, beside the wordmark 'Office of Career Services · IIT Delhi'." width="820" height="547" fetchpriority="high">
+    <video class="reveal-vid" autoplay muted playsinline preload="metadata" poster="assets/ocs/reveal-poster.jpg" aria-label="Animated reveal of the Office of Career Services emblem assembling from its parts — sun rays, a starling and the 'C'.">
+      <source src="assets/ocs/ocs-logo-reveal.mp4" type="video/mp4">
+    </video>
+    <img class="reveal-fallback" src="assets/ocs/logo-primary.jpg" alt="The official Office of Career Services, IIT Delhi logo — a maroon 'C' holding a rising sun and a starling in flight, beside the wordmark 'Office of Career Services · IIT Delhi'." width="820" height="547">
   </div>
-  <p class="showcase-cap">The primary lockup — emblem and typographic body</p>
+  <p class="showcase-cap">The mark, revealed — sun, starling and 'C', assembled</p>
 </div>
 
 <!-- 01 THE BRIEF -->
@@ -359,16 +367,19 @@ footer{border-top:1px solid var(--rule);padding:36px 48px;display:flex;justify-c
       <p class="reveal">The emblem is a single 'C' — for Career — engineered to be read three ways at once. Look longer and it keeps giving back meaning, which is exactly what a mark this office uses every day needs to do.</p>
       <div class="symbols reveal" role="list">
         <div class="sym" role="listitem">
+          <div class="sym-fig"><img src="assets/ocs/sym-sun.webp" alt="A rising sun breaking through clouds" loading="lazy"></div>
           <div class="sym-idx">01</div>
           <div class="sym-name">The rising sun</div>
           <div class="sym-desc">The rays fanning out of the 'C' read as a sun coming up — vibrance, energy, and a bright future opening in front of the student.</div>
         </div>
         <div class="sym" role="listitem">
+          <div class="sym-fig"><img src="assets/ocs/sym-starling.webp" alt="A starling in flight, wings spread" loading="lazy"></div>
           <div class="sym-idx">02</div>
           <div class="sym-name">The flying starling</div>
           <div class="sym-desc">Inside the sun, a starling takes off — a bird chosen for intellect, dexterity and a fighting, collective spirit. It carries the flight and the pride.</div>
         </div>
         <div class="sym" role="listitem">
+          <div class="sym-fig"><img src="assets/ocs/sym-infinity.webp" alt="A grid of infinity-symbol explorations from the identity process" loading="lazy"></div>
           <div class="sym-idx">03</div>
           <div class="sym-name">Infinity within</div>
           <div class="sym-desc">The concentric strokes of the 'C' overlap and fade into one another — a quiet infinity that stands for the open-ended range of paths a career can take.</div>
